@@ -1,0 +1,22 @@
+.liability-waiver__waiver-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.liability-waiver__acceptable-term {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: initial;
+    margin: 10px 0;
+}
+
+.liability-waiver__acceptable-term span {
+    display: flex;
+    align-items: center;
+}
+
+.sigCanvas {
+    background-color: #eee;
+    border: 1px solid black;
+}
