@@ -1,4 +1,5 @@
-const endpointBasePath = 'https://k8tbb61nv6.execute-api.us-east-2.amazonaws.com/dev';
+const endpointBasePath =
+  "https://k8tbb61nv6.execute-api.us-east-2.amazonaws.com/dev";
 export const classesEndpoint = `${endpointBasePath}/classes`;
 export const agesEndpoint = `${endpointBasePath}/ages`;
 export const levelsEndpoint = `${endpointBasePath}/levels`;

@@ -1,0 +1,15 @@
+.credit-card__expiration-date {
+    margin-top: 20px;
+    margin-bottom: -15px;
+}
+
+.credit-card__field-container {
+    display: flex;
+    align-items: flex-end;
+    min-width: 400px;
+}
+
+.credit-card__field-container-icon {
+    padding-bottom: 13px;
+    margin-right: 5px;
+}

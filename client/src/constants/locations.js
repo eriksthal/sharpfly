@@ -1,1 +1,1 @@
-export const locations = ['Arbutus', 'East Vancouver'];
+export const locations = ["Arbutus", "East Vancouver"];
