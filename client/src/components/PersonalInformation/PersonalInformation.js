@@ -104,7 +104,11 @@ function PersonalInformation(props) {
                   <em>Select a city</em>
                 </MenuItem>
                 {cities.map(city => {
-                  return <MenuItem value={city}>{city}</MenuItem>;
+                  return (
+                    <MenuItem key={city} value={city}>
+                      {city}
+                    </MenuItem>
+                  );
                 })}
               </Select>
             </div>

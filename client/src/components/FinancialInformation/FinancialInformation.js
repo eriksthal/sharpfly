@@ -19,11 +19,23 @@ function FinancialInformation(props) {
   return (
     <div>
       <h3>Please read and accept the following information:</h3>
+
+      <p>
+        Fees Class fees are comprised of tuition according to class length, a
+        recital costume (not applicable for technique classes), one registration
+        fee per family, and sales tax. Fees do not include the mandatory Dance
+        Co uniform. Payment January Program fees may be divided into two
+        installments and confirmed by the office staff after you reserve your
+        dancer's space in the class. Upon Registration: 1/2 of the total fees,
+        including GST (non-refundable) March 15th: 1/2 of the total fees,
+        including GST
+      </p>
       <div className="financial-information__acceptable-term">
         <Checkbox
-          onClick={props.onClick}
+          onClick={props.handleAgreementChange}
           value={props.value}
-          checked={props.checked}
+          checked={props.agreement1}
+          id="agreement1"
         />
         <span>
           To officially withdraw a student from a class the parent/legal
@@ -34,9 +46,10 @@ function FinancialInformation(props) {
       </div>
       <div className="financial-information__acceptable-term">
         <Checkbox
-          onClick={props.onClick}
+          onClick={props.handleAgreementChange}
           value={props.value}
-          checked={props.checked}
+          checked={props.agreement2}
+          id="agreement2"
         />
         <span>
           One third of the tuition and registration fee are non-refundable &
@@ -57,9 +70,10 @@ function FinancialInformation(props) {
       </div>
       <div className="financial-information__acceptable-term">
         <Checkbox
-          onClick={props.onClick}
+          onClick={props.handleAgreementChange}
           value={props.value}
-          checked={props.checked}
+          checked={props.agreement3}
+          id="agreement3"
         />
         <span>
           Payment arrangements are required at the time of registration. Dance
@@ -74,9 +88,10 @@ function FinancialInformation(props) {
       </div>
       <div className="financial-information__acceptable-term">
         <Checkbox
-          onClick={props.onClick}
+          onClick={props.handleAgreementChange}
           value={props.value}
-          checked={props.checked}
+          checked={props.agreement4}
+          id="agreement4"
         />
         <span>
           Three or more unexplained absences within each term may result in
@@ -85,9 +100,10 @@ function FinancialInformation(props) {
       </div>
       <div className="financial-information__acceptable-term">
         <Checkbox
-          onClick={props.onClick}
+          onClick={props.handleAgreementChange}
           value={props.value}
-          checked={props.checked}
+          checked={props.agreement5}
+          id="agreement5"
         />
         <span>
           Dance Co has a set standard dress code policy and it is mandatory for
@@ -98,9 +114,10 @@ function FinancialInformation(props) {
       </div>
       <div className="financial-information__acceptable-term">
         <Checkbox
-          onClick={props.onClick}
+          onClick={props.handleAgreementChange}
           value={props.value}
-          checked={props.checked}
+          checked={props.agreement6}
+          id="agreement6"
         />
         <span>
           Cancellation: Dance Co reserves the right to cancel class at any time
@@ -111,9 +128,10 @@ function FinancialInformation(props) {
       </div>
       <div className="financial-information__acceptable-term">
         <Checkbox
-          onClick={props.onClick}
+          onClick={props.handleAgreementChange}
           value={props.value}
-          checked={props.checked}
+          checked={props.agreement7}
+          id="agreement7"
         />
         <span>
           I have read and understood the Dance Co policy and agree to its terms

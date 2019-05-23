@@ -22,6 +22,7 @@ import MobileStepper from "@material-ui/core/MobileStepper";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import { steps } from "../../constants/constants.js";
+import { getPrice } from "../../utilities/utils.js";
 import {
   classesEndpoint,
   registrationEndpoint
@@ -76,7 +77,8 @@ class Registration extends React.Component {
       familyDoctorName: "",
       familyDoctorNumber: "",
       medicalConditions: "",
-      waiverAccepted: false,
+      waiverGuardianName: "",
+      waiverStudentName: "",
       isLoaded: false,
       studentEmail: "",
       primaryEmail: "",
@@ -90,7 +92,15 @@ class Registration extends React.Component {
       ccNumber: "",
       ccExpiryMonth: "",
       ccExpiryYear: "",
-      paymentTerm: "One payment"
+      paymentTerm: "One payment",
+      agreement1: false,
+      agreement2: false,
+      agreement3: false,
+      agreement4: false,
+      agreement5: false,
+      agreement6: false,
+      agreement7: false,
+      agreement8: false
     };
   }
 
@@ -109,13 +119,26 @@ class Registration extends React.Component {
         // instead of a catch() block so that we don't swallow
         // exceptions from actual bugs in components.
         error => {
-          console.log(error);
           this.setState({
             isLoaded: true,
             error
           });
         }
       );
+  }
+
+  validatePersonalInformation(fields) {
+    let isValid = true;
+    fields.forEach(field => {
+      if (
+        this.state[field] === "" ||
+        this.state[field] === "none" ||
+        !this.state[field]
+      ) {
+        isValid = false;
+      }
+    });
+    return isValid;
   }
 
   updatePersonalInformation(e) {
@@ -129,6 +152,64 @@ class Registration extends React.Component {
   handleNext = () => {
     if (this.state.activeStep === 0) {
       this.filterClasses();
+    }
+
+    if (this.state.activeStep === 2) {
+      if (
+        !this.validatePersonalInformation([
+          "firstName",
+          "lastName",
+          "birthdate",
+          "formattedBirthdate",
+          "streetAddress",
+          "city",
+          "postalCode",
+          "academicSchool",
+          "cellNumber",
+          "homeNumber",
+          "momsName",
+          "momsNumber",
+          "dadsName",
+          "dadsNumber"
+        ])
+      ) {
+        alert("Please fill the fields");
+        return;
+      }
+    }
+
+    if (this.state.activeStep === 1) {
+      if (this.state.selectedClasses.length === 0) {
+        alert("Please select at least one class");
+        return;
+      }
+    }
+
+    if (this.state.activeStep === 4) {
+      if (
+        !this.validatePersonalInformation([
+          "agreement1",
+          "agreement2",
+          "agreement3",
+          "agreement4",
+          "agreement5",
+          "agreement6",
+          "agreement7",
+          "agreement8",
+          "agreementCheck",
+          "waiverGuardianName",
+          "waiverStudentName",
+          "careCard",
+          "familyDoctorName",
+          "familyDoctorNumber",
+          "medicalConditions"
+        ])
+      ) {
+        alert(
+          "Please complete all the fields, accept all the terms and sign the form"
+        );
+        return;
+      }
     }
 
     this.setState(state => ({
@@ -161,7 +242,6 @@ class Registration extends React.Component {
         // instead of a catch() block so that we don't swallow
         // exceptions from actual bugs in components.
         error => {
-          console.log(error);
           this.setState({ isLoaded: true });
         }
       );
@@ -206,7 +286,6 @@ class Registration extends React.Component {
   }
 
   filterClasses() {
-    console.log(this.state.classes);
     const filteredClasses = this.state.classes.filter(singleClass => {
       const locationCondition =
         this.state.locationFilter.length > 0
@@ -264,9 +343,12 @@ class Registration extends React.Component {
   }
 
   handleClassSelect(event) {
-    console.log(event.target.value);
     const valueAsArray = event.target.value.split("-");
-    const selectedClass = { term: valueAsArray[0], classId: valueAsArray[1] };
+    const selectedClass = {
+      term: valueAsArray[0],
+      classId: valueAsArray[1],
+      classPrice: valueAsArray[2]
+    };
     const key = this.findKeyinArrayOfObjects(
       this.state.selectedClasses,
       selectedClass.classId,
@@ -342,10 +424,6 @@ class Registration extends React.Component {
     this.setState({ dadsNumber: event.target.value });
   }
 
-  handleWaiverAcceptedChange(event) {
-    this.setState({ waiverAccepted: event.target.checked });
-  }
-
   handleCareCardChange(event) {
     this.setState({ careCard: event.target.value });
   }
@@ -362,6 +440,14 @@ class Registration extends React.Component {
     this.setState({ medicalConditions: event.target.value });
   }
 
+  handleWaiverGuardianNameChange(event) {
+    this.setState({ waiverGuardianName: event.target.value });
+  }
+
+  handleWaiverStudentNameChange(event) {
+    this.setState({ waiverStudentName: event.target.value });
+  }
+
   handleStudentEmailChange(event) {
     this.setState({ studentEmail: event.target.value });
   }
@@ -376,6 +462,10 @@ class Registration extends React.Component {
 
   handleSignatureChange(signatureComponent) {
     this.setState({ agreementCheck: signatureComponent.toDataURL() });
+  }
+
+  handleClearSignature() {
+    this.setState({ agreementCheck: "" });
   }
 
   handleEditClasses(event) {
@@ -399,6 +489,10 @@ class Registration extends React.Component {
 
   handleTermChange(event) {
     this.setState({ paymentTerm: event.target.value });
+  }
+
+  handleAgreementChange(event) {
+    this.setState({ [event.target.id]: !this.state[event.target.id] });
   }
 
   handleCcExpiryYearChange(event) {
@@ -507,7 +601,7 @@ class Registration extends React.Component {
               careCard={this.state.careCard}
               familyDoctorName={this.state.familyDoctorName}
               familyDoctorNumber={this.state.familyDoctorNumber}
-              medialConditions={this.state.medicalConditions}
+              medicalConditions={this.state.medicalConditions}
               waiverAccepted={this.state.waiverAccepted}
               signatureString={this.state.signatureString}
               handleCareCardChange={this.handleCareCardChange.bind(this)}
@@ -520,15 +614,31 @@ class Registration extends React.Component {
               handleMedicalConditionsChange={this.handleMedicalConditionsChange.bind(
                 this
               )}
-              handleWaiverAcceptedChange={this.handleWaiverAcceptedChange.bind(
+              handleWaiverGuardianNameChange={this.handleWaiverGuardianNameChange.bind(
                 this
               )}
-              handleSignatureChange={this.handleSignatureChange.bind(this)}
+              handleWaiverStudentNameChange={this.handleWaiverStudentNameChange.bind(
+                this
+              )}
+              waiverGuardianName={this.state.waiverGuardianName}
+              waiverStudentName={this.state.waiverStudentName}
+              agreement8={this.state.agreement8}
+              handleAgreementChange={this.handleAgreementChange.bind(this)}
             />
-            <FinancialInformation />
+            <FinancialInformation
+              agreement1={this.state.agreement1}
+              agreement2={this.state.agreement2}
+              agreement3={this.state.agreement3}
+              agreement4={this.state.agreement4}
+              agreement5={this.state.agreement5}
+              agreement6={this.state.agreement6}
+              agreement7={this.state.agreement7}
+              handleAgreementChange={this.handleAgreementChange.bind(this)}
+            />
             <Signature
               signatureString={this.state.agreementCheck}
               handleSignatureChange={this.handleSignatureChange.bind(this)}
+              handleClearSignature={this.handleClearSignature.bind(this)}
             />
           </div>
         );
@@ -576,18 +686,19 @@ class Registration extends React.Component {
                     )
                   ) {
                     return (
-                      <>
+                      <div key={singleClass.classId}>
                         <p>{singleClass.discipline}</p>
                         <p>{singleClass.hours}</p>
-                      </>
+                      </div>
                     );
                   }
+                  return null;
                 })}
                 <Button id={1} onClick={this.handleEditClasses.bind(this)}>
                   Edit
                 </Button>
                 <h2>Total:</h2>
-                <p>$0.00 CAD</p>
+                <p>{`$ ${getPrice(this.state.selectedClasses)}.00 CAD`}</p>
                 <div />
               </Paper>
             </div>

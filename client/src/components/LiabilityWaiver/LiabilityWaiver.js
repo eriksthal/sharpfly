@@ -104,9 +104,10 @@ class LiabilityWaiver extends React.Component {
         </div>
         <div className="liability-waiver__acceptable-term">
           <Checkbox
-            onClick={props.handleWaiverAcceptedChange}
+            onClick={props.handleAgreementChange}
             value={props.value}
-            checked={props.waiverAccepted}
+            checked={props.agreement8}
+            id="agreement8"
           />
           <span>
             I/we do hereby unconditionally release and forever discharge any and
@@ -125,16 +126,16 @@ class LiabilityWaiver extends React.Component {
             id="standard-name"
             label="Participant Name"
             className={classes.textField}
-            value={props.participantName}
-            onChange={props.handleParticipantName}
+            value={props.waiverStudentName}
+            onChange={props.handleWaiverStudentNameChange}
             margin="normal"
           />
           <TextField
             id="standard-name"
             label="Parent/Guardian Name"
             className={classes.textField}
-            value={props.guardianName}
-            onChange={props.handleGuardianName}
+            value={props.waiverGuardianName}
+            onChange={props.handleWaiverGuardianNameChange}
             margin="normal"
           />
         </div>

@@ -4,7 +4,7 @@ import "./Spinner.css";
 
 function Spinner(props) {
   return (
-    <div class="lds-roller">
+    <div className="lds-roller">
       <div />
       <div />
       <div />

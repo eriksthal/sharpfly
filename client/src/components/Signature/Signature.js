@@ -1,7 +1,6 @@
 import React from "react";
 import SignatureCanvas from "react-signature-canvas";
 import Button from "@material-ui/core/Button";
-import PropTypes from "prop-types";
 
 import "./Signature.css";
 
@@ -12,7 +11,6 @@ class Signature extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.signaturePad);
     this.signaturePad.current.fromDataURL(this.props.signatureString, {
       width: 350,
       height: 200
@@ -22,6 +20,7 @@ class Signature extends React.Component {
   clearSignature() {
     this.signaturePad.current.clear();
     this.props.handleSignatureChange(this.signaturePad.current);
+    this.props.handleClearSignature();
   }
 
   addSignature() {
@@ -48,9 +47,5 @@ class Signature extends React.Component {
     );
   }
 }
-
-Signature.propTypes = {
-  classes: PropTypes.object.isRequired
-};
 
 export default Signature;

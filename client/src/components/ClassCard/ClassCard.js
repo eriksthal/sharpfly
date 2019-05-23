@@ -5,7 +5,6 @@ import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import Checkbox from "@material-ui/core/Checkbox";
 import Icon from "@material-ui/core/Icon";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
@@ -139,7 +138,8 @@ function SimpleCard(props) {
             {props.terms.map(term => {
               return (
                 <FormControlLabel
-                  value={`${term.termId}-${props.value}`}
+                  key={term.termId}
+                  value={`${term.termId}-${props.value}-${term.termPrice}`}
                   control={<Radio />}
                   label={`${term.termName} - $${term.termPrice} CAD`}
                 />
