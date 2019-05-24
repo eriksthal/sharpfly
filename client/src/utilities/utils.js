@@ -2,7 +2,9 @@ export const getTermFromClass = (selectedClasses, classId) => {
   let term = `None-${classId}`;
   selectedClasses.forEach(selectedClass => {
     if (selectedClass.classId === classId) {
-      term = `${selectedClass.term}-${classId}-${selectedClass.classPrice}`;
+      term = `${selectedClass.term}-${classId}-${selectedClass.classPrice}-${
+        selectedClass.classDiscipline
+      }`;
       return;
     }
   });
@@ -22,4 +24,14 @@ export const getPrice = selectedClasses => {
     price += parseInt(singleClass.classPrice);
   });
   return price;
+};
+
+export const filterClassesForUniforms = selectedClasses => {
+  let filteredClasses = [];
+  selectedClasses.forEach(singleClass => {
+    if (filteredClasses.indexOf(singleClass.classDiscipline) === -1) {
+      filteredClasses.push(singleClass.classDiscipline);
+    }
+  });
+  return filteredClasses;
 };

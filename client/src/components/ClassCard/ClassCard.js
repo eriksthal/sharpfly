@@ -118,6 +118,18 @@ function SimpleCard(props) {
             })}
           </div>
         </div>
+        <div className="class-card__icon-splitter">
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              marginRight: "10px"
+            }}
+          >
+            <Icon style={{ fontSize: "20px" }}>cake</Icon>
+          </div>
+          <div>{props.age}</div>
+        </div>
         <Divider component="div" />
       </CardContent>
       <CardActions>
@@ -139,7 +151,9 @@ function SimpleCard(props) {
               return (
                 <FormControlLabel
                   key={term.termId}
-                  value={`${term.termId}-${props.value}-${term.termPrice}`}
+                  value={`${term.termId}-${props.value}-${term.termPrice}-${
+                    props.discipline
+                  }`}
                   control={<Radio />}
                   label={`${term.termName} - $${term.termPrice} CAD`}
                 />

@@ -37,6 +37,8 @@ function ClassTable(props) {
           <div className="class-card__card-container" key={singleClass.classId}>
             <ClassCard
               value={singleClass.classId}
+              discipline={singleClass.discipline}
+              age={singleClass.age}
               selected={term !== `None-${singleClass.classId}`}
               onClick={props.onClassSelect}
               name={singleClass.discipline}

@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { uniforms } from "../../constants/uniforms";
 import { withStyles } from "@material-ui/core/styles";
+import { filterClassesForUniforms } from "../../utilities/utils";
 
 import "./DressUp.css";
 
@@ -38,6 +40,26 @@ function DressUp(props) {
         Competition dancers may be required to purchase a second pair of shoes
         for performances.
       </strong>
+      {filterClassesForUniforms(props.selectedClasses).map(singleClass => {
+        return (
+          <div key={singleClass}>
+            <hr />
+            <p>{uniforms[singleClass].title}</p>
+            <ul>
+              {uniforms[singleClass].levels.map((level, i) => {
+                return <li key={i}>{level}</li>;
+              })}
+            </ul>
+            <p>{uniforms[singleClass].shoes}</p>
+          </div>
+        );
+      })}
+      <hr />
+      <p>
+        ALL CLASSES DANCE CO logo hoodies and warm ups may be worn at the
+        beginning of class. DANCE CO sports bras are available for additional
+        support.
+      </p>
     </div>
   );
 }

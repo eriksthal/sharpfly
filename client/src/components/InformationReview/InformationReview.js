@@ -1,5 +1,6 @@
 import React from "react";
 import Paper from "@material-ui/core/Paper";
+import Button from "@material-ui/core/Button";
 
 import "./InformationReview.css";
 
@@ -34,6 +35,14 @@ function InformationReview(props) {
         <p>Student Email: {props.studentEmail}</p>
         <p>Primary Email: {props.primaryEmail}</p>
         <p>Secondary Email: {props.secondaryEmail}</p>
+        <Button
+          id={2}
+          variant="contained"
+          color="primary"
+          onClick={props.handleEditPersonalInformation}
+        >
+          Edit
+        </Button>
       </Paper>
     </div>
   );

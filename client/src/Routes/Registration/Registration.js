@@ -8,6 +8,7 @@ import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import ClassTable from "../../components/ClassTable/ClassTable";
+import ShowOff from "../../components/ShowOff/ShowOff";
 import TermSelector from "../../components/TermSelector/TermSelector";
 import ClassFilter from "../../components/ClassFilter/ClassFilter";
 import CreditCard from "../../components/CreditCard/CreditCard";
@@ -154,36 +155,36 @@ class Registration extends React.Component {
       this.filterClasses();
     }
 
-    if (this.state.activeStep === 2) {
-      if (
-        !this.validatePersonalInformation([
-          "firstName",
-          "lastName",
-          "birthdate",
-          "formattedBirthdate",
-          "streetAddress",
-          "city",
-          "postalCode",
-          "academicSchool",
-          "cellNumber",
-          "homeNumber",
-          "momsName",
-          "momsNumber",
-          "dadsName",
-          "dadsNumber"
-        ])
-      ) {
-        alert("Please fill the fields");
-        return;
-      }
-    }
-
     if (this.state.activeStep === 1) {
       if (this.state.selectedClasses.length === 0) {
         alert("Please select at least one class");
         return;
       }
     }
+
+    // if (this.state.activeStep === 2) {
+    //   if (
+    //     !this.validatePersonalInformation([
+    //       "firstName",
+    //       "lastName",
+    //       "birthdate",
+    //       "formattedBirthdate",
+    //       "streetAddress",
+    //       "city",
+    //       "postalCode",
+    //       "academicSchool",
+    //       "cellNumber",
+    //       "homeNumber",
+    //       "momsName",
+    //       "momsNumber",
+    //       "dadsName",
+    //       "dadsNumber"
+    //     ])
+    //   ) {
+    //     alert("Please fill the fields");
+    //     return;
+    //   }
+    // }
 
     if (this.state.activeStep === 4) {
       if (
@@ -208,6 +209,20 @@ class Registration extends React.Component {
         alert(
           "Please complete all the fields, accept all the terms and sign the form"
         );
+        return;
+      }
+    }
+
+    if (this.state.activeStep === 5) {
+      if (
+        !this.validatePersonalInformation([
+          "ccName",
+          "ccNumber",
+          "ccExpiryMonth",
+          "ccExpiryYear"
+        ])
+      ) {
+        alert("Please complete your credit card information");
         return;
       }
     }
@@ -347,7 +362,8 @@ class Registration extends React.Component {
     const selectedClass = {
       term: valueAsArray[0],
       classId: valueAsArray[1],
-      classPrice: valueAsArray[2]
+      classPrice: valueAsArray[2],
+      classDiscipline: valueAsArray[3]
     };
     const key = this.findKeyinArrayOfObjects(
       this.state.selectedClasses,
@@ -590,7 +606,9 @@ class Registration extends React.Component {
         return (
           <div>
             <h1>Dress Up!</h1>
-            <DressUp classesForUniform={this.state.classesForUniform} />
+            <DressUp selectedClasses={this.state.selectedClasses} />
+            <h1 style={{ marginTop: "60px" }}>Show Off!</h1>
+            <ShowOff />
           </div>
         );
       case 4:
@@ -669,7 +687,9 @@ class Registration extends React.Component {
                 studentEmail={this.state.studentEmail}
                 primaryEmail={this.state.primaryEmail}
                 secondaryEmail={this.state.secondaryEmail}
-                editPersonalInformations={this.handleEditPersonalIn}
+                handleEditPersonalInformation={this.handleEditClasses.bind(
+                  this
+                )}
               />
             </div>
             <div>
@@ -694,7 +714,12 @@ class Registration extends React.Component {
                   }
                   return null;
                 })}
-                <Button id={1} onClick={this.handleEditClasses.bind(this)}>
+                <Button
+                  id={1}
+                  variant="contained"
+                  color="primary"
+                  onClick={this.handleEditClasses.bind(this)}
+                >
                   Edit
                 </Button>
                 <h2>Total:</h2>
@@ -739,14 +764,18 @@ class Registration extends React.Component {
           <div>
             <h1>You are all set!</h1>
             <p>
-              Make sure to swing by the office before your first class and
-              present the following code:{" "}
+              Thank you for your registration. Please note that processing your
+              registration might take a up to 5 days. If you have any questions,
+              please contact us and keep the following registration number
+              handy:
             </p>
-            <h3>{this.state.confirmationCode}</h3>
+            <h3>DCOF{this.state.confirmationCode}R</h3>
             <p>
-              We also emailed a copy to you at {this.state.primaryEmail}. Make
-              sure to check your SPAM folder or Promotions folder.
+              We also emailed a copy of this number to you at
+              {this.state.primaryEmail}. Make sure to check your SPAM or
+              Promotions folder.
             </p>
+            <p>We are looking forward to seeing you here!</p>
           </div>
         );
       default:
