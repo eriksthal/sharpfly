@@ -162,29 +162,29 @@ class Registration extends React.Component {
       }
     }
 
-    // if (this.state.activeStep === 2) {
-    //   if (
-    //     !this.validatePersonalInformation([
-    //       "firstName",
-    //       "lastName",
-    //       "birthdate",
-    //       "formattedBirthdate",
-    //       "streetAddress",
-    //       "city",
-    //       "postalCode",
-    //       "academicSchool",
-    //       "cellNumber",
-    //       "homeNumber",
-    //       "momsName",
-    //       "momsNumber",
-    //       "dadsName",
-    //       "dadsNumber"
-    //     ])
-    //   ) {
-    //     alert("Please fill the fields");
-    //     return;
-    //   }
-    // }
+    if (this.state.activeStep === 2) {
+      if (
+        !this.validatePersonalInformation([
+          "firstName",
+          "lastName",
+          "birthdate",
+          "formattedBirthdate",
+          "streetAddress",
+          "city",
+          "postalCode",
+          "academicSchool",
+          "cellNumber",
+          "homeNumber",
+          "momsName",
+          "momsNumber",
+          "dadsName",
+          "dadsNumber"
+        ])
+      ) {
+        alert("Please fill the fields");
+        return;
+      }
+    }
 
     if (this.state.activeStep === 4) {
       if (
