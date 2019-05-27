@@ -287,17 +287,9 @@ class Registration extends React.Component {
     });
   };
 
-  filterLevels(singleClassLevels, levelFilter) {
-    let flag = false;
-
-    for (let level of levelFilter) {
-      if (singleClassLevels.indexOf(level) > -1) {
-        flag = true;
-        break;
-      }
-    }
-
-    return flag;
+  filterSelection(ages, ageFilter) {
+    const intersection = ages.filter(value => -1 !== ageFilter.indexOf(value));
+    return intersection.length > 0;
   }
 
   filterClasses() {
@@ -312,11 +304,11 @@ class Registration extends React.Component {
           : true;
       const levelCondition =
         this.state.levelFilter.length > 0
-          ? this.filterLevels(singleClass.level, this.state.levelFilter)
+          ? this.filterSelection(singleClass.level, this.state.levelFilter)
           : true;
       const ageCondition =
         this.state.ageFilter.length > 0
-          ? this.state.ageFilter.indexOf(singleClass.age) > -1
+          ? this.filterSelection(singleClass.ages, this.state.ageFilter)
           : true;
       return (
         locationCondition &&
