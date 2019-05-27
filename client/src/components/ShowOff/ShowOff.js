@@ -17,13 +17,12 @@ const styles = theme => ({
 function ShowOff(props) {
   return (
     <div>
-      Our annual recital will take place on the following date:
-      <div style={{ display: "flex" }}>
-        <div>
-          <h2>Recital 2020</h2>
-          <h3>May 19 - 24, 2020</h3>
-        </div>
-      </div>
+      <h2>Year-end Recital May 19-24, 2020 at the Gateway Theatre</h2>​{" "}
+      <p>
+        Dance Co’s Year-End Recital performances occur at the Gateway Theatre in
+        Richmond each May. All Dancers in full year programs will perform with
+        the exception of beginner acro classes. PLEASE SAVE THE DATE!
+      </p>
     </div>
   );
 }

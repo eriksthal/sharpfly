@@ -28,6 +28,10 @@ function ClassTable(props) {
         textAlign: "left"
       }}
     >
+      <div className={props.filteredClasses.length > 0 ? "hide" : "show"}>
+        <h3>Sorry!</h3>
+        <p>We couldn't find any classes, try refining your search criteria.</p>
+      </div>
       {props.filteredClasses.map(singleClass => {
         let term = getTermFromClass(props.selectedClasses, singleClass.classId);
         //Since the id is numeric, we need to convert it to string to search for it

@@ -316,7 +316,7 @@ class Registration extends React.Component {
           : true;
       const ageCondition =
         this.state.ageFilter.length > 0
-          ? this.state.ageFilter.indexOf(singleClass.age)
+          ? this.state.ageFilter.indexOf(singleClass.age) > -1
           : true;
       return (
         locationCondition &&
