@@ -4,6 +4,7 @@ import { Router /*Link*/ } from "@reach/router";
 import Home from "./Routes/Home/Home";
 import Registration from "./Routes/Registration/Registration.js";
 import BackOffice from "./Routes/BackOffice/BackOffice.js";
+import Classes from "./Routes/Classes/Classes.js";
 // import NavigationBar from './components/NavigationBar/NavigationBar.js';
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
@@ -40,6 +41,7 @@ function App(props) {
             <Home path="/" />
             <Registration path="registration" />
             <BackOffice path="admin" />
+            <Classes path="classes/:classId" />
           </Router>
         </div>
       </div>

@@ -8,3 +8,4 @@ export const locationsEndpoint = `${endpointBasePath}/locations`;
 export const registrationEndpoint = `${endpointBasePath}/register`;
 export const termsEndpoint = `${endpointBasePath}/terms`;
 export const getStudentEndpoint = `${endpointBasePath}/student`;
+export const classByIdEndpoint = `${endpointBasePath}/class`;
