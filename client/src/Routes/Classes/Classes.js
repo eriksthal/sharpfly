@@ -2,6 +2,7 @@ import React from "react";
 import { classByIdEndpoint } from "../../constants/config.js";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import { addTermEndpoint } from "../../constants/config.js";
 
 import "./Classes.css";
 
@@ -21,17 +22,43 @@ class Classes extends React.Component {
     };
   }
 
-  handleAddTerm() {
+  insertTermToDatabase() {
     const newTerm = {
-      termId: 13,
+      classId: this.props.classId,
       termName: this.state.termName,
-      termPrice: parseFloat(this.state.termPrice)
+      termPrice: parseFloat(this.state.termPrice),
+      termDescription: "Full Year",
+      classDuration: 45
     };
+    fetch(addTermEndpoint, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newTerm)
+    })
+      .then(res => res.json())
+      .then(
+        result => {
+          newTerm.termId = result;
+          this.addTerm(newTerm);
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        error => {
+          return false;
+        }
+      );
+  }
+
+  addTerm(newTerm) {
     const newTermState = this.state.terms.concat(newTerm);
     this.setState({
       terms: newTermState
     });
-    console.log(this.state.terms);
+    this.setState({ termName: "", termPrice: "" });
   }
 
   handleTextChange(event) {
@@ -119,7 +146,7 @@ class Classes extends React.Component {
         <Button
           variant="contained"
           color="primary"
-          onClick={this.handleAddTerm.bind(this)}
+          onClick={this.insertTermToDatabase.bind(this)}
         >
           Edit
         </Button>

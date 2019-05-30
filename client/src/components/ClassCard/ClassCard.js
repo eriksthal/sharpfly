@@ -59,7 +59,7 @@ function SimpleCard(props) {
       >
         <div className="class-card__ribbon">Selected</div>
       </div>
-      <CardContent style={{ padding: "20px 40px 20px 40px" }}>
+      <CardContent style={{ padding: "20px 20px 20px 20px" }}>
         <Typography
           style={{
             fontSize: "25px",
@@ -149,14 +149,16 @@ function SimpleCard(props) {
             />
             {props.terms.map(term => {
               return (
-                <FormControlLabel
-                  key={term.termId}
-                  value={`${term.termId}-${props.value}-${term.termPrice}-${
-                    props.discipline
-                  }`}
-                  control={<Radio />}
-                  label={`${term.termName} - $${term.termPrice} CAD`}
-                />
+                <div>
+                  <FormControlLabel
+                    key={term.termId}
+                    value={`${term.termId}-${props.value}-${term.termPrice}-${
+                      props.discipline
+                    }`}
+                    control={<Radio />}
+                    label={`${term.termName} $${term.termPrice} CAD`}
+                  />
+                </div>
               );
             })}
           </RadioGroup>
