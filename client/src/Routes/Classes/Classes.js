@@ -1,5 +1,7 @@
 import React from "react";
 import { classByIdEndpoint } from "../../constants/config.js";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 
 import "./Classes.css";
 
@@ -7,25 +9,54 @@ class Classes extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      singleClass: {
-        discipline: "",
-        location: "",
-        level: [],
-        terms: [],
-        ages: []
-      }
+      classId: "",
+      discipline: "",
+      level: [],
+      ages: [],
+      terms: [],
+      hours: "",
+      location: "",
+      termName: "",
+      termPrice: ""
     };
+  }
+
+  handleAddTerm() {
+    const newTerm = {
+      termId: 13,
+      termName: this.state.termName,
+      termPrice: parseFloat(this.state.termPrice)
+    };
+    const newTermState = this.state.terms.concat(newTerm);
+    this.setState({
+      terms: newTermState
+    });
+    console.log(this.state.terms);
+  }
+
+  handleTextChange(event) {
+    console.log(event.target.value);
+    this.setState({ [event.target.id]: event.target.value });
   }
   componentDidMount() {
     fetch(`${classByIdEndpoint}?id=${this.props.classId}`)
       .then(res => res.json())
       .then(
         result => {
+          if (result.length === 0) {
+            return;
+          }
+          const singleClass = result.pop();
           this.setState({
-            singleClass: result.pop(),
+            classId: singleClass.classId,
+            discipline: singleClass.discipline,
+            level: singleClass.level,
+            ages: singleClass.ages,
+            terms: singleClass.terms,
+            hours: singleClass.hours,
+            location: singleClass.location,
             isLoaded: true
           });
-          console.log(this.state.singleClass);
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
@@ -38,18 +69,21 @@ class Classes extends React.Component {
         }
       );
   }
-  render() {
+
+  generateClassLayout() {
+    if (!this.state.discipline) {
+      return;
+    }
     return (
       <div>
-        <h3>{`${this.state.singleClass.level.join("/")} ${
-          this.state.singleClass.discipline
-        } ${this.state.singleClass.ages.join("/")} - ${
-          this.state.singleClass.location
-        }`}</h3>
-        <h4>{this.state.singleClass.hours}</h4>
-        <h4>{this.state.singleClass.location}</h4>
-        <div>
-          {this.state.singleClass.terms.map(term => {
+        <h3>{`${this.state.level.join("/")} ${
+          this.state.discipline
+        } ${this.state.ages.join("/")} - ${this.state.location}`}</h3>
+        <h4>{this.state.hours}</h4>
+        <h4>{this.state.location}</h4>
+        <h2>Terms:</h2>
+        <div style={{ border: "solid 1px black" }}>
+          {this.state.terms.map(term => {
             return (
               <div key={term.termId}>
                 <div>{`Date: ${term.termName} Price: $${
@@ -59,6 +93,36 @@ class Classes extends React.Component {
             );
           })}
         </div>
+      </div>
+    );
+  }
+  render() {
+    return (
+      <div>
+        {this.generateClassLayout()}
+        <TextField
+          id="termName"
+          label="Duration"
+          margin="normal"
+          placeholder="DD/MM/YYYY-DD/MM/YYYY"
+          style={{ width: "280px", marginRight: "10px" }}
+          value={this.state.termName}
+          onChange={this.handleTextChange.bind(this)}
+        />
+        <TextField
+          id="termPrice"
+          label="Term Price"
+          margin="normal"
+          value={this.state.termPrice}
+          onChange={this.handleTextChange.bind(this)}
+        />
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={this.handleAddTerm.bind(this)}
+        >
+          Edit
+        </Button>
       </div>
     );
   }
