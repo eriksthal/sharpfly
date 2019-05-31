@@ -41,7 +41,7 @@ function App(props) {
             <Home path="/" />
             <Registration path="registration" />
             <BackOffice path="admin" />
-            <Classes path="classes/:classId" />
+            <Classes path="class/:classId" />
           </Router>
         </div>
       </div>

@@ -27,7 +27,7 @@ class Classes extends React.Component {
       classId: this.props.classId,
       termName: this.state.termName,
       termPrice: parseFloat(this.state.termPrice),
-      termDescription: "Full Year",
+      termDescription: "6 Months",
       classDuration: 45
     };
     fetch(addTermEndpoint, {
@@ -53,6 +53,44 @@ class Classes extends React.Component {
       );
   }
 
+  removeTermFromDatabase(payload) {
+    fetch(addTermEndpoint, {
+      method: "DELETE",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    })
+      .then(res => res.json())
+      .then(
+        result => {
+          if (result.status === 200) {
+            const newTerms = this.removeTermsFromTerms(
+              payload.termId,
+              this.state.terms
+            );
+            this.setState({
+              terms: newTerms
+            });
+          }
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        error => {
+          return false;
+        }
+      );
+  }
+
+  removeTermsFromTerms(termId, terms) {
+    const filteredTerms = terms.filter(term => {
+      return term.termId !== parseInt(termId);
+    });
+    return filteredTerms;
+  }
+
   addTerm(newTerm) {
     const newTermState = this.state.terms.concat(newTerm);
     this.setState({
@@ -62,9 +100,14 @@ class Classes extends React.Component {
   }
 
   handleTextChange(event) {
-    console.log(event.target.value);
     this.setState({ [event.target.id]: event.target.value });
   }
+
+  handleRemoveTerm(event) {
+    const termId = event.currentTarget.id;
+    this.removeTermFromDatabase({ termId });
+  }
+
   componentDidMount() {
     fetch(`${classByIdEndpoint}?id=${this.props.classId}`)
       .then(res => res.json())
@@ -116,6 +159,13 @@ class Classes extends React.Component {
                 <div>{`Date: ${term.termName} Price: $${
                   term.termPrice
                 } CAD`}</div>
+                <Button
+                  id={term.termId}
+                  variant="contained"
+                  onClick={this.handleRemoveTerm.bind(this)}
+                >
+                  Remove
+                </Button>
               </div>
             );
           })}

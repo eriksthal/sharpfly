@@ -38,7 +38,7 @@ class ClassEditor extends React.Component {
         {this.state.classes.map(singleClass => {
           return (
             <div>
-              <Link to={`/classes/${singleClass.classId}`}>
+              <Link to={`/class/${singleClass.classId}`}>
                 <h3>{`${singleClass.level.join("/")} ${
                   singleClass.discipline
                 } ${singleClass.ages.join("/")} - ${singleClass.location}`}</h3>
