@@ -5,6 +5,7 @@ import Home from "./Routes/Home/Home";
 import Registration from "./Routes/Registration/Registration.js";
 import BackOffice from "./Routes/BackOffice/BackOffice.js";
 import Classes from "./Routes/Classes/Classes.js";
+import ClassEditor from "./components/ClassEditor/ClassEditor.js";
 // import NavigationBar from './components/NavigationBar/NavigationBar.js';
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
@@ -41,6 +42,7 @@ function App(props) {
             <Home path="/" />
             <Registration path="registration" />
             <BackOffice path="admin" />
+            <ClassEditor path="classes" />
             <Classes path="class/:classId" />
           </Router>
         </div>

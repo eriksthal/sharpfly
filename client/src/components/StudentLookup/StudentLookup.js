@@ -2,7 +2,7 @@ import React from "react";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import { getStudentEndpoint } from "../../constants/config";
+import { studentsEndpoint } from "../../constants/config";
 import Icon from "@material-ui/core/Icon";
 import RegisteredClassesTable from "../RegisteredClassesTable/RegisteredClassesTable";
 import Spinner from "../Spinner/Spinner";
@@ -35,7 +35,38 @@ const styles = theme => ({
 class StudentLookup extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { name: "", students: [], loading: "loaded", queryType: "id" };
+    this.state = {
+      name: "",
+      students: [],
+      loading: "loaded",
+      queryType: "id",
+      filteredStudents: []
+    };
+  }
+
+  componentDidMount() {
+    this.setState({ loading: "loading" });
+    fetch(studentsEndpoint)
+      .then(res => res.json())
+      .then(
+        result => {
+          if (result.length > 0) {
+            this.setState({
+              students: result,
+              loading: "loaded",
+              filteredStudents: result
+            });
+          } else {
+            this.setState({ students: [], loading: "no-results" });
+          }
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        error => {
+          this.setState({ students: [], loading: "loaded" });
+        }
+      );
   }
 
   handleNameChange(event) {
@@ -71,26 +102,30 @@ class StudentLookup extends React.Component {
 
   handleFetchStudent() {
     this.setState({ loading: "loading" });
-    fetch(
-      getStudentEndpoint +
-        `?id=${this.state.name}&queryType=${this.state.queryType}`
-    )
-      .then(res => res.json())
-      .then(
-        result => {
-          if (result.length > 0) {
-            this.setState({ students: result, loading: "loaded" });
-          } else {
-            this.setState({ students: [], loading: "no-results" });
-          }
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        error => {
-          this.setState({ students: [], loading: "loaded" });
-        }
-      );
+    // fetch(
+    //   getStudentEndpoint +
+    //     `?id=${this.state.name}&queryType=${this.state.queryType}`
+    // )
+    //   .then(res => res.json())
+    //   .then(
+    //     result => {
+    //       if (result.length > 0) {
+    //         this.setState({
+    //           students: result,
+    //           loading: "loaded",
+    //           filteredStudents: result
+    //         });
+    //       } else {
+    //         this.setState({ students: [], loading: "no-results" });
+    //       }
+    //     },
+    //     // Note: it's important to handle errors here
+    //     // instead of a catch() block so that we don't swallow
+    //     // exceptions from actual bugs in components.
+    //     error => {
+    //       this.setState({ students: [], loading: "loaded" });
+    //     }
+    //   );
   }
 
   render() {
@@ -157,7 +192,7 @@ class StudentLookup extends React.Component {
               : "student-lookup__search-results"
           }
         >
-          {this.state.students.map(student => {
+          {this.state.filteredStudents.map(student => {
             return this.renderStudent(student);
           })}
         </div>

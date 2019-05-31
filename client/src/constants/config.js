@@ -10,3 +10,4 @@ export const termsEndpoint = `${endpointBasePath}/terms`;
 export const getStudentEndpoint = `${endpointBasePath}/student`;
 export const classByIdEndpoint = `${endpointBasePath}/class`;
 export const addTermEndpoint = `${endpointBasePath}/term`;
+export const studentsEndpoint = `${endpointBasePath}/students`;

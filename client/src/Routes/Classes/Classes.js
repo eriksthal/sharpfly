@@ -1,10 +1,24 @@
 import React from "react";
 import { classByIdEndpoint } from "../../constants/config.js";
+import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { addTermEndpoint } from "../../constants/config.js";
 
 import "./Classes.css";
+
+const styles = theme => ({
+  root: {
+    width: "100%"
+  },
+  backButton: {
+    marginRight: theme.spacing.unit
+  },
+  instructions: {
+    marginTop: theme.spacing.unit,
+    marginBottom: theme.spacing.unit
+  }
+});
 
 class Classes extends React.Component {
   constructor(props) {
@@ -205,4 +219,4 @@ class Classes extends React.Component {
   }
 }
 
-export default Classes;
+export default withStyles(styles, { withTheme: true })(Classes);

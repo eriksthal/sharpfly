@@ -9,7 +9,6 @@ class BackOffice extends React.Component {
     return (
       <div className="container">
         <StudentLookup />
-        <ClassEditor />
       </div>
     );
   }
