@@ -59,3 +59,8 @@
 .student-lookup__show {
     display: flex;
 }
+
+.student-lookup__no-results {
+    margin-top: 20px;
+    text-align: center;
+}

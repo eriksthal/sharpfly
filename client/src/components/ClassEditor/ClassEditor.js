@@ -67,7 +67,9 @@ class ClassEditor extends React.Component {
       const fullClassName = `${singleClass.level.join("/")} ${
         singleClass.discipline
       } ${singleClass.ages.join("/")} - ${singleClass.location}`;
-      return fullClassName.includes(this.state.searchTerm);
+      return fullClassName
+        .toLowerCase()
+        .includes(this.state.searchTerm.toLowerCase());
     });
     this.setState({ filteredClasses });
   }

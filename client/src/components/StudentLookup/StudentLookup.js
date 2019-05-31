@@ -1,14 +1,10 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
 import { studentsEndpoint } from "../../constants/config";
-import Icon from "@material-ui/core/Icon";
 import RegisteredClassesTable from "../RegisteredClassesTable/RegisteredClassesTable";
 import Spinner from "../Spinner/Spinner";
-import Radio from "@material-ui/core/Radio";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
+import { Link } from "@reach/router";
 
 import Paper from "@material-ui/core/Paper";
 
@@ -39,7 +35,6 @@ class StudentLookup extends React.Component {
       name: "",
       students: [],
       loading: "loaded",
-      queryType: "id",
       filteredStudents: []
     };
   }
@@ -70,24 +65,28 @@ class StudentLookup extends React.Component {
   }
 
   handleNameChange(event) {
-    this.setState({ name: event.target.value });
-  }
-
-  handleQueryTypeChange(event) {
-    this.setState({ queryType: event.target.value });
+    this.setState(
+      { name: event.target.value },
+      this.debounce(this.handleSearchStudent, 500)
+    );
   }
 
   renderStudent(student) {
     if (student) {
       return (
-        <div style={{ display: "flex" }}>
-          <Paper className="student-lookup__student-info">
-            <div>First Name: {student.firstName}</div>
-            <div>Last Name: {student.lastName}</div>
-            <div>Street {student.streetAddress}</div>
-            <div>City: {student.city}</div>
-            <div>Postal Code:{student.postalCode}</div>
-          </Paper>
+        <div key={student.studentId} style={{ display: "flex" }}>
+          <Link
+            to={`/student/${student.studentId}`}
+            className="class-editor__link"
+          >
+            <Paper className="student-lookup__student-info">
+              <div>First Name: {student.firstName}</div>
+              <div>Last Name: {student.lastName}</div>
+              <div>Street {student.streetAddress}</div>
+              <div>City: {student.city}</div>
+              <div>Postal Code:{student.postalCode}</div>
+            </Paper>
+          </Link>
           {this.renderRegisteredClasses(student)}
         </div>
       );
@@ -100,33 +99,64 @@ class StudentLookup extends React.Component {
     }
   }
 
-  handleFetchStudent() {
-    this.setState({ loading: "loading" });
-    // fetch(
-    //   getStudentEndpoint +
-    //     `?id=${this.state.name}&queryType=${this.state.queryType}`
-    // )
-    //   .then(res => res.json())
-    //   .then(
-    //     result => {
-    //       if (result.length > 0) {
-    //         this.setState({
-    //           students: result,
-    //           loading: "loaded",
-    //           filteredStudents: result
-    //         });
-    //       } else {
-    //         this.setState({ students: [], loading: "no-results" });
-    //       }
-    //     },
-    //     // Note: it's important to handle errors here
-    //     // instead of a catch() block so that we don't swallow
-    //     // exceptions from actual bugs in components.
-    //     error => {
-    //       this.setState({ students: [], loading: "loaded" });
-    //     }
-    //   );
+  debounce(func, wait, immediate) {
+    var timeout;
+    return function() {
+      var context = this,
+        args = arguments;
+      var later = function() {
+        timeout = null;
+        if (!immediate) func.apply(context, args);
+      };
+      var callNow = immediate && !timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+      if (callNow) func.apply(context, args);
+    };
   }
+
+  handleSearchStudent() {
+    this.setState({ loading: "loading" });
+    const filteredStudents = this.state.students.filter(student => {
+      const criteria = `${student.studentId} ${student.firstName} ${
+        student.lastName
+      }`.toLowerCase();
+      return criteria.includes(this.state.name.toLowerCase());
+    });
+    if (filteredStudents.length > 0) {
+      this.setState({ filteredStudents, loading: "loaded" });
+    } else {
+      this.setState({ filteredStudents, loading: "no-results" });
+    }
+  }
+
+  // handleSearchStudent() {
+  //   this.setState({ loading: "loading" });
+  // fetch(
+  //   getStudentEndpoint +
+  //     `?id=${this.state.name}&queryType=${this.state.queryType}`
+  // )
+  //   .then(res => res.json())
+  //   .then(
+  //     result => {
+  //       if (result.length > 0) {
+  //         this.setState({
+  //           students: result,
+  //           loading: "loaded",
+  //           filteredStudents: result
+  //         });
+  //       } else {
+  //         this.setState({ students: [], loading: "no-results" });
+  //       }
+  //     },
+  //     // Note: it's important to handle errors here
+  //     // instead of a catch() block so that we don't swallow
+  //     // exceptions from actual bugs in components.
+  //     error => {
+  //       this.setState({ students: [], loading: "loaded" });
+  //     }
+  //   );
+  // }
 
   render() {
     const { classes } = this.props;
@@ -138,35 +168,12 @@ class StudentLookup extends React.Component {
         <div className="student-lookup__search-container">
           <TextField
             id="standard-name"
-            label="Name"
+            label="Name or ID"
             className={classes.textField}
             value={this.state.name}
             onChange={this.handleNameChange.bind(this)}
             margin="normal"
           />
-          <Button
-            variant="contained"
-            className="student-lookup__search-button"
-            color="primary"
-            onClick={this.handleFetchStudent.bind(this)}
-          >
-            <Icon className={classes.icon} style={{ color: "#fff" }}>
-              search
-            </Icon>
-          </Button>
-        </div>
-        <div>
-          <RadioGroup
-            aria-label="queryType"
-            name="queryType"
-            className={classes.group}
-            value={this.state.queryType}
-            onChange={this.handleQueryTypeChange.bind(this)}
-            style={{ flexDirection: "row" }}
-          >
-            <FormControlLabel value="id" control={<Radio />} label="Id" />
-            <FormControlLabel value="name" control={<Radio />} label="Name" />
-          </RadioGroup>
         </div>
 
         <div
@@ -180,10 +187,12 @@ class StudentLookup extends React.Component {
         </div>
         <div
           className={
-            this.state.loading === "no-results" ? "" : "student-lookup__hide"
+            this.state.loading === "no-results"
+              ? "student-lookup__no-results"
+              : "student-lookup__hide"
           }
         >
-          No search results. Try again
+          No search results. Please try a different search criteria.
         </div>
         <div
           className={

@@ -36,7 +36,7 @@ function RegisteredClassesTable(props) {
         <TableBody>
           {props.registeredClasses.map(registeredClass => {
             return (
-              <TableRow>
+              <TableRow key={registeredClass.termId}>
                 <TableCell>{registeredClass.disciplineName}</TableCell>
                 <TableCell align="right">
                   {registeredClass.classHours}

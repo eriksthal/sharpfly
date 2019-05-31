@@ -4,6 +4,8 @@ import { Router /*Link*/ } from "@reach/router";
 import Home from "./Routes/Home/Home";
 import Registration from "./Routes/Registration/Registration.js";
 import BackOffice from "./Routes/BackOffice/BackOffice.js";
+import StudentLookup from "./components/StudentLookup/StudentLookup.js";
+import Student from "./components/Student/Student.js";
 import Classes from "./Routes/Classes/Classes.js";
 import ClassEditor from "./components/ClassEditor/ClassEditor.js";
 // import NavigationBar from './components/NavigationBar/NavigationBar.js';
@@ -40,8 +42,10 @@ function App(props) {
         <div className="content">
           <Router>
             <Home path="/" />
-            <Registration path="registration" />
             <BackOffice path="admin" />
+            <Registration path="registration" />
+            <StudentLookup path="students" />
+            <Student path="student/:studentId" />
             <ClassEditor path="classes" />
             <Classes path="class/:classId" />
           </Router>
