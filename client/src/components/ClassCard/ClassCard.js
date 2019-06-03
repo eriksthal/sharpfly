@@ -59,7 +59,7 @@ function SimpleCard(props) {
       >
         <div className="class-card__ribbon">Selected</div>
       </div>
-      <CardContent style={{ padding: "20px 20px 20px 20px" }}>
+      <CardContent style={{ padding: "20px 20px 0 20px" }}>
         <Typography
           style={{
             fontSize: "25px",
@@ -74,61 +74,71 @@ function SimpleCard(props) {
           {props.name}
         </Typography>
         <Divider component="div" />
-        <div className="class-card__icon-splitter">
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              marginRight: "10px"
-            }}
-          >
-            <Icon style={{ fontSize: "20px" }}>date_range</Icon>
+        <div style={{ height: "170px" }}>
+          <div className="class-card__icon-splitter">
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginRight: "10px"
+              }}
+            >
+              <Icon style={{ fontSize: "20px" }}>date_range</Icon>
+            </div>
+            <Typography style={{ fontSize: "15px" }}>{props.time}</Typography>
           </div>
-          <Typography style={{ fontSize: "15px" }}>{props.time}</Typography>
-        </div>
-        <div className="class-card__icon-splitter">
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              marginRight: "10px"
-            }}
-          >
-            <Icon style={{ fontSize: "20px" }}>location_on</Icon>
+          <div className="class-card__icon-splitter">
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginRight: "10px"
+              }}
+            >
+              <Icon style={{ fontSize: "20px" }}>location_on</Icon>
+            </div>
+            <Typography component="p">{props.location}</Typography>
           </div>
-          <Typography component="p">{props.location}</Typography>
-        </div>
-        <div className="class-card__icon-splitter">
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              marginRight: "10px"
-            }}
-          >
-            <Icon style={{ fontSize: "20px" }}>person</Icon>
+          <div className="class-card__icon-splitter">
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginRight: "10px"
+              }}
+            >
+              <Icon style={{ fontSize: "20px" }}>person</Icon>
+            </div>
+            <div>
+              {props.level.map((level, i) => {
+                return (
+                  <div style={{ marginRight: "10px" }} key={i}>
+                    {level}
+                  </div>
+                );
+              })}
+            </div>
           </div>
-          <div>
-            {props.level.map((level, i) => {
-              return (
-                <div style={{ marginRight: "10px" }} key={i}>
-                  {level}
-                </div>
-              );
-            })}
+          <div className="class-card__icon-splitter">
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginRight: "10px"
+              }}
+            >
+              <Icon style={{ fontSize: "20px" }}>cake</Icon>
+            </div>
+            <div>
+              {props.ages.map((age, i) => {
+                return (
+                  <div style={{ marginRight: "10px" }} key={i}>
+                    {age}
+                  </div>
+                );
+              })}
+            </div>
           </div>
-        </div>
-        <div className="class-card__icon-splitter">
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              marginRight: "10px"
-            }}
-          >
-            <Icon style={{ fontSize: "20px" }}>cake</Icon>
-          </div>
-          <div>{props.age}</div>
         </div>
         <Divider component="div" />
       </CardContent>
@@ -149,16 +159,14 @@ function SimpleCard(props) {
             />
             {props.terms.map(term => {
               return (
-                <div>
-                  <FormControlLabel
-                    key={term.termId}
-                    value={`${term.termId}-${props.value}-${term.termPrice}-${
-                      props.discipline
-                    }`}
-                    control={<Radio />}
-                    label={`${term.termName} $${term.termPrice} CAD`}
-                  />
-                </div>
+                <FormControlLabel
+                  key={term.termId}
+                  value={`${term.termId}-${props.value}-${term.termPrice}-${
+                    props.discipline
+                  }`}
+                  control={<Radio />}
+                  label={`${term.termName} ($${term.termPrice} CAD)`}
+                />
               );
             })}
           </RadioGroup>

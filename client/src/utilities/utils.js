@@ -21,7 +21,7 @@ export const findClassIdinArrayOfClasses = (classId, arrayOfClasses) => {
 export const getPrice = selectedClasses => {
   let price = 0;
   selectedClasses.forEach(singleClass => {
-    price += parseInt(singleClass.classPrice);
+    price += parseFloat(singleClass.classPrice);
   });
   return price;
 };

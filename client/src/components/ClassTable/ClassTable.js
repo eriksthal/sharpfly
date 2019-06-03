@@ -42,7 +42,7 @@ function ClassTable(props) {
             <ClassCard
               value={singleClass.classId}
               discipline={singleClass.discipline}
-              age={singleClass.age}
+              ages={singleClass.ages}
               selected={term !== `None-${singleClass.classId}`}
               onClick={props.onClassSelect}
               name={singleClass.discipline}

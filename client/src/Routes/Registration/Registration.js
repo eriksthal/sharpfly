@@ -53,7 +53,7 @@ class Registration extends React.Component {
       activeStep: 0,
       locationFilter: [],
       levelFilter: [],
-      disciplineFilter: ["Ballet"],
+      disciplineFilter: [],
       ageFilter: [],
       classes: [],
       filteredClasses: [],
@@ -181,7 +181,9 @@ class Registration extends React.Component {
           "dadsNumber"
         ])
       ) {
-        alert("Please fill the fields");
+        alert(
+          "Please fill out all the fields. If it doesn't apply you can type N/A."
+        );
         return;
       }
     }
@@ -690,22 +692,31 @@ class Registration extends React.Component {
                 elevation={1}
               >
                 <h2>Your selected Classes:</h2>
-                {this.state.classes.map(singleClass => {
-                  if (
-                    findClassIdinArrayOfClasses(
-                      singleClass.classId,
-                      this.state.selectedClasses
-                    )
-                  ) {
-                    return (
-                      <div key={singleClass.classId}>
-                        <p>{singleClass.discipline}</p>
-                        <p>{singleClass.hours}</p>
-                      </div>
-                    );
-                  }
-                  return null;
-                })}
+                <ul>
+                  {this.state.classes.map(singleClass => {
+                    if (
+                      findClassIdinArrayOfClasses(
+                        singleClass.classId,
+                        this.state.selectedClasses
+                      )
+                    ) {
+                      return (
+                        <li
+                          style={{ marginBottom: "10px" }}
+                          key={singleClass.classId}
+                        >
+                          {`${singleClass.level.join("/")} ${
+                            singleClass.discipline
+                          } 
+                        ${singleClass.ages.join("/")} - ${
+                            singleClass.location
+                          } - ${singleClass.hours}`}
+                        </li>
+                      );
+                    }
+                    return null;
+                  })}
+                </ul>
                 <Button
                   id={1}
                   variant="contained"
@@ -714,8 +725,37 @@ class Registration extends React.Component {
                 >
                   Edit
                 </Button>
+                <h2>Subtotal:</h2>
+                <p>
+                  <strong>Tuition: </strong>
+                  {`$ ${getPrice(this.state.selectedClasses)}.00 CAD`}
+                </p>
+                <p>
+                  <strong>Early Bird Registration Fee: </strong> $30.00 CAD
+                  (Reg. $45.00 CAD)
+                </p>
+                <p>
+                  <strong>GST(5%): </strong>$
+                  {((getPrice(this.state.selectedClasses) + 30) * 0.05).toFixed(
+                    2
+                  )}{" "}
+                  CAD
+                </p>
                 <h2>Total:</h2>
-                <p>{`$ ${getPrice(this.state.selectedClasses)}.00 CAD`}</p>
+                <h3>
+                  $
+                  {((getPrice(this.state.selectedClasses) + 30) * 1.05).toFixed(
+                    2
+                  )}
+                  CAD
+                </h3>
+                <p>
+                  <i>
+                    Note: The registration fee is per family as long as they
+                    register at the same time. Early bird prices valid until Jun
+                    22nd.
+                  </i>
+                </p>
                 <div />
               </Paper>
             </div>
