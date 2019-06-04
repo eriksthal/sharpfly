@@ -5,7 +5,7 @@ export const steps = [
   "Dress up",
   "Agree to our terms",
   "Review and Payment",
-  "You are in"
+  "All done"
 ];
 
 export const costumePrices = {

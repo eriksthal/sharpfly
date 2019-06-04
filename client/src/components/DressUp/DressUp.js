@@ -33,8 +33,8 @@ function DressUp(props) {
       classes a high, slicked back ponytail is acceptable. Dance Co will not
       supply hairnets, pins, hair spray, dance shoes, leotards or tights to
       students who have not brought these items to class. However, many of these
-      items are sold at Dance Etc. Students will be required to purchase these
-      items if they do not bring them to class.
+      items are sold at Vancouver Dance Supply. Students will be required to
+      purchase these items if they do not bring them to class.
       <br />
       <strong>
         Competition dancers may be required to purchase a second pair of shoes

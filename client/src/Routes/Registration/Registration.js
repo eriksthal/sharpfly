@@ -101,7 +101,16 @@ class Registration extends React.Component {
       agreement5: false,
       agreement6: false,
       agreement7: false,
-      agreement8: false
+      agreement8: false,
+      registrationFee: 30.0,
+      videoPrice: 42.0,
+      tickets: 53.0,
+      costumesTotal: 0,
+      costumesSummary: { fees: [], pst: 0 },
+      tuitionTotal: 0,
+      gst: 0,
+      pst: 0,
+      grandTotal: 0
     };
   }
 
@@ -184,12 +193,42 @@ class Registration extends React.Component {
         alert(
           "Please fill out all the fields. If it doesn't apply you can type N/A."
         );
-        // return;
+        return;
       }
     }
 
     if (this.state.activeStep === 4) {
-      this.setState({ costumePrice: 0 });
+      const tuitionTotal = parseFloat(
+        getPrice(this.state.selectedClasses)
+      ).toFixed(2);
+      const costumesSummary = this.getCostumesPrice();
+      const costumesTotal = parseFloat(
+        this.getCostumesFinalPrices(costumesSummary.fees)
+      ).toFixed(2);
+      const gst =
+        (+tuitionTotal +
+          +costumesTotal +
+          +this.state.videoPrice +
+          +this.state.tickets +
+          +this.state.registrationFee) *
+        +0.05;
+      const pst = +costumesSummary.pst + +this.state.videoPrice * 0.07;
+      const grandTotal =
+        +tuitionTotal +
+        +costumesTotal +
+        +gst +
+        +pst +
+        +this.state.videoPrice +
+        +this.state.tickets +
+        +this.state.registrationFee;
+      this.setState({
+        tuitionTotal,
+        costumesSummary,
+        costumesTotal,
+        gst,
+        pst,
+        grandTotal
+      });
       if (
         !this.validatePersonalInformation([
           "agreement1",
@@ -212,7 +251,7 @@ class Registration extends React.Component {
         alert(
           "Please complete all the fields, accept all the terms and sign the form"
         );
-        // return;
+        return;
       }
     }
 
@@ -544,7 +583,7 @@ class Registration extends React.Component {
       }
     });
     pst = pst.toFixed(2);
-    return { fees: arrayOfFees, pst };
+    return { fees: arrayOfFees, pst: pst };
   }
 
   getCostumesFinalPrices(arrayOfCostumes) {
@@ -770,55 +809,48 @@ class Registration extends React.Component {
                 <h2>Subtotal:</h2>
                 <p>
                   <strong>Tuition: </strong>
-                  {`$ ${getPrice(this.state.selectedClasses)}.00 CAD`}
+                  {`$ ${this.state.tuitionTotal} CAD`}
                 </p>
                 <p>
-                  <strong>Early Bird Registration Fee: </strong> $30.00 CAD
-                  (Reg. $45.00 CAD)
+                  <strong>Early Bird Registration Fee: </strong> $
+                  {parseFloat(this.state.registrationFee).toFixed(2)} CAD (Reg.
+                  $45.00 CAD)
                 </p>
-                <p>
+                <div>
                   <strong>Performance fee: </strong>
                   <ul>
-                    <li>Tickets: $53.00 CAD</li>
-                    <li>Video: $42.00 CAD</li>
+                    <li>
+                      Tickets: ${parseFloat(this.state.tickets).toFixed(2)} CAD
+                    </li>
+                    <li>
+                      Video: ${parseFloat(this.state.videoPrice).toFixed(2)} CAD
+                    </li>
                   </ul>
-                </p>
-                <p>
+                </div>
+                <div>
                   <strong>Costumes fee: </strong>
-                  {this.getCostumesPrice().fees.map(costume => {
-                    return (
-                      <p>
-                        {costume.discipline}: ${costume.price} CAD
-                      </p>
-                    );
-                  })}
-                  {`Costumes Total: $ ${this.getCostumesFinalPrices(
-                    this.getCostumesPrice().fees
-                  )} CAD`}
-                </p>
+                  <ul>
+                    {this.state.costumesSummary.fees.map((costume, i) => {
+                      return (
+                        <li key={i}>
+                          {costume.discipline}: ${costume.price} CAD
+                        </li>
+                      );
+                    })}
+                  </ul>
+                  <strong>Costumes total: </strong>
+                  {`$ ${this.state.costumesTotal} CAD`}
+                </div>
                 <p>
-                  <strong>GST: </strong>$
-                  {((getPrice(this.state.selectedClasses) + 30) * 0.05).toFixed(
-                    2
-                  )}{" "}
+                  <strong>GST: </strong>${parseFloat(this.state.gst).toFixed(2)}{" "}
                   CAD
                 </p>
                 <p>
-                  <strong>PST: </strong>$
-                  {parseFloat(
-                    parseFloat(this.getCostumesPrice().pst) +
-                      parseFloat(42 * 0.07)
-                  ).toFixed(2)}{" "}
+                  <strong>PST: </strong>${parseFloat(this.state.pst).toFixed(2)}{" "}
                   CAD
                 </p>
                 <h2>Total: </h2>
-                <h3>
-                  $
-                  {((getPrice(this.state.selectedClasses) + 30) * 1.05).toFixed(
-                    2
-                  )}{" "}
-                  CAD
-                </h3>
+                <h3>${parseFloat(this.state.grandTotal).toFixed(2)} CAD</h3>
                 <p>
                   <i>
                     Note: The registration fee is per family as long as they
@@ -864,20 +896,65 @@ class Registration extends React.Component {
       case 6:
         return (
           <div>
-            <h1>You are all set!</h1>
+            <h1>All done!</h1>
             <p>
-              Thank you for your registration. Please note that processing your
-              registration might take a up to 5 days. If you have any questions,
-              please contact us and keep the following registration number
-              handy:
+              Thank you for registering via our online registration. We are
+              excited to have you dancing with us for the 2019/20 Season!
             </p>
-            <h3>DCOF{this.state.confirmationCode}R</h3>
             <p>
-              We also emailed a copy of this number to you at
+              We will charge one third of your total fees to the supplied credit
+              card number and a receipt will be emailed to you upon completion.
+              The remainder of the fees are divided into 6 monthly payments
+              starting September 23rd.
+            </p>
+            <p>
+              Please note if you have registered for a Sept-December Preschool
+              Beginner Classes all fees are non-refundable. For all other full
+              year courses, 1/3 of tuition fees and the full registration fee is
+              non-refundable. After October 31st, no other refunds will be
+              given.
+            </p>
+            <p>
+              <a href="https://www.danceco.com/files/registration">
+                Please click here for the 2019/2020 Season Calendar which
+                outlines important dates in our year.
+              </a>
+            </p>
+            <p>
+              <ul>
+                <li>
+                  Classes begin the week of Monday September 9th – Sunday
+                  September 15th
+                </li>
+                <li>
+                  Please take a look at the above Calendar for a full list of
+                  studio events and closures.{" "}
+                </li>
+              </ul>
+            </p>
+            <p>
+              Dance Co students are required to wear the appropriate Dance Co
+              Uniform and shoes for dance class. For more information on
+              uniforms{" "}
+              <a href="https://www.danceco.com/files/etc"> click here</a>.
+            </p>
+            <p>
+              Vancouver Dance Supply, our store is located right next to our
+              Arbutus location in the Arbutus Mall. They stock everything you
+              need, and will be happy assist you. DANCE ETC | 604-731-1362 |
+              <a href="mailto:info@danceetc.ca">info@danceetc.ca</a>
+            </p>
+            <p>
+              If you have any questions, please reach out to us at 604.736.3394
+              or <a href="mailto:info@danceco.com">info@danceco.com</a>
+            </p>
+            <p>
+              We emailed a copy of this information to you at{" "}
               {this.state.primaryEmail}. Make sure to check your SPAM or
               Promotions folder.
             </p>
-            <p>We are looking forward to seeing you here!</p>
+            <p>We look forward to dancing with you this year!</p>
+            <p>Reference code: DCO-{this.state.confirmationCode}R</p>
           </div>
         );
       default:

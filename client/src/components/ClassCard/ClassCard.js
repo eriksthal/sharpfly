@@ -74,7 +74,7 @@ function SimpleCard(props) {
           {props.name}
         </Typography>
         <Divider component="div" />
-        <div style={{ height: "170px" }}>
+        <div style={{ minHeight: "170px" }}>
           <div className="class-card__icon-splitter">
             <div
               style={{
