@@ -895,7 +895,7 @@ class Registration extends React.Component {
         );
       case 6:
         return (
-          <div>
+          <div className="all-done__container">
             <h1>All done!</h1>
             <p>
               Thank you for registering via our online registration. We are
@@ -915,10 +915,16 @@ class Registration extends React.Component {
               given.
             </p>
             <p>
-              <a href="https://www.danceco.com/files/registration">
-                Please click here for the 2019/2020 Season Calendar which
-                outlines important dates in our year.
-              </a>
+              Please{" "}
+              <a
+                href="https://dancecofiles.s3.us-east-2.amazonaws.com/2019-20+Calendar.xls"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                click here
+              </a>{" "}
+              for the 2019/2020 Season Calendar which outlines important dates
+              in our year.
             </p>
             <p>
               <ul>
@@ -936,7 +942,15 @@ class Registration extends React.Component {
               Dance Co students are required to wear the appropriate Dance Co
               Uniform and shoes for dance class. For more information on
               uniforms{" "}
-              <a href="https://www.danceco.com/files/etc"> click here</a>.
+              <a
+                href="https://dancecofiles.s3.us-east-2.amazonaws.com/2019+Dance+Co+Uniform+Requirements+.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {" "}
+                click here
+              </a>
+              .
             </p>
             <p>
               Vancouver Dance Supply, our store is located right next to our

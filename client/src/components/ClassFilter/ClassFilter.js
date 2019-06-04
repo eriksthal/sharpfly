@@ -55,15 +55,17 @@ class ClassFilter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      locationFilter: "",
+      locationFilter: [],
       disciplineFilter: [],
-      levelFilter: "",
-      ageFilter: "",
+      levelFilter: [],
+      ageFilter: [],
       levels: [],
       disciplines: [],
       locations: [],
       ages: []
     };
+    this.controller = new AbortController();
+    this.signal = this.controller.signal;
   }
 
   componentDidMount() {
@@ -73,12 +75,19 @@ class ClassFilter extends React.Component {
     this.retrieve(agesEndpoint, "ages");
   }
 
+  componentWillUnmount() {
+    this.controller.abort();
+  }
+
   retrieve(endpoint, element) {
-    fetch(endpoint)
+    fetch(endpoint, {
+      method: "GET",
+      signal: this.signal
+    })
       .then(res => res.json())
       .then(
         result => {
-          if (result) {
+          if (result && !this.signal.aborted) {
             this.setState({
               [element]: result
             });
@@ -88,10 +97,12 @@ class ClassFilter extends React.Component {
         // instead of a catch() block so that we don't swallow
         // exceptions from actual bugs in components.
         error => {
-          this.setState({
-            isLoaded: true
-          });
-          console.log(error);
+          if (!this.signal.aborted) {
+            this.setState({
+              isLoaded: true
+            });
+            console.log(error);
+          }
         }
       );
   }
