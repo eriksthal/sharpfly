@@ -11,6 +11,7 @@ function CreditCard(props) {
         <Icon className="credit-card__field-container-icon">person</Icon>
         <TextField
           id="ccName"
+          style={{ width: "210px" }}
           label="Cardholder Name"
           value={props.name}
           onChange={props.handleNameChange}
@@ -21,6 +22,7 @@ function CreditCard(props) {
         <Icon className="credit-card__field-container-icon">payment</Icon>
         <TextField
           id="ccNumber"
+          style={{ width: "210px" }}
           label="Credit Card Number"
           value={props.number}
           onChange={props.handleNumberChange}

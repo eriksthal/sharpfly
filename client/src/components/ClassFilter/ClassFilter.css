@@ -16,12 +16,13 @@
 }
 
 .class-filter__select {
-    width: 330px;
+    width: 300px;
     text-align: left;
 }
 
 .class-filter__paper {
-    width: 345px;
+    width: 320px;
     position: relative;
     margin: 0 auto;
+    padding: 10px;
 }
