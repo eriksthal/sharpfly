@@ -22,7 +22,7 @@ import DressUp from "../../components/DressUp/DressUp";
 import MobileStepper from "@material-ui/core/MobileStepper";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
-import { steps } from "../../constants/constants.js";
+import { steps, costumePrices } from "../../constants/constants.js";
 import { getPrice } from "../../utilities/utils.js";
 import {
   classesEndpoint,
@@ -184,11 +184,12 @@ class Registration extends React.Component {
         alert(
           "Please fill out all the fields. If it doesn't apply you can type N/A."
         );
-        return;
+        // return;
       }
     }
 
     if (this.state.activeStep === 4) {
+      this.setState({ costumePrice: 0 });
       if (
         !this.validatePersonalInformation([
           "agreement1",
@@ -211,7 +212,7 @@ class Registration extends React.Component {
         alert(
           "Please complete all the fields, accept all the terms and sign the form"
         );
-        return;
+        // return;
       }
     }
 
@@ -513,6 +514,47 @@ class Registration extends React.Component {
     }
   }
 
+  getCostumesPrice() {
+    let largestAge = 0;
+    let pst = 0;
+    let arrayOfFees = [];
+    let senior = true;
+    this.state.classes.forEach(singleClass => {
+      if (
+        findClassIdinArrayOfClasses(
+          singleClass.classId,
+          this.state.selectedClasses
+        )
+      ) {
+        singleClass.ages.forEach(age => {
+          if (costumePrices[age] > largestAge) {
+            largestAge = costumePrices[age];
+          }
+          if (singleClass.ages.indexOf("Senior (15+ years)") > -1 && senior) {
+            pst += 145.0 * 0.07;
+            senior = false;
+          }
+        });
+        senior = true;
+        arrayOfFees.push({
+          discipline: singleClass.discipline,
+          price: parseFloat(largestAge).toFixed(2)
+        });
+        largestAge = 0;
+      }
+    });
+    pst = pst.toFixed(2);
+    return { fees: arrayOfFees, pst };
+  }
+
+  getCostumesFinalPrices(arrayOfCostumes) {
+    let costumePriceCounter = 0;
+    arrayOfCostumes.forEach(costume => {
+      costumePriceCounter += parseFloat(costume.price);
+    });
+    return parseFloat(costumePriceCounter).toFixed(2);
+  }
+
   getSteps() {
     return steps;
   }
@@ -707,7 +749,7 @@ class Registration extends React.Component {
                         >
                           {`${singleClass.level.join("/")} ${
                             singleClass.discipline
-                          } 
+                          }
                         ${singleClass.ages.join("/")} - ${
                             singleClass.location
                           } - ${singleClass.hours}`}
@@ -735,18 +777,46 @@ class Registration extends React.Component {
                   (Reg. $45.00 CAD)
                 </p>
                 <p>
-                  <strong>GST(5%): </strong>$
+                  <strong>Performance fee: </strong>
+                  <ul>
+                    <li>Tickets: $53.00 CAD</li>
+                    <li>Video: $42.00 CAD</li>
+                  </ul>
+                </p>
+                <p>
+                  <strong>Costumes fee: </strong>
+                  {this.getCostumesPrice().fees.map(costume => {
+                    return (
+                      <p>
+                        {costume.discipline}: ${costume.price} CAD
+                      </p>
+                    );
+                  })}
+                  {`Costumes Total: $ ${this.getCostumesFinalPrices(
+                    this.getCostumesPrice().fees
+                  )} CAD`}
+                </p>
+                <p>
+                  <strong>GST: </strong>$
                   {((getPrice(this.state.selectedClasses) + 30) * 0.05).toFixed(
                     2
                   )}{" "}
                   CAD
                 </p>
-                <h2>Total:</h2>
+                <p>
+                  <strong>PST: </strong>$
+                  {parseFloat(
+                    parseFloat(this.getCostumesPrice().pst) +
+                      parseFloat(42 * 0.07)
+                  ).toFixed(2)}{" "}
+                  CAD
+                </p>
+                <h2>Total: </h2>
                 <h3>
                   $
                   {((getPrice(this.state.selectedClasses) + 30) * 1.05).toFixed(
                     2
-                  )}
+                  )}{" "}
                   CAD
                 </h3>
                 <p>
