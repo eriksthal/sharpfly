@@ -1,11 +1,12 @@
 .information-review__paper_container {
     padding: 30px;
-    width: 400px;
+    width: 285px;
     margin-bottom: 20px;
-    margin-right: 15px;
+
 }
 @media (min-width: 600px) {
     .information-review__paper_container {
         width: 500px;
+        margin-right: 15px;
     }
 }
