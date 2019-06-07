@@ -6,6 +6,7 @@ import Input from "@material-ui/core/Input";
 import { withStyles } from "@material-ui/core/styles";
 import { english } from "../../constants/languages";
 import FormControl from "@material-ui/core/FormControl";
+import FormHelperText from "@material-ui/core/FormHelperText";
 import Checkbox from "@material-ui/core/Checkbox";
 import ListItemText from "@material-ui/core/ListItemText";
 import Paper from "@material-ui/core/Paper";
@@ -143,6 +144,9 @@ class ClassFilter extends React.Component {
                   </MenuItem>
                 ))}
               </Select>
+              <FormHelperText id="select-disciplines">
+                Select all the disciplines you are interested in
+              </FormHelperText>
             </FormControl>
           </div>
           <div className="class-filter__filter-container">
@@ -175,6 +179,9 @@ class ClassFilter extends React.Component {
                   </MenuItem>
                 ))}
               </Select>
+              <FormHelperText id="select-location">
+                Select all the locations you are interested in
+              </FormHelperText>
             </FormControl>
           </div>
           <div className="class-filter__filter-container">
@@ -202,6 +209,12 @@ class ClassFilter extends React.Component {
                   </MenuItem>
                 ))}
               </Select>
+              <FormHelperText id="select-levels">
+                {`Beginner: 0-2 years of experience,
+                Accelerated: 1-3 years of
+                experience,
+                Advanced: 3+ years of experience`}
+              </FormHelperText>
             </FormControl>
           </div>
           <div className="class-filter__filter-container">
@@ -225,6 +238,9 @@ class ClassFilter extends React.Component {
                   </MenuItem>
                 ))}
               </Select>
+              <FormHelperText id="select-ages">
+                Select all the ages you are interested in
+              </FormHelperText>
             </FormControl>
           </div>
         </div>

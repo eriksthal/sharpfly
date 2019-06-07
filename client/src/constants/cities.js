@@ -45,9 +45,9 @@ export const cities = [
   "Surrey",
   "Terrace",
   "Trail",
-  "Vancouver[a]",
+  "Vancouver",
   "Vernon",
-  "Victoria[b]",
+  "Victoria",
   "West Kelowna",
   "White Rock",
   "Williams Lake"

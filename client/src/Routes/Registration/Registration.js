@@ -443,11 +443,17 @@ class Registration extends React.Component {
   }
 
   handleCellNumberChange(event) {
-    this.setState({ cellNumber: event.target.value });
+    const isnum = /^\d+$/.test(event.target.value);
+    if (isnum || event.target.value === "") {
+      this.setState({ cellNumber: event.target.value });
+    }
   }
 
   handleHomeNumberChange(event) {
-    this.setState({ homeNumber: event.target.value });
+    const isnum = /^\d+$/.test(event.target.value);
+    if (isnum || event.target.value === "") {
+      this.setState({ homeNumber: event.target.value });
+    }
   }
 
   handleAcademicSchoolChange(event) {
@@ -459,7 +465,10 @@ class Registration extends React.Component {
   }
 
   handleMomsNumberChange(event) {
-    this.setState({ momsNumber: event.target.value });
+    const isnum = /^\d+$/.test(event.target.value);
+    if (isnum || event.target.value === "") {
+      this.setState({ momsNumber: event.target.value });
+    }
   }
 
   handleDadsNameChange(event) {
@@ -467,7 +476,10 @@ class Registration extends React.Component {
   }
 
   handleDadsNumberChange(event) {
-    this.setState({ dadsNumber: event.target.value });
+    const isnum = /^\d+$/.test(event.target.value);
+    if (isnum || event.target.value === "") {
+      this.setState({ dadsNumber: event.target.value });
+    }
   }
 
   handleCareCardChange(event) {
@@ -479,7 +491,10 @@ class Registration extends React.Component {
   }
 
   handleFamilyDoctorNumberChange(event) {
-    this.setState({ familyDoctorNumber: event.target.value });
+    const isnum = /^\d+$/.test(event.target.value);
+    if (isnum || event.target.value === "") {
+      this.setState({ familyDoctorNumber: event.target.value });
+    }
   }
 
   handleMedicalConditionsChange(event) {
@@ -519,7 +534,10 @@ class Registration extends React.Component {
   }
 
   handleCcNumberChange(event) {
-    this.setState({ ccNumber: event.target.value });
+    const isnum = /^\d+$/.test(event.target.value);
+    if (isnum || event.target.value === "") {
+      this.setState({ ccNumber: event.target.value });
+    }
   }
 
   handleCcNameChange(event) {
@@ -626,7 +644,7 @@ class Registration extends React.Component {
       case 2:
         return (
           <div>
-            <h1 style={{ textAlign: "center" }}>About you</h1>
+            <h1 style={{ textAlign: "center" }}>About your dancer</h1>
             <PersonalInformation
               firstName={this.state.firstName}
               lastName={this.state.lastName}
