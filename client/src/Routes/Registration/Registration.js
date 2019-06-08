@@ -834,7 +834,8 @@ class Registration extends React.Component {
                   <strong>Performance fee: </strong>
                   <ul>
                     <li>
-                      Tickets: ${parseFloat(this.state.tickets).toFixed(2)} CAD
+                      Tickets deposit: $
+                      {parseFloat(this.state.tickets).toFixed(2)} CAD
                     </li>
                     <li>
                       Video: ${parseFloat(this.state.videoPrice).toFixed(2)} CAD

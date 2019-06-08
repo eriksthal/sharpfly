@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import { Router } from "@reach/router";
 import Registration from "./Routes/Registration/Registration.js";
+import NavigationBar from "./components/NavigationBar/NavigationBar.js";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
 const theme = createMuiTheme({
@@ -25,6 +26,7 @@ const theme = createMuiTheme({
 function App(props) {
   return (
     <MuiThemeProvider theme={theme}>
+      <NavigationBar logo="logo" />
       <div className="content">
         <Router>
           <Registration path="registration" />
