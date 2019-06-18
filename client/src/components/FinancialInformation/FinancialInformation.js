@@ -23,8 +23,8 @@ function FinancialInformation(props) {
       <p>
         Fees Class fees are comprised of tuition according to class length, a
         recital costume (not applicable for technique classes), one registration
-        fee per family, and sales tax. Fees do not include the mandatory Dance
-        Co uniform. Payment January Program fees may be divided into two
+        fee per child, and sales tax. Fees do not include the mandatory Dance Co
+        uniform. Payment January Program fees may be divided into two
         installments and confirmed by the office staff after you reserve your
         dancer's space in the class. Upon Registration: 1/2 of the total fees,
         including GST (non-refundable) March 15th: 1/2 of the total fees,

@@ -867,11 +867,7 @@ class Registration extends React.Component {
                 <h2>Total: </h2>
                 <h3>${parseFloat(this.state.grandTotal).toFixed(2)} CAD</h3>
                 <p>
-                  <i>
-                    Note: The registration fee is per family as long as they
-                    register at the same time. Early bird prices valid until Jun
-                    22nd.
-                  </i>
+                  <i>Note: Early bird prices valid until Jun 22nd.</i>
                 </p>
                 <div />
               </Paper>
