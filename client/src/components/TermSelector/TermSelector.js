@@ -24,7 +24,7 @@ function TermSelector(props) {
           <FormControlLabel
             value="Monthly Payments"
             control={<Radio />}
-            label="Monthly payments"
+            label="Two payments"
           />
         </RadioGroup>
       </FormControl>

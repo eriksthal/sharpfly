@@ -16,3 +16,12 @@ export const costumePrices = {
   "Pre-Primary (5-6 years)": 100.0,
   "Pre-school (3-4 years)": 95.0
 };
+
+export const campSteps = [
+  "Find your camp",
+  "Select your camp",
+  "About your dancer",
+  "Agree to our terms",
+  "Review and Payment",
+  "All done"
+];

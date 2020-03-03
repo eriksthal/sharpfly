@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import { Router } from "@reach/router";
 import Registration from "./Routes/Registration/Registration.js";
+import Camps from "./Routes/Camps/Camps.js";
 import NavigationBar from "./components/NavigationBar/NavigationBar.js";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
@@ -30,6 +31,7 @@ function App(props) {
       <div className="content">
         <Router>
           <Registration path="registration" />
+          <Camps path="camps" />
         </Router>
       </div>
     </MuiThemeProvider>

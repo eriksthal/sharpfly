@@ -27,8 +27,7 @@ function FinancialInformation(props) {
         uniform. Payment January Program fees may be divided into two
         installments and confirmed by the office staff after you reserve your
         dancer's space in the class. Upon Registration: 1/2 of the total fees,
-        including GST (non-refundable) March 15th: 1/2 of the total fees,
-        including GST
+        including GST March 15th: 1/2 of the total fees, including GST
       </p>
       <div className="financial-information__acceptable-term">
         <Checkbox
@@ -40,8 +39,8 @@ function FinancialInformation(props) {
         <span>
           To officially withdraw a student from a class the parent/legal
           guardian must complete & submit a Discontinuation Form (available at
-          the office) no later than October 31st. Verbal notification and
-          non-attendance are not considered automatic withdrawal
+          the office) no later than February 15th/ Verbal notification and
+          non-attendance are not considered automatic withdrawal.
         </span>
       </div>
       <div className="financial-information__acceptable-term">
@@ -52,20 +51,19 @@ function FinancialInformation(props) {
           id="agreement2"
         />
         <span>
-          One third of the tuition and registration fee are non-refundable &
-          there are no refunds on any tuition, costume and performance fees
-          after October 31st. Costume fees do not include any additional shoe,
-          tight or accessory requirements. Parents/students will be responsible
-          for the cost of these additional items. A performance fee is included
-          in your total fees. This fee includes a deposit to be used towards
-          your ticket purchase for the Year End Recital and a digital copy of
-          each show when available. Withdrawals for medical reasons must be
-          accompanied by a valid doctor's note. Medical withdrawals after
-          October 31st will be credited remaining tuition for future classes.
-          September to December term, Adult, Spring and Summer classes are
-          non-refundable. Applications to transfer a student to a different
-          class/time, for personal reason, will incur a $50.00 administration
-          fee per change
+          January - June classes are non-refundable. No refunds on any tuition,
+          costume and performance fees will be given. Costume fees do not
+          include any additional shoe, tight or accessory requirements.
+          Parents/students will be responsible for the cost of these additional
+          items. A performance fee is included in your total fees. This fee
+          includes a deposit to be used towards your ticket purchase for the
+          Year End Recital and a digital copy of each show when available.
+          Withdrawals for medical reasons must be accompanied by a valid
+          doctor's note. Medical withdrawals after February 15th will be
+          credited remaining tuition for future classes. January - June, Adult,
+          Spring and Summer classes are non-refundable. . Applications to
+          transfer a student to a different class/time, for personal reason,
+          will incur a $50.00 administration fee per change
         </span>
       </div>
       <div className="financial-information__acceptable-term">

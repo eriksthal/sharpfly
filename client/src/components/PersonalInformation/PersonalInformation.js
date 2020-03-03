@@ -33,7 +33,7 @@ function PersonalInformation(props) {
   return (
     <div className="personal-information__main-container">
       <Paper className="personal-information__container" elevation={1}>
-        <h2>About you</h2>
+        <h2>About your dancer</h2>
         <div className="personal-information__form-fields">
           <div className="personal-information__form-row">
             <TextField
@@ -153,16 +153,6 @@ function PersonalInformation(props) {
           </div>
           <div className="personal-information__form-row">
             <TextField
-              id="personal-email"
-              label="Student email"
-              className={classes.textField}
-              value={props.studentEmail}
-              onChange={props.handleStudentEmailChange}
-              margin="normal"
-            />
-          </div>
-          <div className="personal-information__form-row">
-            <TextField
               id="primary-email"
               label="Primary email"
               className={classes.textField}
@@ -181,8 +171,18 @@ function PersonalInformation(props) {
               margin="normal"
             />
           </div>
+          <div className="personal-information__form-row">
+            <TextField
+              id="personal-email"
+              label="Student email"
+              className={classes.textField}
+              value={props.studentEmail}
+              onChange={props.handleStudentEmailChange}
+              margin="normal"
+            />
+          </div>
           <h2 className="personal-information__heading">
-            About your parents or guardians
+            About the parents or guardians
           </h2>
           <div className="personal-information__form-row">
             <TextField

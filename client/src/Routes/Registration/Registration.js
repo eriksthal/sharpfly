@@ -98,7 +98,7 @@ class Registration extends React.Component {
       agreement6: false,
       agreement7: false,
       agreement8: false,
-      registrationFee: 30.0,
+      registrationFee: 45.0,
       videoPrice: 42.0,
       tickets: 53.0,
       costumesTotal: 0,
@@ -147,6 +147,13 @@ class Registration extends React.Component {
     return isValid;
   }
 
+  validateEmail(mail) {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+      return true;
+    }
+    return false;
+  }
+
   updatePersonalInformation(e) {
     this.setState({ personalInformation: e });
   }
@@ -189,6 +196,10 @@ class Registration extends React.Component {
         alert(
           "Please fill out all the fields. If it doesn't apply you can type N/A."
         );
+        return;
+      }
+      if (!this.validateEmail(this.state.primaryEmail)) {
+        alert("Please add a valid primary email address");
         return;
       }
     }
@@ -577,7 +588,7 @@ class Registration extends React.Component {
         findClassIdinArrayOfClasses(
           singleClass.classId,
           this.state.selectedClasses
-        )
+        ).length > 0
       ) {
         singleClass.ages.forEach(age => {
           if (costumePrices[age] > largestAge) {
@@ -793,7 +804,7 @@ class Registration extends React.Component {
                       findClassIdinArrayOfClasses(
                         singleClass.classId,
                         this.state.selectedClasses
-                      )
+                      ).length > 0
                     ) {
                       return (
                         <li
@@ -826,9 +837,8 @@ class Registration extends React.Component {
                   {`$ ${this.state.tuitionTotal} CAD`}
                 </p>
                 <p>
-                  <strong>Early Bird Registration Fee: </strong> $
-                  {parseFloat(this.state.registrationFee).toFixed(2)} CAD (Reg.
-                  $45.00 CAD)
+                  <strong>Registration Fee: </strong> $
+                  {parseFloat(this.state.registrationFee).toFixed(2)} CAD
                 </p>
                 <div>
                   <strong>Performance fee: </strong>
@@ -866,9 +876,9 @@ class Registration extends React.Component {
                 </p>
                 <h2>Total: </h2>
                 <h3>${parseFloat(this.state.grandTotal).toFixed(2)} CAD</h3>
-                <p>
+                {/* <p>
                   <i>Note: Early bird prices valid until Jun 22nd.</i>
-                </p>
+                </p> */}
                 <div />
               </Paper>
             </div>

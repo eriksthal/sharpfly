@@ -7,3 +7,5 @@ export const disciplinesEndpoint = `${endpointBasePath}/disciplines`;
 export const locationsEndpoint = `${endpointBasePath}/locations`;
 export const registrationEndpoint = `${endpointBasePath}/register`;
 export const addTermEndpoint = `${endpointBasePath}/term`;
+export const campsEndpoint = `${endpointBasePath}/camps`;
+export const campAgesEndpoint = `${endpointBasePath}/campAges`;

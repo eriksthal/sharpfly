@@ -2,9 +2,7 @@ export const getTermFromClass = (selectedClasses, classId) => {
   let term = `None-${classId}`;
   selectedClasses.forEach(selectedClass => {
     if (selectedClass.classId === classId) {
-      term = `${selectedClass.term}-${classId}-${selectedClass.classPrice}-${
-        selectedClass.classDiscipline
-      }`;
+      term = `${selectedClass.term}-${classId}-${selectedClass.classPrice}-${selectedClass.classDiscipline}`;
       return;
     }
   });
@@ -15,7 +13,14 @@ export const findClassIdinArrayOfClasses = (classId, arrayOfClasses) => {
   const filteredClasses = arrayOfClasses.filter(singleClass => {
     return classId === singleClass.classId;
   });
-  return filteredClasses.length;
+  return filteredClasses;
+};
+
+export const findTermNameinArrayOfTerms = (termId, arrayOfTerms) => {
+  const filteredTerms = arrayOfTerms.filter(singleTerm => {
+    return termId.toString() === singleTerm.termId.toString();
+  });
+  return filteredTerms;
 };
 
 export const getPrice = selectedClasses => {
