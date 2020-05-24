@@ -19,7 +19,7 @@ function FinancialInformation(props) {
   return (
     <div>
       <h3>Please read and accept the following information:</h3>
-
+      {/* 
       <p>
         Fees Class fees are comprised of tuition according to class length, a
         recital costume (not applicable for technique classes), one registration
@@ -65,7 +65,7 @@ function FinancialInformation(props) {
           transfer a student to a different class/time, for personal reason,
           will incur a $50.00 administration fee per change
         </span>
-      </div>
+      </div> */}
       <div className="financial-information__acceptable-term">
         <Checkbox
           onClick={props.handleAgreementChange}

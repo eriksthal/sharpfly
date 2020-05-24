@@ -8,7 +8,7 @@ import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import ClassTable from "../../components/ClassTable/ClassTable";
-import ShowOff from "../../components/ShowOff/ShowOff";
+// import ShowOff from "../../components/ShowOff/ShowOff";
 import TermSelector from "../../components/TermSelector/TermSelector";
 import ClassFilter from "../../components/ClassFilter/ClassFilter";
 import CreditCard from "../../components/CreditCard/CreditCard";
@@ -22,6 +22,7 @@ import DressUp from "../../components/DressUp/DressUp";
 import MobileStepper from "@material-ui/core/MobileStepper";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
+import Checkbox from "@material-ui/core/Checkbox";
 import { steps, costumePrices } from "../../constants/constants.js";
 import { getPrice } from "../../utilities/utils.js";
 import {
@@ -90,24 +91,27 @@ class Registration extends React.Component {
       ccExpiryMonth: "",
       ccExpiryYear: "",
       paymentTerm: "One payment",
-      agreement1: false,
-      agreement2: false,
+      agreement1: true,
+      agreement2: true,
       agreement3: false,
       agreement4: false,
       agreement5: false,
       agreement6: false,
       agreement7: false,
       agreement8: false,
-      registrationFee: 45.0,
-      videoPrice: 42.0,
-      tickets: 53.0,
+      registrationFee: 0,
+      videoPrice: 0,
+      tickets: 0,
       costumesTotal: 0,
       costumesSummary: { fees: [], pst: 0 },
       tuitionTotal: 0,
       gst: 0,
       pst: 0,
-      grandTotal: 0
+      grandTotal: 0,
+      useCreditOnFile: false,
+      registrationType: "Rec"
     };
+    this.handleAgreementChange = this.handleAgreementChange.bind(this);
   }
 
   componentDidMount() {
@@ -148,7 +152,7 @@ class Registration extends React.Component {
   }
 
   validateEmail(mail) {
-    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+    if (/^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
       return true;
     }
     return false;
@@ -209,9 +213,12 @@ class Registration extends React.Component {
         getPrice(this.state.selectedClasses)
       ).toFixed(2);
       const costumesSummary = this.getCostumesPrice();
-      const costumesTotal = parseFloat(
+      let costumesTotal = parseFloat(
         this.getCostumesFinalPrices(costumesSummary.fees)
       ).toFixed(2);
+      //TO REMOVE WHEN BACK TO NORMAL
+      costumesTotal = 0;
+      // ----------------------------
       const gst =
         (+tuitionTotal +
           +costumesTotal +
@@ -219,7 +226,10 @@ class Registration extends React.Component {
           +this.state.tickets +
           +this.state.registrationFee) *
         +0.05;
-      const pst = +costumesSummary.pst + +this.state.videoPrice * 0.07;
+      let pst = +costumesSummary.pst + +this.state.videoPrice * 0.07;
+      //TO REMOVE WHEN BACK TO NORMAL
+      pst = 0;
+      // ----------------------------
       const grandTotal =
         +tuitionTotal +
         +costumesTotal +
@@ -707,8 +717,8 @@ class Registration extends React.Component {
           <div>
             <h1>Dress Up!</h1>
             <DressUp selectedClasses={this.state.selectedClasses} />
-            <h1 style={{ marginTop: "60px" }}>Show Off!</h1>
-            <ShowOff />
+            {/* <h1 style={{ marginTop: "60px" }}>Show Off!</h1>
+            <ShowOff /> */}
           </div>
         );
       case 4:
@@ -836,7 +846,7 @@ class Registration extends React.Component {
                   <strong>Tuition: </strong>
                   {`$ ${this.state.tuitionTotal} CAD`}
                 </p>
-                <p>
+                {/* <p>
                   <strong>Registration Fee: </strong> $
                   {parseFloat(this.state.registrationFee).toFixed(2)} CAD
                 </p>
@@ -865,7 +875,7 @@ class Registration extends React.Component {
                   </ul>
                   <strong>Costumes total: </strong>
                   {`$ ${this.state.costumesTotal} CAD`}
-                </div>
+                </div> */}
                 <p>
                   <strong>GST: </strong>${parseFloat(this.state.gst).toFixed(2)}{" "}
                   CAD
@@ -901,6 +911,13 @@ class Registration extends React.Component {
                   this
                 )}
               />
+              <Checkbox
+                onClick={this.handleAgreementChange}
+                checked={this.state.useCreditOnFile}
+                id="useCreditOnFile"
+              />{" "}
+              If I have a credit on file, I would like to use it toward this
+              payment.
             </Paper>
             <Paper
               className="information-review__paper_container"
@@ -920,22 +937,20 @@ class Registration extends React.Component {
             <h1>All done!</h1>
             <p>
               Thank you for registering via our online registration. We are
-              excited to have you dancing with us for the 2019/20 Season!
+              excited to have you dancing with us for the 2020 June Session!
             </p>
             <p>
-              We will charge one third of your total fees to the supplied credit
-              card number and a receipt will be emailed to you upon completion.
-              The remainder of the fees are divided into 6 monthly payments
-              starting September 23rd.
+              All online classes will be taken over Zoom. Class links and
+              invitations to join the zoom app will be sent to you in the coming
+              days. We recommend adding these links to your calendar so you can
+              easily find your class each week!
             </p>
             <p>
-              Please note if you have registered for a Sept-December Preschool
-              Beginner Classes all fees are non-refundable. For all other full
-              year courses, 1/3 of tuition fees and the full registration fee is
-              non-refundable. After October 31st, no other refunds will be
-              given.
+              We will charge your total fees to the supplied credit card number
+              and a receipt will be emailed to you upon completion. Please note
+              that all June Tuition is non-refundable.
             </p>
-            <p>
+            {/* <p>
               Please{" "}
               <a
                 href="https://dancecofiles.s3.us-east-2.amazonaws.com/2019-20+Calendar.xls"
@@ -946,8 +961,8 @@ class Registration extends React.Component {
               </a>{" "}
               for the 2019/2020 Season Calendar which outlines important dates
               in our year.
-            </p>
-            <p>
+            </p> */}
+            {/* <p>
               <ul>
                 <li>
                   Classes begin the week of Monday September 9th – Sunday
@@ -958,30 +973,22 @@ class Registration extends React.Component {
                   studio events and closures.{" "}
                 </li>
               </ul>
-            </p>
+            </p> */}
             <p>
-              Dance Co students are required to wear the appropriate Dance Co
-              Uniform and shoes for dance class. For more information on
-              uniforms{" "}
-              <a
-                href="https://dancecofiles.s3.us-east-2.amazonaws.com/2019+Dance+Co+Uniform+Requirements+.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {" "}
-                click here
-              </a>
-              .
+              <strong>Attire</strong> Students are not required to wear the
+              standard Dance Co uniform during the June session. However,
+              students must wear appropriate dance clothing and shoes for
+              varying disciplines.
             </p>
             <p>
               Vancouver Dance Supply, our store is located right next to our
               Arbutus location in the Arbutus Mall. They stock everything you
               need, and will be happy assist you. DANCE ETC | 604-731-1362 |
-              <a href="mailto:info@danceetc.ca">info@danceetc.ca</a>
+              <a href="mailto:info@danceetc.ca"> info@danceetc.ca</a>
             </p>
             <p>
-              If you have any questions, please reach out to us at 604.736.3394
-              or <a href="mailto:info@danceco.com">info@danceco.com</a>
+              If you have any questions, please reach out to us at{" "}
+              <a href="mailto:info@danceco.com">info@danceco.com</a>
             </p>
             <p>
               We emailed a copy of this information to you at{" "}
@@ -997,142 +1004,142 @@ class Registration extends React.Component {
     }
   }
 
-  render() {
-    return (
-      <h1 style={{ textAlign: "center" }}>
-        Our registration is currently closed.
-      </h1>
-    );
-  }
-
   // render() {
-  //   const { classes } = this.props;
-  //   const steps = this.getSteps();
-  //   const { activeStep } = this.state;
-  //   const { theme } = this.props;
-
   //   return (
-  //     <>
-  //       <div
-  //         className={
-  //           this.state.isLoaded
-  //             ? "registration__spinner hide"
-  //             : "registration__spinner"
-  //         }
-  //       >
-  //         <Spinner />
-  //       </div>
-  //       <div
-  //         className={
-  //           this.state.isLoaded ? classes.root : classes.root + ` hide`
-  //         }
-  //       >
-  //         <div className="stepper">
-  //           <Stepper activeStep={activeStep} alternativeLabel>
-  //             {steps.map(label => (
-  //               <Step key={label}>
-  //                 <StepLabel>{label}</StepLabel>
-  //               </Step>
-  //             ))}
-  //           </Stepper>
-  //         </div>
-  //         <div>
-  //           <Typography component={"span"} className={classes.instructions}>
-  //             {this.getStepContent(activeStep)}
-  //           </Typography>
-  //         </div>
-  //         <div className="mobile-stepper">
-  //           <MobileStepper
-  //             steps={6}
-  //             position="static"
-  //             activeStep={activeStep}
-  //             className={classes.mobileStepper}
-  //             style={
-  //               this.state.activeStep === steps.length - 1
-  //                 ? { display: "none" }
-  //                 : {}
-  //             }
-  //             nextButton={
-  //               <Button
-  //                 size="small"
-  //                 onClick={this.handleNext}
-  //                 disabled={
-  //                   activeStep === steps.length - 1 ||
-  //                   (this.state.disciplineFilter.length === 0 &&
-  //                     this.state.locationFilter.length === 0 &&
-  //                     this.state.levelFilter.length === 0)
-  //                 }
-  //               >
-  //                 Next
-  //                 {theme.direction === "rtl" ? (
-  //                   <KeyboardArrowLeft />
-  //                 ) : (
-  //                   <KeyboardArrowRight />
-  //                 )}
-  //               </Button>
-  //             }
-  //             backButton={
-  //               <Button
-  //                 size="small"
-  //                 onClick={this.handleBack}
-  //                 disabled={activeStep === 0}
-  //               >
-  //                 {theme.direction === "rtl" ? (
-  //                   <KeyboardArrowRight />
-  //                 ) : (
-  //                   <KeyboardArrowLeft />
-  //                 )}
-  //                 Back
-  //               </Button>
-  //             }
-  //           />
-  //         </div>
-  //         <div className="stepper navigator">
-  //           {this.state.activeStep === steps.length ? (
-  //             <div>
-  //               <Typography component={"span"} className={classes.instructions}>
-  //                 All steps completed
-  //               </Typography>
-  //               <Button onClick={this.handleReset}>Reset</Button>
-  //             </div>
-  //           ) : (
-  //             <div>
-  //               <Button
-  //                 disabled={activeStep === 0}
-  //                 onClick={this.handleBack}
-  //                 className={classes.backButton}
-  //                 style={
-  //                   this.state.activeStep === steps.length - 1
-  //                     ? { display: "none" }
-  //                     : {}
-  //                 }
-  //               >
-  //                 Back
-  //               </Button>
-  //               <Button
-  //                 disabled={
-  //                   this.state.disciplineFilter.length === 0 &&
-  //                   this.state.locationFilter.length === 0 &&
-  //                   this.state.levelFilter.length === 0
-  //                 }
-  //                 style={
-  //                   this.state.activeStep === steps.length - 1
-  //                     ? { display: "none" }
-  //                     : {}
-  //                 }
-  //                 variant="contained"
-  //                 color="primary"
-  //                 onClick={this.handleNext}
-  //               >
-  //                 {activeStep === steps.length - 2 ? "Finish" : "Next"}
-  //               </Button>
-  //             </div>
-  //           )}
-  //         </div>
-  //       </div>
-  //     </>
+  //     <h1 style={{ textAlign: "center" }}>
+  //       Our registration is currently closed.
+  //     </h1>
   //   );
   // }
+
+  render() {
+    const { classes } = this.props;
+    const steps = this.getSteps();
+    const { activeStep } = this.state;
+    const { theme } = this.props;
+
+    return (
+      <>
+        <div
+          className={
+            this.state.isLoaded
+              ? "registration__spinner hide"
+              : "registration__spinner"
+          }
+        >
+          <Spinner />
+        </div>
+        <div
+          className={
+            this.state.isLoaded ? classes.root : classes.root + ` hide`
+          }
+        >
+          <div className="stepper">
+            <Stepper activeStep={activeStep} alternativeLabel>
+              {steps.map(label => (
+                <Step key={label}>
+                  <StepLabel>{label}</StepLabel>
+                </Step>
+              ))}
+            </Stepper>
+          </div>
+          <div>
+            <Typography component={"span"} className={classes.instructions}>
+              {this.getStepContent(activeStep)}
+            </Typography>
+          </div>
+          <div className="mobile-stepper">
+            <MobileStepper
+              steps={6}
+              position="static"
+              activeStep={activeStep}
+              className={classes.mobileStepper}
+              style={
+                this.state.activeStep === steps.length - 1
+                  ? { display: "none" }
+                  : {}
+              }
+              nextButton={
+                <Button
+                  size="small"
+                  onClick={this.handleNext}
+                  disabled={
+                    activeStep === steps.length - 1 ||
+                    (this.state.disciplineFilter.length === 0 &&
+                      this.state.locationFilter.length === 0 &&
+                      this.state.levelFilter.length === 0)
+                  }
+                >
+                  Next
+                  {theme.direction === "rtl" ? (
+                    <KeyboardArrowLeft />
+                  ) : (
+                    <KeyboardArrowRight />
+                  )}
+                </Button>
+              }
+              backButton={
+                <Button
+                  size="small"
+                  onClick={this.handleBack}
+                  disabled={activeStep === 0}
+                >
+                  {theme.direction === "rtl" ? (
+                    <KeyboardArrowRight />
+                  ) : (
+                    <KeyboardArrowLeft />
+                  )}
+                  Back
+                </Button>
+              }
+            />
+          </div>
+          <div className="stepper navigator">
+            {this.state.activeStep === steps.length ? (
+              <div>
+                <Typography component={"span"} className={classes.instructions}>
+                  All steps completed
+                </Typography>
+                <Button onClick={this.handleReset}>Reset</Button>
+              </div>
+            ) : (
+              <div>
+                <Button
+                  disabled={activeStep === 0}
+                  onClick={this.handleBack}
+                  className={classes.backButton}
+                  style={
+                    this.state.activeStep === steps.length - 1
+                      ? { display: "none" }
+                      : {}
+                  }
+                >
+                  Back
+                </Button>
+                <Button
+                  disabled={
+                    this.state.disciplineFilter.length === 0 &&
+                    this.state.locationFilter.length === 0 &&
+                    this.state.levelFilter.length === 0
+                  }
+                  style={
+                    this.state.activeStep === steps.length - 1
+                      ? { display: "none" }
+                      : {}
+                  }
+                  variant="contained"
+                  color="primary"
+                  onClick={this.handleNext}
+                >
+                  {activeStep === steps.length - 2 ? "Finish" : "Next"}
+                </Button>
+              </div>
+            )}
+          </div>
+        </div>
+      </>
+    );
+  }
 }
 
 Registration.propTypes = {

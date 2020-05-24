@@ -50,6 +50,7 @@ function CreditCard(props) {
           maxLength="2"
         />
       </div>
+
       <div className="credit-card__message">
         We do not accept AMEX for the moment, sorry for the inconvenience.
       </div>
