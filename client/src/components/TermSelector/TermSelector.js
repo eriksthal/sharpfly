@@ -21,11 +21,11 @@ function TermSelector(props) {
             control={<Radio />}
             label="One payment in full"
           />
-          {/* <FormControlLabel
+          <FormControlLabel
             value="Monthly Payments"
             control={<Radio />}
             label="Two payments"
-          /> */}
+          />
         </RadioGroup>
       </FormControl>
     </div>

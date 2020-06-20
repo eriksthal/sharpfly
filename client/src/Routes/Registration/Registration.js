@@ -8,7 +8,7 @@ import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import ClassTable from "../../components/ClassTable/ClassTable";
-// import ShowOff from "../../components/ShowOff/ShowOff";
+import ShowOff from "../../components/ShowOff/ShowOff";
 import TermSelector from "../../components/TermSelector/TermSelector";
 import ClassFilter from "../../components/ClassFilter/ClassFilter";
 import CreditCard from "../../components/CreditCard/CreditCard";
@@ -22,7 +22,7 @@ import DressUp from "../../components/DressUp/DressUp";
 import MobileStepper from "@material-ui/core/MobileStepper";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
-import Checkbox from "@material-ui/core/Checkbox";
+// import Checkbox from "@material-ui/core/Checkbox";
 import { steps, costumePrices } from "../../constants/constants.js";
 import { getPrice } from "../../utilities/utils.js";
 import {
@@ -91,15 +91,15 @@ class Registration extends React.Component {
       ccExpiryMonth: "",
       ccExpiryYear: "",
       paymentTerm: "One payment",
-      agreement1: true,
-      agreement2: true,
+      agreement1: false,
+      agreement2: false,
       agreement3: false,
       agreement4: false,
       agreement5: false,
       agreement6: false,
       agreement7: false,
       agreement8: false,
-      registrationFee: 0,
+      registrationFee: 45,
       videoPrice: 0,
       tickets: 0,
       costumesTotal: 0,
@@ -213,12 +213,9 @@ class Registration extends React.Component {
         getPrice(this.state.selectedClasses)
       ).toFixed(2);
       const costumesSummary = this.getCostumesPrice();
-      let costumesTotal = parseFloat(
+      const costumesTotal = parseFloat(
         this.getCostumesFinalPrices(costumesSummary.fees)
       ).toFixed(2);
-      //TO REMOVE WHEN BACK TO NORMAL
-      costumesTotal = 0;
-      // ----------------------------
       const gst =
         (+tuitionTotal +
           +costumesTotal +
@@ -226,10 +223,7 @@ class Registration extends React.Component {
           +this.state.tickets +
           +this.state.registrationFee) *
         +0.05;
-      let pst = +costumesSummary.pst + +this.state.videoPrice * 0.07;
-      //TO REMOVE WHEN BACK TO NORMAL
-      pst = 0;
-      // ----------------------------
+      const pst = +costumesSummary.pst + +this.state.videoPrice * 0.07;
       const grandTotal =
         +tuitionTotal +
         +costumesTotal +
@@ -717,8 +711,8 @@ class Registration extends React.Component {
           <div>
             <h1>Dress Up!</h1>
             <DressUp selectedClasses={this.state.selectedClasses} />
-            {/* <h1 style={{ marginTop: "60px" }}>Show Off!</h1>
-            <ShowOff /> */}
+            <h1 style={{ marginTop: "60px" }}>Show Off!</h1>
+            <ShowOff />
           </div>
         );
       case 4:
@@ -846,7 +840,7 @@ class Registration extends React.Component {
                   <strong>Tuition: </strong>
                   {`$ ${this.state.tuitionTotal} CAD`}
                 </p>
-                {/* <p>
+                <p>
                   <strong>Registration Fee: </strong> $
                   {parseFloat(this.state.registrationFee).toFixed(2)} CAD
                 </p>
@@ -875,7 +869,7 @@ class Registration extends React.Component {
                   </ul>
                   <strong>Costumes total: </strong>
                   {`$ ${this.state.costumesTotal} CAD`}
-                </div> */}
+                </div>
                 <p>
                   <strong>GST: </strong>${parseFloat(this.state.gst).toFixed(2)}{" "}
                   CAD
@@ -911,13 +905,13 @@ class Registration extends React.Component {
                   this
                 )}
               />
-              <Checkbox
+              {/* <Checkbox
                 onClick={this.handleAgreementChange}
                 checked={this.state.useCreditOnFile}
                 id="useCreditOnFile"
               />{" "}
               If I have a credit on file, I would like to use it toward this
-              payment.
+              payment. */}
             </Paper>
             <Paper
               className="information-review__paper_container"

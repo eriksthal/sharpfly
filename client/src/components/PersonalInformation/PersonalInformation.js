@@ -159,6 +159,7 @@ function PersonalInformation(props) {
               value={props.primaryEmail}
               onChange={props.handlePrimaryEmailChange}
               margin="normal"
+              helperText="Please provide a valid email address. All communications will be sent to this email address."
             />
           </div>
           <div className="personal-information__form-row">
