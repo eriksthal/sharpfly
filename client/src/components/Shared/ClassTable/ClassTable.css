@@ -1,0 +1,12 @@
+.class-card__card-container {
+    margin: 5px;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+    text-align: center;
+}

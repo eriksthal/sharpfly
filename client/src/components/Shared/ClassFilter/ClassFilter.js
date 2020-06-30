@@ -4,7 +4,7 @@ import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
 import Input from "@material-ui/core/Input";
 import { withStyles } from "@material-ui/core/styles";
-import { english } from "../../constants/languages";
+import { english } from "../../../constants/languages";
 import FormControl from "@material-ui/core/FormControl";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -15,7 +15,7 @@ import {
   disciplinesEndpoint,
   locationsEndpoint,
   agesEndpoint
-} from "../../constants/config";
+} from "../../../constants/config";
 
 import "./ClassFilter.css";
 

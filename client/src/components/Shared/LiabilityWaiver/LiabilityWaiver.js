@@ -133,7 +133,7 @@ class LiabilityWaiver extends React.Component {
             onClick={props.handleAgreementChange}
             value={props.value}
             checked={props.agreement8}
-            id="agreement8"
+            id="agreement10"
           />
           <span>
             I/we do hereby unconditionally release and forever discharge any and

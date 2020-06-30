@@ -5,7 +5,7 @@ import { withStyles } from "@material-ui/core/styles";
 import DateFnsUtils from "@date-io/date-fns";
 import { MuiPickersUtilsProvider, DatePicker } from "material-ui-pickers";
 import Icon from "@material-ui/core/Icon";
-import { cities } from "../../constants/cities";
+import { cities } from "../../../constants/cities";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";

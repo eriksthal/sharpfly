@@ -35,8 +35,8 @@ class NavigationBar extends React.Component {
             <Link to="/registration">
               <Image
                 class
-                src={require(`../../img/${this.props.logo}.png`)}
-                webp={require(`../../img/${this.props.logo}.webp`)}
+                src={require(`../../../img/${this.props.logo}.png`)}
+                webp={require(`../../../img/${this.props.logo}.webp`)}
               />
             </Link>
           </div>

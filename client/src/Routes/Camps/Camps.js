@@ -7,31 +7,27 @@ import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-import ClassTable from "../../components/Shared/ClassTable/ClassTable";
-import ShowOff from "../../components/Shared/ShowOff/ShowOff";
-import TermSelector from "../../components/Shared/TermSelector/TermSelector";
-import ClassFilter from "../../components/Shared/ClassFilter/ClassFilter";
+import CampTable from "../../components/Camps/CampTable/CampTable";
+import CampsFilter from "../../components/Camps/CampsFilter/CampsFilter";
 import CreditCard from "../../components/Shared/CreditCard/CreditCard";
 import LiabilityWaiver from "../../components/Shared/LiabilityWaiver/LiabilityWaiver";
 import InformationReview from "../../components/Shared/InformationReview/InformationReview";
 import Signature from "../../components/Shared/Signature/Signature";
 import Spinner from "../../components/Shared/Spinner/Spinner";
-import FinancialInformation from "../../components/Registration/FinancialInformation/FinancialInformation";
+import CampsFinancialInformation from "../../components/Camps/CampsFinancialInformation/CampsFinancialInformation";
 import PersonalInformation from "../../components/Shared/PersonalInformation/PersonalInformation";
-import DressUp from "../../components/Shared/DressUp/DressUp";
 import MobileStepper from "@material-ui/core/MobileStepper";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
-// import Checkbox from "@material-ui/core/Checkbox";
-import { steps, costumePrices } from "../../constants/constants.js";
+import { campSteps, costumePrices } from "../../constants/constants.js";
 import { getPrice } from "../../utilities/utils.js";
+import { campsEndpoint, registrationEndpoint } from "../../constants/config.js";
 import {
-  classesEndpoint,
-  registrationEndpoint
-} from "../../constants/config.js";
-import { findClassIdinArrayOfClasses } from "../../utilities/utils.js";
+  findClassIdinArrayOfClasses,
+  findTermNameinArrayOfTerms
+} from "../../utilities/utils.js";
 
-import "./Registration.css";
+import "./Camps.css";
 
 const styles = theme => ({
   root: {
@@ -46,7 +42,7 @@ const styles = theme => ({
   }
 });
 
-class Registration extends React.Component {
+class Camps extends React.Component {
   constructor(props) {
     super(props);
 
@@ -96,14 +92,7 @@ class Registration extends React.Component {
       agreement3: false,
       agreement4: false,
       agreement5: false,
-      agreement6: false,
-      agreement7: false,
-      agreement8: false,
-      agreement9: false,
       agreement10: false,
-      registrationFee: 45,
-      videoPrice: 44.1,
-      tickets: 55.65,
       costumesTotal: 0,
       costumesSummary: { fees: [], pst: 0 },
       tuitionTotal: 0,
@@ -111,14 +100,13 @@ class Registration extends React.Component {
       pst: 0,
       grandTotal: 0,
       useCreditOnFile: false,
-      registrationType: "Rec"
+      registrationType: "Camp"
     };
-    this.handleAgreementChange = this.handleAgreementChange.bind(this);
   }
 
   componentDidMount() {
     this.setState({ isLoaded: false });
-    fetch(classesEndpoint)
+    fetch(campsEndpoint)
       .then(res => res.json())
       .then(
         result => {
@@ -153,13 +141,6 @@ class Registration extends React.Component {
     return isValid;
   }
 
-  validateEmail(mail) {
-    if (/^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
-      return true;
-    }
-    return false;
-  }
-
   updatePersonalInformation(e) {
     this.setState({ personalInformation: e });
   }
@@ -175,7 +156,7 @@ class Registration extends React.Component {
 
     if (this.state.activeStep === 1) {
       if (this.state.selectedClasses.length === 0) {
-        alert("Please select at least one class");
+        alert("Please select at least one camp");
         return;
       }
     }
@@ -204,13 +185,9 @@ class Registration extends React.Component {
         );
         return;
       }
-      if (!this.validateEmail(this.state.primaryEmail)) {
-        alert("Please add a valid primary email address");
-        return;
-      }
     }
 
-    if (this.state.activeStep === 4) {
+    if (this.state.activeStep === 3) {
       const tuitionTotal = parseFloat(
         getPrice(this.state.selectedClasses)
       ).toFixed(2);
@@ -218,22 +195,9 @@ class Registration extends React.Component {
       const costumesTotal = parseFloat(
         this.getCostumesFinalPrices(costumesSummary.fees)
       ).toFixed(2);
-      const gst =
-        (+tuitionTotal +
-          +costumesTotal +
-          +this.state.videoPrice +
-          +this.state.tickets +
-          +this.state.registrationFee) *
-        +0.05;
-      const pst = +costumesSummary.pst + +this.state.videoPrice * 0.07;
-      const grandTotal =
-        +tuitionTotal +
-        +costumesTotal +
-        +gst +
-        +pst +
-        +this.state.videoPrice +
-        +this.state.tickets +
-        +this.state.registrationFee;
+      const gst = tuitionTotal * +0.05;
+      const pst = +0 * 0.07;
+      const grandTotal = +tuitionTotal + +gst + pst;
       this.setState({
         tuitionTotal,
         costumesSummary,
@@ -249,10 +213,6 @@ class Registration extends React.Component {
           "agreement3",
           "agreement4",
           "agreement5",
-          "agreement6",
-          "agreement7",
-          "agreement8",
-          "agreement9",
           "agreement10",
           "agreementCheck",
           "waiverGuardianName",
@@ -270,7 +230,7 @@ class Registration extends React.Component {
       }
     }
 
-    if (this.state.activeStep === 5) {
+    if (this.state.activeStep === 4) {
       if (
         !this.validatePersonalInformation([
           "ccName",
@@ -288,7 +248,7 @@ class Registration extends React.Component {
       activeStep: state.activeStep + 1
     }));
 
-    if (this.state.activeStep === steps.length - 2) {
+    if (this.state.activeStep === campSteps.length - 2) {
       this.completeRegistration(registrationEndpoint, this.state);
     }
     this.goToTop();
@@ -596,7 +556,7 @@ class Registration extends React.Component {
         findClassIdinArrayOfClasses(
           singleClass.classId,
           this.state.selectedClasses
-        ).length > 0
+        )
       ) {
         singleClass.ages.forEach(age => {
           if (costumePrices[age] > largestAge) {
@@ -628,7 +588,7 @@ class Registration extends React.Component {
   }
 
   getSteps() {
-    return steps;
+    return campSteps;
   }
 
   getStepContent(stepIndex) {
@@ -636,8 +596,8 @@ class Registration extends React.Component {
       case 0:
         return (
           <div className="registration__class-finder">
-            <h1>Find your class</h1>
-            <ClassFilter
+            <h1>Find your camp</h1>
+            <CampsFilter
               handleDisciplineChange={this.handleDisciplineChange.bind(this)}
               handleLevelChange={this.handleLevelChange.bind(this)}
               handleLocationChange={this.handleLocationChange.bind(this)}
@@ -652,8 +612,8 @@ class Registration extends React.Component {
       case 1:
         return (
           <div className="registration__class-finder">
-            <h1>Select your classes</h1>
-            <ClassTable
+            <h1>Select your camps</h1>
+            <CampTable
               filteredClasses={this.state.filteredClasses}
               selectedClasses={this.state.selectedClasses}
               onClassSelect={this.handleClassSelect.bind(this)}
@@ -713,15 +673,6 @@ class Registration extends React.Component {
       case 3:
         return (
           <div>
-            <h1>Dress Up!</h1>
-            <DressUp selectedClasses={this.state.selectedClasses} />
-            <h1 style={{ marginTop: "60px" }}>Show Off!</h1>
-            <ShowOff />
-          </div>
-        );
-      case 4:
-        return (
-          <div>
             <h1>Let's review some terms</h1>
             <LiabilityWaiver
               careCard={this.state.careCard}
@@ -751,16 +702,12 @@ class Registration extends React.Component {
               agreement10={this.state.agreement10}
               handleAgreementChange={this.handleAgreementChange.bind(this)}
             />
-            <FinancialInformation
+            <CampsFinancialInformation
               agreement1={this.state.agreement1}
               agreement2={this.state.agreement2}
               agreement3={this.state.agreement3}
               agreement4={this.state.agreement4}
               agreement5={this.state.agreement5}
-              agreement6={this.state.agreement6}
-              agreement7={this.state.agreement7}
-              agreement8={this.state.agreement8}
-              agreement9={this.state.agreement9}
               handleAgreementChange={this.handleAgreementChange.bind(this)}
             />
             <Signature
@@ -770,7 +717,7 @@ class Registration extends React.Component {
             />
           </div>
         );
-      case 5:
+      case 4:
         return (
           <div
             style={{
@@ -807,26 +754,32 @@ class Registration extends React.Component {
                 className="information-review__paper_container"
                 elevation={1}
               >
-                <h2>Your selected Classes:</h2>
+                <h2>Your selected Camps:</h2>
                 <ul>
                   {this.state.classes.map(singleClass => {
-                    if (
-                      findClassIdinArrayOfClasses(
-                        singleClass.classId,
-                        this.state.selectedClasses
-                      ).length > 0
-                    ) {
+                    const selectedClass = findClassIdinArrayOfClasses(
+                      singleClass.classId,
+                      this.state.selectedClasses
+                    );
+                    if (selectedClass.length > 0) {
                       return (
                         <li
                           style={{ marginBottom: "10px" }}
                           key={singleClass.classId}
                         >
-                          {`${singleClass.level.join("/")} ${
-                            singleClass.discipline
+                          {`${singleClass.discipline}
+                        ${singleClass.ages.join("/")}`}
+                          <br />
+                          {singleClass.location}
+                          <br />
+                          {singleClass.hours}
+                          <br />
+                          {
+                            findTermNameinArrayOfTerms(
+                              selectedClass[0].term,
+                              singleClass.terms
+                            )[0].termName
                           }
-                        ${singleClass.ages.join("/")} - ${
-                            singleClass.location
-                          } - ${singleClass.hours}`}
                         </li>
                       );
                     }
@@ -847,104 +800,53 @@ class Registration extends React.Component {
                   {`$ ${this.state.tuitionTotal} CAD`}
                 </p>
                 <p>
-                  <strong>Registration Fee: </strong> $
-                  {parseFloat(this.state.registrationFee).toFixed(2)} CAD
-                </p>
-                <div>
-                  <strong>Performance fee: </strong>
-                  <ul>
-                    <li>
-                      Tickets deposit: $
-                      {parseFloat(this.state.tickets).toFixed(2)} CAD
-                    </li>
-                    <li>
-                      Video: ${parseFloat(this.state.videoPrice).toFixed(2)} CAD
-                    </li>
-                  </ul>
-                </div>
-                <div>
-                  <strong>Costumes fee: </strong>
-                  <ul>
-                    {this.state.costumesSummary.fees.map((costume, i) => {
-                      return (
-                        <li key={i}>
-                          {costume.discipline}: ${costume.price} CAD
-                        </li>
-                      );
-                    })}
-                  </ul>
-                  <strong>Costumes total: </strong>
-                  {`$ ${this.state.costumesTotal} CAD`}
-                </div>
-                <p>
                   <strong>GST: </strong>${parseFloat(this.state.gst).toFixed(2)}{" "}
                   CAD
                 </p>
-                <p>
+                {/* <p>
                   <strong>PST: </strong>${parseFloat(this.state.pst).toFixed(2)}{" "}
                   CAD
-                </p>
+                </p> */}
                 <h2>Total: </h2>
                 <h3>${parseFloat(this.state.grandTotal).toFixed(2)} CAD</h3>
-                {/* <p>
-                  <i>Note: Early bird prices valid until Jun 22nd.</i>
-                </p> */}
                 <div />
               </Paper>
+              <Paper
+                className="information-review__paper_container"
+                elevation={1}
+              >
+                <h1>Payment Information</h1>
+                <CreditCard
+                  number={this.state.ccNumber}
+                  name={this.state.ccName}
+                  expiryMonth={this.state.ccExpiryMonth}
+                  expiryYear={this.state.ccExpiryYear}
+                  handleNumberChange={this.handleCcNumberChange.bind(this)}
+                  handleNameChange={this.handleCcNameChange.bind(this)}
+                  handleExpiryMonthChange={this.handleCcExpiryMonthChange.bind(
+                    this
+                  )}
+                  handleExpiryYearChange={this.handleCcExpiryYearChange.bind(
+                    this
+                  )}
+                />
+              </Paper>
             </div>
-            <Paper
-              className="information-review__paper_container"
-              elevation={1}
-            >
-              <h1>Payment Information</h1>
-              <CreditCard
-                number={this.state.ccNumber}
-                name={this.state.ccName}
-                expiryMonth={this.state.ccExpiryMonth}
-                expiryYear={this.state.ccExpiryYear}
-                handleNumberChange={this.handleCcNumberChange.bind(this)}
-                handleNameChange={this.handleCcNameChange.bind(this)}
-                handleExpiryMonthChange={this.handleCcExpiryMonthChange.bind(
-                  this
-                )}
-                handleExpiryYearChange={this.handleCcExpiryYearChange.bind(
-                  this
-                )}
-              />
-              {/* <Checkbox
-                onClick={this.handleAgreementChange}
-                checked={this.state.useCreditOnFile}
-                id="useCreditOnFile"
-              />{" "}
-              If I have a credit on file, I would like to use it toward this
-              payment. */}
-            </Paper>
-            <Paper
-              className="information-review__paper_container"
-              elevation={1}
-            >
-              <h1>Select your term</h1>
-              <TermSelector
-                handleTermChange={this.handleTermChange.bind(this)}
-                paymentTerm={this.state.paymentTerm}
-                multipleTerms={true}
-              />
-            </Paper>
           </div>
         );
-      case 6:
+      case 5:
         return (
           <div className="all-done__container">
             <h1>All done!</h1>
             <p>
               Thank you for registering via our online registration. We are
-              excited to have you dancing with us for the 20/21 season!
+              excited to have you dancing with us for the 2019/20 Season!
             </p>
             <p>
               We will charge one third of your total fees to the supplied credit
               card number and a receipt will be emailed to you upon completion.
               The remainder of the fees are divided into 6 monthly payments
-              starting September 15th.
+              starting September 23rd.
             </p>
             <p>
               Please note if you have registered for a Sept-December Preschool
@@ -953,7 +855,7 @@ class Registration extends React.Component {
               non-refundable. After October 31st, no other refunds will be
               given.
             </p>
-            {/* <p>
+            <p>
               Please{" "}
               <a
                 href="https://dancecofiles.s3.us-east-2.amazonaws.com/2019-20+Calendar.xls"
@@ -964,8 +866,8 @@ class Registration extends React.Component {
               </a>{" "}
               for the 2019/2020 Season Calendar which outlines important dates
               in our year.
-            </p> */}
-            {/* <p>
+            </p>
+            <p>
               <ul>
                 <li>
                   Classes begin the week of Monday September 9th – Sunday
@@ -976,31 +878,30 @@ class Registration extends React.Component {
                   studio events and closures.{" "}
                 </li>
               </ul>
-            </p> */}
+            </p>
             <p>
-              <strong>
+              Dance Co students are required to wear the appropriate Dance Co
+              Uniform and shoes for dance class. For more information on
+              uniforms{" "}
+              <a
+                href="https://dancecofiles.s3.us-east-2.amazonaws.com/2019+Dance+Co+Uniform+Requirements+.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {" "}
-                Dance Co students are required to wear the appropriate Dance Co
-                Uniform and shoes for dance class. For more information on
-                uniforms{" "}
-                <a
-                  href="http://email.mg.danceco.com/c/eJxNjkEKgzAQRU-ju4ZkYlJdZFG1HqDQA0QzqQFjrFGEnr4Ruih85vOZ-cMzCkuQgLlTQFlFJZVMguBAGGlk3ZYC7gWFK-9AZgX1L2L0POAQyBB8PipqUFhtsBTYc2NEZS0rBtr3lJWaGcgnNW7bEjN-y6BL-tWtmzCSyMkeL6jjdgGivf6EWR_xfJ0uT54M6vYsJG9CGs_Z2bCmbf3A9-5W9DhvMUWyGJuvyut1Cgcm0j_ML2NqRjk"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  click here
-                </a>
-              </strong>
+                click here
+              </a>
+              .
             </p>
             <p>
               Vancouver Dance Supply, our store is located right next to our
               Arbutus location in the Arbutus Mall. They stock everything you
               need, and will be happy assist you. DANCE ETC | 604-731-1362 |
-              <a href="mailto:info@danceetc.ca"> info@danceetc.ca</a>
+              <a href="mailto:info@danceetc.ca">info@danceetc.ca</a>
             </p>
             <p>
-              If you have any questions, please reach out to us at{" "}
-              <a href="mailto:info@danceco.com">info@danceco.com</a>
+              If you have any questions, please reach out to us at 604.736.3394
+              or <a href="mailto:info@danceco.com">info@danceco.com</a>
             </p>
             <p>
               We emailed a copy of this information to you at{" "}
@@ -1016,17 +917,9 @@ class Registration extends React.Component {
     }
   }
 
-  // render() {
-  //   return (
-  //     <h1 style={{ textAlign: "center" }}>
-  //       Our registration is currently closed.
-  //     </h1>
-  //   );
-  // }
-
   render() {
     const { classes } = this.props;
-    const steps = this.getSteps();
+    const campSteps = this.getSteps();
     const { activeStep } = this.state;
     const { theme } = this.props;
 
@@ -1048,7 +941,7 @@ class Registration extends React.Component {
         >
           <div className="stepper">
             <Stepper activeStep={activeStep} alternativeLabel>
-              {steps.map(label => (
+              {campSteps.map(label => (
                 <Step key={label}>
                   <StepLabel>{label}</StepLabel>
                 </Step>
@@ -1067,7 +960,7 @@ class Registration extends React.Component {
               activeStep={activeStep}
               className={classes.mobileStepper}
               style={
-                this.state.activeStep === steps.length - 1
+                this.state.activeStep === campSteps.length - 1
                   ? { display: "none" }
                   : {}
               }
@@ -1076,7 +969,7 @@ class Registration extends React.Component {
                   size="small"
                   onClick={this.handleNext}
                   disabled={
-                    activeStep === steps.length - 1 ||
+                    activeStep === campSteps.length - 1 ||
                     (this.state.disciplineFilter.length === 0 &&
                       this.state.locationFilter.length === 0 &&
                       this.state.levelFilter.length === 0)
@@ -1107,7 +1000,7 @@ class Registration extends React.Component {
             />
           </div>
           <div className="stepper navigator">
-            {this.state.activeStep === steps.length ? (
+            {this.state.activeStep === campSteps.length ? (
               <div>
                 <Typography component={"span"} className={classes.instructions}>
                   All steps completed
@@ -1121,7 +1014,7 @@ class Registration extends React.Component {
                   onClick={this.handleBack}
                   className={classes.backButton}
                   style={
-                    this.state.activeStep === steps.length - 1
+                    this.state.activeStep === campSteps.length - 1
                       ? { display: "none" }
                       : {}
                   }
@@ -1130,12 +1023,12 @@ class Registration extends React.Component {
                 </Button>
                 <Button
                   disabled={
-                    this.state.disciplineFilter.length === 0 &&
                     this.state.locationFilter.length === 0 &&
-                    this.state.levelFilter.length === 0
+                    this.state.ageFilter.length === 0 &&
+                    this.state.disciplineFilter.length === 0
                   }
                   style={
-                    this.state.activeStep === steps.length - 1
+                    this.state.activeStep === campSteps.length - 1
                       ? { display: "none" }
                       : {}
                   }
@@ -1143,7 +1036,7 @@ class Registration extends React.Component {
                   color="primary"
                   onClick={this.handleNext}
                 >
-                  {activeStep === steps.length - 2 ? "Finish" : "Next"}
+                  {activeStep === campSteps.length - 2 ? "Finish" : "Next"}
                 </Button>
               </div>
             )}
@@ -1154,8 +1047,8 @@ class Registration extends React.Component {
   }
 }
 
-Registration.propTypes = {
+Camps.propTypes = {
   classes: PropTypes.object
 };
 
-export default withStyles(styles, { withTheme: true })(Registration);
+export default withStyles(styles, { withTheme: true })(Camps);

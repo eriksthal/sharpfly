@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import ClassCard from "../ClassCard/ClassCard";
-import { getTermFromClass } from "../../utilities/utils";
+import CampCard from "../CampCard/CampCard";
+import { getTermFromClass } from "../../../utilities/utils";
 
-import "./ClassTable.css";
+import "./CampTable.css";
 
 const styles = theme => ({
   root: {
@@ -17,7 +17,7 @@ const styles = theme => ({
   }
 });
 
-function ClassTable(props) {
+function CampTable(props) {
   return (
     <div
       style={{
@@ -39,8 +39,9 @@ function ClassTable(props) {
 
         return (
           <div className="class-card__card-container" key={singleClass.classId}>
-            <ClassCard
+            <CampCard
               value={singleClass.classId}
+              description={singleClass.classDescription}
               discipline={singleClass.discipline}
               ages={singleClass.ages}
               selected={term !== `None-${singleClass.classId}`}
@@ -59,8 +60,8 @@ function ClassTable(props) {
   );
 }
 
-ClassTable.propTypes = {
+CampTable.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(ClassTable);
+export default withStyles(styles)(CampTable);

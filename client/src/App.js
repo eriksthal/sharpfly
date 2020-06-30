@@ -3,7 +3,7 @@ import "./App.css";
 import { Router } from "@reach/router";
 import Registration from "./Routes/Registration/Registration.js";
 import Camps from "./Routes/Camps/Camps.js";
-import NavigationBar from "./components/NavigationBar/NavigationBar.js";
+import NavigationBar from "./components/Shared/NavigationBar/NavigationBar.js";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
 const theme = createMuiTheme({

@@ -1,0 +1,43 @@
+.class-card__icon-splitter {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.class-card__ribbon-wrapper {
+    width: 85px;
+    height: 88px;
+    overflow: hidden;
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    display: none;
+  }
+  .class-card__ribbon-wrapper .class-card__ribbon {
+    font: bold 15px sans-serif;
+    color: #333;
+    text-align: center;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    position: relative;
+    padding: 7px 0;
+    top: 15px;
+    left: -30px;
+    width: 120px;
+    background-color: #bc9b6a;
+    color: #fff;
+  }
+
+.class-card__selected {
+    display: block;
+}
+
+.class-card__term-price {
+    position: relative;
+    top: 5px;
+    font-size: 12px;
+    font-weight: bold;
+}

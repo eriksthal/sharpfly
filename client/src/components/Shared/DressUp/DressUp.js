@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { uniforms } from "../../constants/uniforms";
+import { uniforms } from "../../../constants/uniforms";
 import { withStyles } from "@material-ui/core/styles";
-import { filterClassesForUniforms } from "../../utilities/utils";
+import { filterClassesForUniforms } from "../../../utilities/utils";
 
 import "./DressUp.css";
 

@@ -1,0 +1,12 @@
+.financial-information__acceptable-term {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: initial;
+    margin: 10px 0;
+}
+
+.financial-information__acceptable-term span {
+    display: flex;
+    align-items: center;
+}

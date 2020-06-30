@@ -11,8 +11,8 @@ function TermSelector(props) {
     <div>
       <FormControl component="fieldset">
         <RadioGroup
-          aria-label="Gender"
-          name="gender1"
+          aria-label="Term Selector"
+          name="termSelector"
           value={props.paymentTerm}
           onChange={props.handleTermChange}
         >
@@ -24,7 +24,8 @@ function TermSelector(props) {
           <FormControlLabel
             value="Monthly Payments"
             control={<Radio />}
-            label="Two payments"
+            label="Monthly payments"
+            disabled={props.multipleTerms ? false : true}
           />
         </RadioGroup>
       </FormControl>

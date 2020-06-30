@@ -17,7 +17,7 @@ const styles = theme => ({
 function ShowOff(props) {
   return (
     <div>
-      <h2>Year-end Recital May 19-24, 2020 at the Gateway Theatre</h2>​{" "}
+      <h2>Year-end Recital May 31- June 6th, 2021 at the Gateway Theatre</h2>​{" "}
       <p>
         Dance Co’s Year-End Recital performances occur at the Gateway Theatre in
         Richmond each May. All Dancers in full year programs will perform with

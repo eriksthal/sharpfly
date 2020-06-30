@@ -1,0 +1,28 @@
+.class-filter__filter-main-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.class-filter__filter-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 5px 0 5px 0;
+}
+
+.class-filter__filter {
+    width: 230px;
+}
+
+.class-filter__select {
+    width: 300px;
+    text-align: left;
+}
+
+.class-filter__paper {
+    width: 320px;
+    position: relative;
+    margin: 0 auto;
+    padding: 10px;
+}
