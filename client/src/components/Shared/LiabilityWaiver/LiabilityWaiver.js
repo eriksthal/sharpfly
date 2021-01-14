@@ -6,15 +6,15 @@ import Checkbox from "@material-ui/core/Checkbox";
 
 import "./LiabilityWaiver.css";
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     width: "100%",
     marginTop: theme.spacing.unit * 3,
-    overflowX: "auto"
+    overflowX: "auto",
   },
   table: {
-    minWidth: 700
-  }
+    minWidth: 700,
+  },
 });
 
 class LiabilityWaiver extends React.Component {
@@ -132,7 +132,7 @@ class LiabilityWaiver extends React.Component {
           <Checkbox
             onClick={props.handleAgreementChange}
             value={props.value}
-            checked={props.agreement8}
+            checked={props.agreement10}
             id="agreement10"
           />
           <span>
@@ -169,7 +169,7 @@ class LiabilityWaiver extends React.Component {
 }
 
 LiabilityWaiver.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(LiabilityWaiver);
