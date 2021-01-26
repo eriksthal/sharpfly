@@ -4,15 +4,15 @@ import Checkbox from "@material-ui/core/Checkbox";
 
 import "./CampsFinancialInformation.css";
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     width: "100%",
     marginTop: theme.spacing.unit * 3,
-    overflowX: "auto"
+    overflowX: "auto",
   },
   table: {
-    minWidth: 700
-  }
+    minWidth: 700,
+  },
 });
 
 function CampsFinancialInformation(props) {
@@ -20,7 +20,7 @@ function CampsFinancialInformation(props) {
     <div>
       <h3>Please read and accept the following information:</h3>
       <p>
-        To officially withdraw from a class the parent/legal guardian must
+        To Official withdraw from a class the parent/legal guardian must
         complete & submit a Discontinuation Form (available at the office).
         Verbal notification and non-attendance are not considered automatic
         withdrawal.
@@ -33,11 +33,12 @@ function CampsFinancialInformation(props) {
           id="agreement1"
         />
         <span>
-          Summer programs & classes are non-refundable. Withdrawals for medical
-          reasons must be accompanied by a valid doctor's note. Medical
-          withdrawals will be credited remaining tuition for future classes.
-          Applications to transfer a student to a different class/program, for
-          personal reason, will incure a $25.00 administration fee per change.
+          Spring Break Camp & Summer Program and classes are non-refundable.
+          Withdrawals for medical reasons must be accompanied by a valid
+          doctor’s note. Medical withdrawals will be credited remaining tuition
+          for future classes. Applications to transfer a student to a different
+          class/program for personal reason, will incur a $25.00 administration
+          fee per change.
         </span>
       </div>
       <div className="financial-information__acceptable-term">
@@ -49,9 +50,10 @@ function CampsFinancialInformation(props) {
         />
         <span>
           Payment arrangements are required at the time of registration. Dance
-          Co is authorized to process the payment by credit card or cheques in
+          Co is authorized to process the payment by credit card or cheque in
           accordance with the above. An administration fee of $50 will be
-          applied to NSF cheques.
+          applied to NSF cheques. All fees are due upon registration for Spring
+          Break/Summer Camps.
         </span>
       </div>
       <div className="financial-information__acceptable-term">
@@ -63,9 +65,16 @@ function CampsFinancialInformation(props) {
         />
         <span>
           Students are not required to wear the standard Dance Co uniform during
-          summer programs. All students should wear appropriate dance clothing
+          summer programs. All students should wear appropriate dane clothing
           and shoes for varying disciplines. Please refer to the Dance Co
           brochure for further details.
+          <br />
+          Classes cancelled due to unsafe weather conditions, power outages, or
+          any other unforeseeable emergencies will not be rescheduled and no
+          refunds will be issued. Your dancers safety is our primary concern.
+          <br />
+          Students are to be picked up within 10 minutes of the end of their
+          class. Failure to do so will result in late pick up fees
         </span>
       </div>
       <div className="financial-information__acceptable-term">
@@ -77,8 +86,9 @@ function CampsFinancialInformation(props) {
         />
         <span>
           Cancellation: Dance Co reserves the right to cancel class at any time
-          due to insufficient enrollment. Dance Co reserves the right to have
-          students photographed and used for publicity purposes, unless
+          due to insufficient enrolment. Age groups may vary to accommodate
+          specific level needs and enrolment. Dance Co reserves the right to
+          have students photographed and used for publicity purposes, unless
           otherwise notified in writing.
         </span>
       </div>
