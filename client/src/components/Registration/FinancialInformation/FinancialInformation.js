@@ -72,9 +72,9 @@ function FinancialInformation(props) {
           id="agreement3"
         />
         <span>
-          Classes cancelled due to unsafe weather conditions, power outages, or
-          any other unforeseeable emergencies will not be rescheduled and no
-          refunds will be issued. Your dancers safety is our primary concern.
+          Classes cancelled due to snow, power outage or any other unforeseeable
+          emergency will not be rescheduled and no refunds will be credited.
+          Your dancers safety is our main concern.
         </span>
       </div>
       <div className="financial-information__acceptable-term">

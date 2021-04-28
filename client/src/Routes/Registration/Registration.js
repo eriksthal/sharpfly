@@ -940,7 +940,7 @@ class Registration extends React.Component {
             <h1>All done!</h1>
             <p>
               Thank you for registering via our online registration. We are
-              excited to have you dancing with us for the 20/21 season!
+              excited to have you dancing with us for the 21/22 season!
             </p>
             <p>
               We will charge one third of your total fees to the supplied credit
@@ -964,7 +964,7 @@ class Registration extends React.Component {
               >
                 click here
               </a>{" "}
-              for the 2019/2020 Season Calendar which outlines important dates
+              for the 2020/2021 Season Calendar which outlines important dates
               in our year.
             </p> */}
             {/* <p>
@@ -998,11 +998,11 @@ class Registration extends React.Component {
               Vancouver Dance Supply, our store is located right next to our
               Arbutus location in the Arbutus Mall. They stock everything you
               need, and will be happy assist you. DANCE ETC | 604-731-1362 |
-              <a href="mailto:info@danceetc.ca"> info@danceetc.ca</a>
+              <a href="mailto:vancouverdancesupply@gmail.com"> vancouverdancesupply@gmail.com</a>
             </p>
             <p>
               If you have any questions, please reach out to us at{" "}
-              <a href="mailto:info@danceco.com">info@danceco.com</a>
+              <a href="mailto:vancouverdancesupply@gmail.com">vancouverdancesupply@gmail.com</a>
             </p>
             <p>
               We emailed a copy of this information to you at{" "}
