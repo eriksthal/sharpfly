@@ -49,7 +49,8 @@ const styles = theme => ({
 class Registration extends React.Component {
   constructor(props) {
     super(props);
-
+    this.earlyBird = new Date(2021, 4, 16);
+    this.today = new Date();
     this.state = {
       activeStep: 0,
       locationFilter: [],
@@ -101,9 +102,9 @@ class Registration extends React.Component {
       agreement8: false,
       agreement9: false,
       agreement10: false,
-      registrationFee: 45,
-      videoPrice: 44.1,
-      tickets: 55.65,
+      registrationFee: (this.today < this.earlyBird ? 35 : 50),
+      videoPrice: 49,
+      tickets: 60,
       costumesTotal: 0,
       costumesSummary: { fees: [], pst: 0 },
       tuitionTotal: 0,
@@ -850,6 +851,7 @@ class Registration extends React.Component {
                   <strong>Registration Fee: </strong> $
                   {parseFloat(this.state.registrationFee).toFixed(2)} CAD
                 </p>
+                <p style={{display: (this.today < this.earlyBird ? "block" : "none"),marginTop: "-15px", fontSize: "11px"}}>(Regular $50 CAD. Early bird price ends May 15.)</p>
                 <div>
                   <strong>Performance fee: </strong>
                   <ul>
