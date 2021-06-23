@@ -46,14 +46,14 @@ const uniformsTemplate = {
     shoes: `Shoes: Bare feet. Dance Socks, Pirouette Turning Shoes, or Foot Undeez
     may be required in Tumbling at the discretion of the instructor.`,
   },
-  silks: {
-    title: `SILKS Uniform:`,
+  aerialSilks: {
+    title: `AERIAL SILKS Uniform:`,
     levels: [
       `All: DANCE CO fitted leggings or shorts & a DANCE CO well fitted top
     or bodysuit.`,
     ],
     shoes: `Shoes: Bare feet. Dance Socks, Pirouette Turning Shoes, or Foot Undeez
-    may be required in Silks at the discretion of the instructor.`,
+    may be required in AERIAL SILKS at the discretion of the instructor.`,
   },
   tap: {
     title: `TAP Uniform:`,
@@ -108,7 +108,7 @@ export const uniforms = {
   Contemporary: uniformsTemplate.acro,
   Acro: uniformsTemplate.acro,
   Tumbling: uniformsTemplate.tumbling,
-  Silks: uniformsTemplate.silks,
+  "Aerial Silks": uniformsTemplate.aerialSilks,
   "Musical Theatre": uniformsTemplate.jazz,
   Breakdance: uniformsTemplate.hiphop,
   "Hip Hop": uniformsTemplate.hiphop,

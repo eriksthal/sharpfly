@@ -47,8 +47,10 @@ export const filterClassesForUniforms = (selectedClasses) => {
 export const findSpecialClasses = (selectedClasses, specialClasses) => {
   // If there's no special classes, it returns 0
   // If there's only one class and it is special, it returns 1
+  // If there's multiple classes and they are special, it return 1
   // If there's multiple classes and one is special, it returns 2
   let response;
+  let areSpecial = true;
   if (
     selectedClasses.length === 1 &&
     specialClasses.indexOf(selectedClasses[0].classDiscipline) > -1
@@ -56,10 +58,16 @@ export const findSpecialClasses = (selectedClasses, specialClasses) => {
     response = 1;
   } else if (selectedClasses.length > 1) {
     selectedClasses.forEach((singleClass) => {
-      if (specialClasses.indexOf(singleClass.classDiscipline) > -1) {
-        response = 2;
+      if (specialClasses.indexOf(singleClass.classDiscipline) === -1) {
+        // Validates if all the classes are special or if it is a combination
+        areSpecial = false;
       }
     });
+    if (areSpecial) {
+      response = 1;
+    } else {
+      response = 2;
+    }
   } else {
     response = 0;
   }

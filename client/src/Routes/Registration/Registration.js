@@ -60,7 +60,7 @@ class Registration extends React.Component {
       classes: [],
       filteredClasses: [],
       selectedClasses: [],
-      specialClasses: ["Tumbling", "Silks"],
+      specialClasses: ["Tumbling", "Aerial Silks"],
       terms: [],
       classesForUniform: [],
       firstName: "",
