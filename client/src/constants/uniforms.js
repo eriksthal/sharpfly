@@ -44,7 +44,7 @@ const uniformsTemplate = {
     or bodysuit.`,
     ],
     shoes: `Shoes: Bare feet. Dance Socks, Pirouette Turning Shoes, or Foot Undeez
-    may be required in Contemporary at the discretion of the instructor.`,
+    may be required in Tumbling at the discretion of the instructor.`,
   },
   silks: {
     title: `SILKS Uniform:`,
@@ -53,7 +53,7 @@ const uniformsTemplate = {
     or bodysuit.`,
     ],
     shoes: `Shoes: Bare feet. Dance Socks, Pirouette Turning Shoes, or Foot Undeez
-    may be required in Contemporary at the discretion of the instructor.`,
+    may be required in Silks at the discretion of the instructor.`,
   },
   tap: {
     title: `TAP Uniform:`,
