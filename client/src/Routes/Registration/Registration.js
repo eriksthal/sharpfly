@@ -244,14 +244,6 @@ class Registration extends React.Component {
         alert("Please add a valid primary email address");
         return;
       }
-      if (
-        findSpecialClasses(
-          this.state.selectedClasses,
-          this.state.specialClasses
-        ) === 1
-      ) {
-        this.setState({ activeStep: 3 });
-      }
     }
 
     if (this.state.activeStep === 4) {
