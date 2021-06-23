@@ -217,48 +217,41 @@ class Registration extends React.Component {
     }
 
     if (this.state.activeStep === 2) {
-      // if (
-      //   !this.validatePersonalInformation([
-      //     "firstName",
-      //     "lastName",
-      //     "birthdate",
-      //     "formattedBirthdate",
-      //     "streetAddress",
-      //     "city",
-      //     "postalCode",
-      //     "academicSchool",
-      //     "cellNumber",
-      //     "homeNumber",
-      //     "momsName",
-      //     "momsNumber",
-      //     "dadsName",
-      //     "dadsNumber",
-      //   ])
-      // ) {
-      //   alert(
-      //     "Please fill out all the fields. If it doesn't apply you can type N/A."
-      //   );
-      //   return;
-      // }
-      // if (!this.validateEmail(this.state.primaryEmail)) {
-      //   alert("Please add a valid primary email address");
-      //   return;
-      // }
-      // switch (
-      //   findSpecialClasses(
-      //     this.state.selectedClasses,
-      //     this.state.specialClasses
-      //   )
-      // ) {
-      //   case 1:
-      //     this.setState({ registrationFee: 60, activeStep: 3 });
-      //     break;
-      //   case 2:
-      //     this.setState({ registrationFee: 60 });
-      //     break;
-      //   default:
-      //     break;
-      // }
+      if (
+        !this.validatePersonalInformation([
+          "firstName",
+          "lastName",
+          "birthdate",
+          "formattedBirthdate",
+          "streetAddress",
+          "city",
+          "postalCode",
+          "academicSchool",
+          "cellNumber",
+          "homeNumber",
+          "momsName",
+          "momsNumber",
+          "dadsName",
+          "dadsNumber",
+        ])
+      ) {
+        alert(
+          "Please fill out all the fields. If it doesn't apply you can type N/A."
+        );
+        return;
+      }
+      if (!this.validateEmail(this.state.primaryEmail)) {
+        alert("Please add a valid primary email address");
+        return;
+      }
+      if (
+        findSpecialClasses(
+          this.state.selectedClasses,
+          this.state.specialClasses
+        ) === 1
+      ) {
+        this.setState({ activeStep: 3 });
+      }
     }
 
     if (this.state.activeStep === 4) {
@@ -273,32 +266,32 @@ class Registration extends React.Component {
         this.prepareTotal();
       }
 
-      // if (
-      //   !this.validatePersonalInformation([
-      //     "agreement1",
-      //     "agreement2",
-      //     "agreement3",
-      //     "agreement4",
-      //     "agreement5",
-      //     "agreement6",
-      //     "agreement7",
-      //     "agreement8",
-      //     "agreement9",
-      //     "agreement10",
-      //     "agreementCheck",
-      //     "waiverGuardianName",
-      //     "waiverStudentName",
-      //     "careCard",
-      //     "familyDoctorName",
-      //     "familyDoctorNumber",
-      //     "medicalConditions",
-      //   ])
-      // ) {
-      //   alert(
-      //     "Please complete all the fields, accept all the terms and sign the form"
-      //   );
-      //   return;
-      // }
+      if (
+        !this.validatePersonalInformation([
+          "agreement1",
+          "agreement2",
+          "agreement3",
+          "agreement4",
+          "agreement5",
+          "agreement6",
+          "agreement7",
+          "agreement8",
+          "agreement9",
+          "agreement10",
+          "agreementCheck",
+          "waiverGuardianName",
+          "waiverStudentName",
+          "careCard",
+          "familyDoctorName",
+          "familyDoctorNumber",
+          "medicalConditions",
+        ])
+      ) {
+        alert(
+          "Please complete all the fields, accept all the terms and sign the form"
+        );
+        return;
+      }
     }
 
     if (this.state.activeStep === 5) {
