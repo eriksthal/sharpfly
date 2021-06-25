@@ -43,8 +43,7 @@ const uniformsTemplate = {
       `All: DANCE CO fitted leggings or shorts & a DANCE CO well fitted top
     or bodysuit.`,
     ],
-    shoes: `Shoes: Bare feet. Dance Socks, Pirouette Turning Shoes, or Foot Undeez
-    may be required in Tumbling at the discretion of the instructor.`,
+    shoes: `Shoes: Bare feet.`,
   },
   aerialSilks: {
     title: `AERIAL SILKS Uniform:`,
