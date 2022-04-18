@@ -6,15 +6,15 @@ import { getTermFromClass } from "../../../utilities/utils";
 
 import "./ClassTable.css";
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     width: "100%",
     marginTop: theme.spacing.unit * 3,
-    overflowX: "auto"
+    overflowX: "auto",
   },
   table: {
-    minWidth: 700
-  }
+    minWidth: 700,
+  },
 });
 
 function ClassTable(props) {
@@ -25,14 +25,14 @@ function ClassTable(props) {
         flexWrap: "wrap",
         alignItems: "center",
         justifyContent: "center",
-        textAlign: "left"
+        textAlign: "left",
       }}
     >
       <div className={props.filteredClasses.length > 0 ? "hide" : "show"}>
         <h3>Sorry!</h3>
         <p>We couldn't find any classes, try refining your search criteria.</p>
       </div>
-      {props.filteredClasses.map(singleClass => {
+      {props.filteredClasses.map((singleClass) => {
         let term = getTermFromClass(props.selectedClasses, singleClass.classId);
         //Since the id is numeric, we need to convert it to string to search for it
         singleClass.classId = singleClass.classId.toString();
@@ -42,6 +42,7 @@ function ClassTable(props) {
             <ClassCard
               value={singleClass.classId}
               discipline={singleClass.discipline}
+              noPerformance={singleClass.noPerformance}
               ages={singleClass.ages}
               selected={term !== `None-${singleClass.classId}`}
               onClick={props.onClassSelect}
@@ -60,7 +61,7 @@ function ClassTable(props) {
 }
 
 ClassTable.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(ClassTable);

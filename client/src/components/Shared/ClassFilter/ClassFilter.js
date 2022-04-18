@@ -14,31 +14,31 @@ import {
   levelsEndpoint,
   disciplinesEndpoint,
   locationsEndpoint,
-  agesEndpoint
+  agesEndpoint,
 } from "../../../constants/config";
 
 import "./ClassFilter.css";
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     display: "flex",
-    flexWrap: "wrap"
+    flexWrap: "wrap",
   },
   formControl: {
     margin: theme.spacing.unit,
     minWidth: 120,
-    maxWidth: 330
+    maxWidth: 330,
   },
   chips: {
     display: "flex",
-    flexWrap: "wrap"
+    flexWrap: "wrap",
   },
   chip: {
-    margin: theme.spacing.unit / 4
+    margin: theme.spacing.unit / 4,
   },
   noLabel: {
-    marginTop: theme.spacing.unit * 3
-  }
+    marginTop: theme.spacing.unit * 3,
+  },
 });
 
 const ITEM_HEIGHT = 48;
@@ -47,9 +47,9 @@ const MenuProps = {
   PaperProps: {
     style: {
       maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 280
-    }
-  }
+      width: 280,
+    },
+  },
 };
 
 class ClassFilter extends React.Component {
@@ -63,7 +63,7 @@ class ClassFilter extends React.Component {
       levels: [],
       disciplines: [],
       locations: [],
-      ages: []
+      ages: [],
     };
     this.controller = new AbortController();
     this.signal = this.controller.signal;
@@ -83,24 +83,24 @@ class ClassFilter extends React.Component {
   retrieve(endpoint, element) {
     fetch(endpoint, {
       method: "GET",
-      signal: this.signal
+      signal: this.signal,
     })
-      .then(res => res.json())
+      .then((res) => res.json())
       .then(
-        result => {
+        (result) => {
           if (result && !this.signal.aborted) {
             this.setState({
-              [element]: result
+              [element]: result,
             });
           }
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
         // exceptions from actual bugs in components.
-        error => {
+        (error) => {
           if (!this.signal.aborted) {
             this.setState({
-              isLoaded: true
+              isLoaded: true,
             });
             console.log(error);
           }
@@ -124,11 +124,11 @@ class ClassFilter extends React.Component {
                 value={this.props.disciplineFilter}
                 onChange={this.props.handleDisciplineChange}
                 input={<Input id="select-multiple-checkbox" />}
-                renderValue={selected => selected.join(", ")}
+                renderValue={(selected) => selected.join(", ")}
                 MenuProps={MenuProps}
                 className="class-filter__select"
               >
-                {this.state.disciplines.map(discipline => (
+                {this.state.disciplines.map((discipline) => (
                   <MenuItem
                     key={discipline.disciplineId}
                     value={discipline.disciplineName}
@@ -159,11 +159,11 @@ class ClassFilter extends React.Component {
                 value={this.props.locationFilter}
                 onChange={this.props.handleLocationChange}
                 input={<Input id="select-multiple-checkbox" />}
-                renderValue={selected => selected.join(", ")}
+                renderValue={(selected) => selected.join(", ")}
                 MenuProps={MenuProps}
                 className="class-filter__select"
               >
-                {this.state.locations.map(location => (
+                {this.state.locations.map((location) => (
                   <MenuItem
                     key={location.locationId}
                     value={location.locationName}
@@ -194,11 +194,11 @@ class ClassFilter extends React.Component {
                 value={this.props.levelFilter}
                 onChange={this.props.handleLevelChange}
                 input={<Input id="select-multiple-checkbox" />}
-                renderValue={selected => selected.join(", ")}
+                renderValue={(selected) => selected.join(", ")}
                 MenuProps={MenuProps}
                 className="class-filter__select"
               >
-                {this.state.levels.map(level => (
+                {this.state.levels.map((level) => (
                   <MenuItem key={level.levelId} value={level.levelName}>
                     <Checkbox
                       checked={
@@ -225,11 +225,11 @@ class ClassFilter extends React.Component {
                 value={this.props.ageFilter}
                 onChange={this.props.handleAgeChange}
                 input={<Input id="select-multiple-checkbox" />}
-                renderValue={selected => selected.join(", ")}
+                renderValue={(selected) => selected.join(", ")}
                 MenuProps={MenuProps}
                 className="class-filter__select"
               >
-                {this.state.ages.map(age => (
+                {this.state.ages.map((age) => (
                   <MenuItem key={age.ageId} value={age.ageName}>
                     <Checkbox
                       checked={this.props.ageFilter.indexOf(age.ageName) > -1}

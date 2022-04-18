@@ -58,9 +58,9 @@ class Registration extends React.Component {
       disciplineFilter: [],
       ageFilter: [],
       classes: [],
+      noPerformance: 0,
       filteredClasses: [],
       selectedClasses: [],
-      specialClasses: ["Tumbling", "Aerial Silks"],
       terms: [],
       classesForUniform: [],
       firstName: "",
@@ -248,12 +248,7 @@ class Registration extends React.Component {
     }
 
     if (this.state.activeStep === 4) {
-      if (
-        findSpecialClasses(
-          this.state.selectedClasses,
-          this.state.specialClasses
-        ) === 1
-      ) {
+      if (this.state.noPerformance === 1) {
         this.setState({ videoPrice: 0, tickets: 0 }, this.prepareTotal);
       } else {
         this.prepareTotal();
@@ -349,13 +344,7 @@ class Registration extends React.Component {
       //Resets the selected classes
       this.setState({ selectedClasses: [], classesForUniform: [] });
     }
-    if (
-      this.state.activeStep === 4 &&
-      findSpecialClasses(
-        this.state.selectedClasses,
-        this.state.specialClasses
-      ) === 1
-    ) {
+    if (this.state.activeStep === 4 && this.state.noPerformance === 1) {
       this.setState({ activeStep: 2 });
       return;
     }
@@ -443,6 +432,7 @@ class Registration extends React.Component {
       classId: valueAsArray[1],
       classPrice: valueAsArray[2],
       classDiscipline: valueAsArray[3],
+      noPerformance: valueAsArray[4],
     };
     const key = this.findKeyinArrayOfObjects(
       this.state.selectedClasses,
@@ -458,7 +448,10 @@ class Registration extends React.Component {
       newState.push(selectedClass);
     }
 
-    this.setState({ selectedClasses: newState });
+    this.setState({
+      selectedClasses: newState,
+      noPerformance: findSpecialClasses(newState),
+    });
   }
 
   handleFirstNameChange(event) {
@@ -627,9 +620,8 @@ class Registration extends React.Component {
           singleClass.classId,
           this.state.selectedClasses
         ).length > 0 &&
-        this.state.specialClasses.indexOf(singleClass.discipline) === -1
+        singleClass.noPerformance
       ) {
-        console.log("enter the loop");
         singleClass.ages.forEach((age) => {
           if (costumePrices[age] > largestAge) {
             largestAge = costumePrices[age];
@@ -748,14 +740,7 @@ class Registration extends React.Component {
             <h1>Dress Up!</h1>
             <DressUp selectedClasses={this.state.selectedClasses} />
             <div
-              style={
-                findSpecialClasses(
-                  this.state.selectedClasses,
-                  this.state.specialClasses
-                ) === 1
-                  ? { display: "none" }
-                  : {}
-              }
+              style={this.state.noPerformance === 1 ? { display: "none" } : {}}
             >
               <h1 style={{ marginTop: "60px" }}>Show Off!</h1>
               <ShowOff />

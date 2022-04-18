@@ -98,6 +98,25 @@ const uniformsTemplate = {
     "Stretch One"), Tap Shoes: Well fitting Sansha Black Leather Tap Shoe T-Moravia Junior
     Intensive 2`,
   },
+  lyrical: {
+    title: "JAZZ, LYRICAL, STAGE & MUSICAL THEATRE Uniform:",
+    levels: [
+      `All: DANCE CO fitted leggings or shorts & a DANCE CO well fitted top
+        or bodysuit.`,
+    ],
+    shoes: `Shoes: Black Sansha Jazz shoe. (Shoes for lyrical and stage will be
+      determined by the instructor.)`,
+  },
+  hiphopBreakdance: {
+    title: `HIP HOP & BREAKDANCE Uniform:`,
+    levels: [
+      `Preschool - Senior: DANCE CO hip hop pants or shorts & choice of Dance
+    Co hiphop shirt. DANCE CO Sleeveless Crop Top and Cross Back Top MUST
+    be worn over a DANCE CO sports bra or bodysuit.`,
+    ],
+    shoes: `Shoes: Puma Classic Black & White Suede shoes – available at Vancouver
+    Dance Supply.`,
+  },
 };
 
 export const uniforms = {
@@ -112,4 +131,6 @@ export const uniforms = {
   Breakdance: uniformsTemplate.hiphop,
   "Hip Hop": uniformsTemplate.hiphop,
   "Ballet/Tap": uniformsTemplate.balletTap,
+  Lyrical: uniformsTemplate.lyrical,
+  "Hip Hop/Breakdance": uniformsTemplate.hiphopBreakdance,
 };
