@@ -11,10 +11,20 @@ export const getTermFromClass = (selectedClasses, classId) => {
   return term;
 };
 
-export const findClassIdinArrayOfClasses = (classId, arrayOfClasses) => {
-  const filteredClasses = arrayOfClasses.filter((singleClass) => {
+export const findClassIdinArrayOfClasses = (
+  classId,
+  arrayOfClasses,
+  noPerformanceFlag = false
+) => {
+  let filteredClasses = arrayOfClasses.filter((singleClass) => {
     return classId === singleClass.classId;
   });
+  if (noPerformanceFlag) {
+    filteredClasses = filteredClasses.filter((singleClass) => {
+      return singleClass.noPerformance === "0";
+    });
+  }
+
   return filteredClasses;
 };
 

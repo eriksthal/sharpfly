@@ -618,9 +618,9 @@ class Registration extends React.Component {
       if (
         findClassIdinArrayOfClasses(
           singleClass.classId,
-          this.state.selectedClasses
-        ).length > 0 &&
-        singleClass.noPerformance
+          this.state.selectedClasses,
+          true
+        ).length > 0
       ) {
         singleClass.ages.forEach((age) => {
           if (costumePrices[age] > largestAge) {
