@@ -106,7 +106,7 @@ class Registration extends React.Component {
       agreement12: false,
       registrationFee: this.today < this.earlyBird ? 35 : 50,
       videoPrice: 49,
-      tickets: 60,
+      tickets: 0,
       costumesTotal: 0,
       costumesSummary: { fees: [], pst: 0 },
       tuitionTotal: 0,
@@ -891,10 +891,10 @@ class Registration extends React.Component {
                 <div>
                   <strong>Performance fee: </strong>
                   <ul>
-                    <li>
+                    {/* <li>
                       Tickets deposit: $
                       {parseFloat(this.state.tickets).toFixed(2)} CAD
-                    </li>
+                    </li> */}
                     <li>
                       Video: ${parseFloat(this.state.videoPrice).toFixed(2)} CAD
                     </li>
