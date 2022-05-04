@@ -15,34 +15,34 @@ import Divider from "@material-ui/core/Divider";
 
 import "./CampCard.css";
 
-const styles = theme => ({
+const styles = (theme) => ({
   card: {
     maxWidth: 300,
     // padding: '20px 40px 20px 40px',
     minHeight: "600px",
     backgroundColor: "#efefef",
-    position: "relative"
+    position: "relative",
   },
   bullet: {
     display: "inline-block",
     margin: "0 2px",
-    transform: "scale(0.8)"
+    transform: "scale(0.8)",
   },
   title: {
-    fontSize: 14
+    fontSize: 14,
   },
   pos: {
-    marginBottom: 12
+    marginBottom: 12,
   },
   root: {
-    display: "flex"
+    display: "flex",
   },
   formControl: {
-    margin: theme.spacing.unit * 3
+    margin: theme.spacing.unit * 3,
   },
   group: {
-    margin: `${theme.spacing.unit}px 0`
-  }
+    margin: `${theme.spacing.unit}px 0`,
+  },
 });
 
 function CampCard(props) {
@@ -64,7 +64,7 @@ function CampCard(props) {
             fontSize: "25px",
             fontWeight: "400",
             color: "black",
-            textAlign: "center"
+            textAlign: "center",
           }}
           className={classes.title}
           color="textSecondary"
@@ -79,7 +79,7 @@ function CampCard(props) {
               style={{
                 display: "flex",
                 alignItems: "center",
-                marginRight: "10px"
+                marginRight: "10px",
               }}
             >
               <Icon style={{ fontSize: "20px" }}>date_range</Icon>
@@ -91,7 +91,7 @@ function CampCard(props) {
               style={{
                 display: "flex",
                 alignItems: "center",
-                marginRight: "10px"
+                marginRight: "10px",
               }}
             >
               <Icon style={{ fontSize: "20px" }}>location_on</Icon>
@@ -103,7 +103,7 @@ function CampCard(props) {
               style={{
                 display: "flex",
                 alignItems: "center",
-                marginRight: "10px"
+                marginRight: "10px",
               }}
             >
               <Icon style={{ fontSize: "20px" }}>cake</Icon>
@@ -123,7 +123,7 @@ function CampCard(props) {
         <div
           style={{ padding: "10px 0" }}
           dangerouslySetInnerHTML={{ __html: props.description }}
-        ></div>
+        />
         <Divider component="div" />
       </CardContent>
       <CardActions>
@@ -141,11 +141,13 @@ function CampCard(props) {
               control={<Radio />}
               label="I am not interested in this camp"
             />
-            {props.terms.map(term => {
+            {props.terms.map((term) => {
               return (
                 <FormControlLabel
                   key={term.termId}
-                  value={`${term.termId}-${props.value}-${term.termPrice}-${props.discipline}`}
+                  value={`${term.termId}-${props.value}-${term.termPrice}-${
+                    props.discipline
+                  }-${props.noPerformance}`}
                   control={<Radio />}
                   label={`${term.termName} ($${term.termPrice} CAD)`}
                 />
@@ -159,7 +161,7 @@ function CampCard(props) {
 }
 
 CampCard.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(CampCard);

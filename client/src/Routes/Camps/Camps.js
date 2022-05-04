@@ -24,22 +24,22 @@ import { getPrice } from "../../utilities/utils.js";
 import { campsEndpoint, registrationEndpoint } from "../../constants/config.js";
 import {
   findClassIdinArrayOfClasses,
-  findTermNameinArrayOfTerms
+  findTermNameinArrayOfTerms,
 } from "../../utilities/utils.js";
 
 import "./Camps.css";
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
-    width: "100%"
+    width: "100%",
   },
   backButton: {
-    marginRight: theme.spacing.unit
+    marginRight: theme.spacing.unit,
   },
   instructions: {
     marginTop: theme.spacing.unit,
-    marginBottom: theme.spacing.unit
-  }
+    marginBottom: theme.spacing.unit,
+  },
 });
 
 class Camps extends React.Component {
@@ -100,28 +100,28 @@ class Camps extends React.Component {
       pst: 0,
       grandTotal: 0,
       useCreditOnFile: false,
-      registrationType: "Camp"
+      registrationType: "Camp",
     };
   }
 
   componentDidMount() {
     this.setState({ isLoaded: false });
     fetch(campsEndpoint)
-      .then(res => res.json())
+      .then((res) => res.json())
       .then(
-        result => {
+        (result) => {
           this.setState({
             classes: result,
-            isLoaded: true
+            isLoaded: true,
           });
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
         // exceptions from actual bugs in components.
-        error => {
+        (error) => {
           this.setState({
             isLoaded: true,
-            error
+            error,
           });
         }
       );
@@ -129,7 +129,7 @@ class Camps extends React.Component {
 
   validatePersonalInformation(fields) {
     let isValid = true;
-    fields.forEach(field => {
+    fields.forEach((field) => {
       if (
         this.state[field] === "" ||
         this.state[field] === "none" ||
@@ -177,7 +177,7 @@ class Camps extends React.Component {
           "momsName",
           "momsNumber",
           "dadsName",
-          "dadsNumber"
+          "dadsNumber",
         ])
       ) {
         alert(
@@ -204,7 +204,7 @@ class Camps extends React.Component {
         costumesTotal,
         gst,
         pst,
-        grandTotal
+        grandTotal,
       });
       if (
         !this.validatePersonalInformation([
@@ -220,7 +220,7 @@ class Camps extends React.Component {
           "careCard",
           "familyDoctorName",
           "familyDoctorNumber",
-          "medicalConditions"
+          "medicalConditions",
         ])
       ) {
         alert(
@@ -236,7 +236,7 @@ class Camps extends React.Component {
           "ccName",
           "ccNumber",
           "ccExpiryMonth",
-          "ccExpiryYear"
+          "ccExpiryYear",
         ])
       ) {
         alert("Please complete your credit card information");
@@ -244,8 +244,8 @@ class Camps extends React.Component {
       }
     }
 
-    this.setState(state => ({
-      activeStep: state.activeStep + 1
+    this.setState((state) => ({
+      activeStep: state.activeStep + 1,
     }));
 
     if (this.state.activeStep === campSteps.length - 2) {
@@ -260,20 +260,20 @@ class Camps extends React.Component {
       method: "POST",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(payload),
     })
-      .then(res => res.json())
+      .then((res) => res.json())
       .then(
-        result => {
+        (result) => {
           this.setState({ confirmationCode: result });
           this.setState({ isLoaded: true });
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
         // exceptions from actual bugs in components.
-        error => {
+        (error) => {
           this.setState({ isLoaded: true });
         }
       );
@@ -292,25 +292,27 @@ class Camps extends React.Component {
       this.setState({ selectedClasses: [], classesForUniform: [] });
     }
 
-    this.setState(state => ({
-      activeStep: state.activeStep - 1
+    this.setState((state) => ({
+      activeStep: state.activeStep - 1,
     }));
     this.goToTop();
   };
 
   handleReset = () => {
     this.setState({
-      activeStep: 0
+      activeStep: 0,
     });
   };
 
   filterSelection(ages, ageFilter) {
-    const intersection = ages.filter(value => -1 !== ageFilter.indexOf(value));
+    const intersection = ages.filter(
+      (value) => -1 !== ageFilter.indexOf(value)
+    );
     return intersection.length > 0;
   }
 
   filterClasses() {
-    const filteredClasses = this.state.classes.filter(singleClass => {
+    const filteredClasses = this.state.classes.filter((singleClass) => {
       const locationCondition =
         this.state.locationFilter.length > 0
           ? this.state.locationFilter.indexOf(singleClass.location) > -1
@@ -338,7 +340,7 @@ class Camps extends React.Component {
     this.setState({ filteredClasses });
   }
 
-  handleDisciplineChange = event => {
+  handleDisciplineChange = (event) => {
     this.setState({ disciplineFilter: event.target.value });
   };
 
@@ -372,7 +374,8 @@ class Camps extends React.Component {
       term: valueAsArray[0],
       classId: valueAsArray[1],
       classPrice: valueAsArray[2],
-      classDiscipline: valueAsArray[3]
+      classDiscipline: valueAsArray[3],
+      noPerformance: valueAsArray[4],
     };
     const key = this.findKeyinArrayOfObjects(
       this.state.selectedClasses,
@@ -405,7 +408,7 @@ class Camps extends React.Component {
       formattedBirthdate: birthdate
         .toISOString()
         .slice(0, 19)
-        .replace("T", " ")
+        .replace("T", " "),
     });
   }
 
@@ -551,14 +554,14 @@ class Camps extends React.Component {
     let pst = 0;
     let arrayOfFees = [];
     let senior = true;
-    this.state.classes.forEach(singleClass => {
+    this.state.classes.forEach((singleClass) => {
       if (
         findClassIdinArrayOfClasses(
           singleClass.classId,
           this.state.selectedClasses
         )
       ) {
-        singleClass.ages.forEach(age => {
+        singleClass.ages.forEach((age) => {
           if (costumePrices[age] > largestAge) {
             largestAge = costumePrices[age];
           }
@@ -570,7 +573,7 @@ class Camps extends React.Component {
         senior = true;
         arrayOfFees.push({
           discipline: singleClass.discipline,
-          price: parseFloat(largestAge).toFixed(2)
+          price: parseFloat(largestAge).toFixed(2),
         });
         largestAge = 0;
       }
@@ -581,7 +584,7 @@ class Camps extends React.Component {
 
   getCostumesFinalPrices(arrayOfCostumes) {
     let costumePriceCounter = 0;
-    arrayOfCostumes.forEach(costume => {
+    arrayOfCostumes.forEach((costume) => {
       costumePriceCounter += parseFloat(costume.price);
     });
     return parseFloat(costumePriceCounter).toFixed(2);
@@ -723,7 +726,7 @@ class Camps extends React.Component {
             style={{
               display: "flex",
               flexWrap: "wrap",
-              justifyContent: "center"
+              justifyContent: "center",
             }}
           >
             <div>
@@ -756,7 +759,7 @@ class Camps extends React.Component {
               >
                 <h2>Your selected Camps:</h2>
                 <ul>
-                  {this.state.classes.map(singleClass => {
+                  {this.state.classes.map((singleClass) => {
                     const selectedClass = findClassIdinArrayOfClasses(
                       singleClass.classId,
                       this.state.selectedClasses
@@ -909,7 +912,10 @@ class Camps extends React.Component {
               Promotions folder.
             </p>
             <p>We look forward to dancing with you this year!</p>
-            <p>Reference code: DCO-{this.state.confirmationCode}R</p>
+            <p>
+              Reference code: DCO-
+              {this.state.confirmationCode}R
+            </p>
           </div>
         );
       default:
@@ -941,7 +947,7 @@ class Camps extends React.Component {
         >
           <div className="stepper">
             <Stepper activeStep={activeStep} alternativeLabel>
-              {campSteps.map(label => (
+              {campSteps.map((label) => (
                 <Step key={label}>
                   <StepLabel>{label}</StepLabel>
                 </Step>
@@ -1048,7 +1054,7 @@ class Camps extends React.Component {
 }
 
 Camps.propTypes = {
-  classes: PropTypes.object
+  classes: PropTypes.object,
 };
 
 export default withStyles(styles, { withTheme: true })(Camps);
