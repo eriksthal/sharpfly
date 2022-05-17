@@ -843,7 +843,7 @@ class Camps extends React.Component {
             <h1>All done!</h1>
             <p>
               Thank you for registering via our online registration. We are
-              excited to have you dancing with us for the 2019/20 Season!
+              excited to have you dancing with us for the 2022/23 Season!
             </p>
             <p>
               We will charge one third of your total fees to the supplied credit
