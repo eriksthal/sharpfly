@@ -1022,7 +1022,7 @@ class Registration extends React.Component {
                 Uniform and shoes for dance class. For more information on
                 uniforms{" "}
                 <a
-                  href="http://email.mg.danceco.com/c/eJxNjkEKgzAQRU-ju4ZkYlJdZFG1HqDQA0QzqQFjrFGEnr4Ruih85vOZ-cMzCkuQgLlTQFlFJZVMguBAGGlk3ZYC7gWFK-9AZgX1L2L0POAQyBB8PipqUFhtsBTYc2NEZS0rBtr3lJWaGcgnNW7bEjN-y6BL-tWtmzCSyMkeL6jjdgGivf6EWR_xfJ0uT54M6vYsJG9CGs_Z2bCmbf3A9-5W9DhvMUWyGJuvyut1Cgcm0j_ML2NqRjk"
+                  href="https://www.danceco.com/dress-code"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -1033,7 +1033,7 @@ class Registration extends React.Component {
             <p>
               Vancouver Dance Supply, our store is located right next to our
               Arbutus location in the Arbutus Mall. They stock everything you
-              need, and will be happy assist you. DANCE ETC | 604-731-1362 |
+              need, and will be happy to assist you. DANCE ETC | 604-731-1362 |
               <a href="mailto:vancouverdancesupply@gmail.com">
                 {" "}
                 vancouverdancesupply@gmail.com
