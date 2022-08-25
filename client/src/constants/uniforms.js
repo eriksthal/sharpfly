@@ -2,10 +2,10 @@ const uniformsTemplate = {
   ballet: {
     title: "Ballet Uniform:",
     levels: [
-      `Preschool: DANCE CO Pink Bodysuit with attached skirt`,
-      `Pre-primary: DANCE CO Pink Bodysuit, DANCE CO Pink Skirt`,
-      `Primary: DANCE CO Pink Bodysuit, DANCE CO Pink Skirt`,
-      `Junior: DANCE CO Black Bodysuit, DANCE CO Black Skirt`,
+      `Preschool:  DANCE CO Allegra Bodysuit with attached skirt`,
+      `Pre-primary: DANCE CO May Bodysuit, DANCE CO Pink Skirt`,
+      `Primary: DANCE CO May Bodysuit, DANCE CO Pink Skirt`,
+      `Junior: DANCE CO Black Mesh Bodysuit`,
       `Intermediate and Senior: DANCE CO Black Bodysuit & optional black skirt`,
       `Boys: Fitted white DANCE CO bodysuit & DANCE CO shorts`,
     ],
@@ -15,8 +15,7 @@ const uniformsTemplate = {
   jazz: {
     title: "JAZZ, LYRICAL, STAGE & MUSICAL THEATRE Uniform:",
     levels: [
-      `All levels: DANCE CO fitted leggings or shorts & a DANCE CO well-fitted top or
-      bodysuit.`,
+      `All levels: DANCE CO fitted leggings or shorts & a DANCE CO well-fitted top or bodysuit`,
     ],
     shoes: `Shoes: Black Sansha Jazz shoe (Shoes for lyrical and stage will be determined
       by the instructor).`,
@@ -65,8 +64,8 @@ const uniformsTemplate = {
   balletTap: {
     title: "Ballet/Tap Uniform:",
     levels: [
-      `Preschool: DANCE CO Pink Bodysuit with attached skirt`,
-      `Pre-Primary: DANCE CO Pink Bodysuit, DANCE CO Pink Skirt`,
+      `Preschool: DANCE CO Allegra Bodysuit with attached skirt`,
+      `Pre-Primary: DANCE CO May Bodysuit, DANCE CO May Skirt`,
       `Boys: Fitted white DANCE CO bodysuit & DANCE CO shorts`,
     ],
     shoes: ` Ballet: Snug fitting Canvas Ballet shoe ("Star-split" 15C, "Pro" 1C or "Stretch
