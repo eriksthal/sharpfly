@@ -39,9 +39,8 @@ function FinancialInformation(props) {
           <span style={{ display: "block" }}>
             Costume fees do not include any additional shoe, tight and accessory
             requirements. Parents/students will be responsible for the cost of
-            these additional items. A performance fee is included in your total
-            fees. This fee includes a ticket deposit to be used towards your
-            ticket purchase for the Year End Recital and a digital video when
+            these additional items. A video performance fee is included in your
+            total fees which includes a digital video of the recital when
             available. Withdrawals for medical reasons must be accompanied by a
             Valid Doctor’s note. Medical withdrawals after October 31st will be
             credited the remaining tuition for future classes.{" "}
