@@ -103,7 +103,6 @@ class Registration extends React.Component {
       agreement8: false,
       agreement9: false,
       agreement10: false,
-      agreement12: false,
       registrationFee: this.today < this.earlyBird ? 35 : 50,
       videoPrice: 49,
       tickets: 0,
@@ -266,7 +265,6 @@ class Registration extends React.Component {
           "agreement8",
           "agreement9",
           "agreement10",
-          "agreement12",
           "agreementCheck",
           "waiverGuardianName",
           "waiverStudentName",
@@ -789,7 +787,6 @@ class Registration extends React.Component {
               agreement7={this.state.agreement7}
               agreement8={this.state.agreement8}
               agreement9={this.state.agreement9}
-              agreement12={this.state.agreement12}
               handleAgreementChange={this.handleAgreementChange.bind(this)}
             />
             <Signature

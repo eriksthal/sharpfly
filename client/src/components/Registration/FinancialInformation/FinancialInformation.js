@@ -22,7 +22,7 @@ function FinancialInformation(props) {
       <p>
         To officially withdraw from a class the parent / legal guardian must
         complete and submit a Discontinuation form (available at our office) no
-        later than October 31st.{" "}
+        later than February 15th.{" "}
         <strong>
           Verbal notification and non attendance are not considered automatic
           withdrawal
@@ -37,16 +37,17 @@ function FinancialInformation(props) {
         />
         <div>
           <span style={{ display: "block" }}>
+            <strong>January - June classes are non-refundable.</strong>
             Costume fees do not include any additional shoe, tight and accessory
             requirements. Parents/students will be responsible for the cost of
             these additional items. A video performance fee is included in your
             total fees which includes a digital video of the recital when
             available. Withdrawals for medical reasons must be accompanied by a
-            Valid Doctor’s note. Medical withdrawals after October 31st will be
+            Valid Doctor’s note. Medical withdrawals after February 15th will be
             credited the remaining tuition for future classes.{" "}
             <b>
-              September to December term, Adult, Spring and Summer classes are
-              non refundable.
+              January registration, Adult, Spring and Summer classes are non
+              refundable.
             </b>{" "}
             Applications to transfer a student to a different class/time, for
             personal reasons, will incur a $50.00 administration fee per change
@@ -57,30 +58,18 @@ function FinancialInformation(props) {
         <Checkbox
           onClick={props.handleAgreementChange}
           value={props.value}
-          checked={props.agreement12}
-          id="agreement12"
-        />
-        <span>
-          One third of the tuition and registration fee are non-refundable upon
-          registration and there are no refunds on any tuition, costume or
-          performance fees after October 31st.
-        </span>
-      </div>
-      <div className="financial-information__acceptable-term">
-        <Checkbox
-          onClick={props.handleAgreementChange}
-          value={props.value}
           checked={props.agreement2}
           id="agreement2"
         />
         <span>
-          Payment arrangements are required at the time of registration. Dance
-          Co is authorized to process payments by credit card in accordance with
-          the payment schedule. Monthly statements and invoices are not
-          provided. As a courtesy, please inform us if your credit card
-          expiration date changes. Transactions that are not able to process
-          within two weeks of the scheduled payment date will be subject to a 2%
-          late payment fee, accrued monthly until paid.
+          Payment arrangements are required at the time of registration. Payment
+          can be made in full or in two equal payments. One upon registration
+          and one on March 15th. Dance Co is authorized to process payments by
+          credit card in accordance with the payment schedule. Monthly
+          statements and invoices are not provided. As a courtesy, please inform
+          us if your credit card expiration date changes. Transactions that are
+          not able to process within two weeks of the scheduled payment date
+          will be subject to a 2% late payment fee, accrued monthly until paid.
         </span>
       </div>
       <div className="financial-information__acceptable-term">
