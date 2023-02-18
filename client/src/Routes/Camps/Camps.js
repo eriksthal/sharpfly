@@ -924,134 +924,131 @@ class Camps extends React.Component {
   }
 
   render() {
-    // const { classes } = this.props;
-    // const campSteps = this.getSteps();
-    // const { activeStep } = this.state;
-    // const { theme } = this.props;
+    const { classes } = this.props;
+    const campSteps = this.getSteps();
+    const { activeStep } = this.state;
+    const { theme } = this.props;
 
     return (
-      <h1 style={{ textAlign: "center" }}>
-        Our registration is currently closed.
-      </h1>
-      // <>
-      //   <div
-      //     className={
-      //       this.state.isLoaded
-      //         ? "registration__spinner hide"
-      //         : "registration__spinner"
-      //     }
-      //   >
-      //     <Spinner />
-      //   </div>
-      //   <div
-      //     className={
-      //       this.state.isLoaded ? classes.root : classes.root + ` hide`
-      //     }
-      //   >
-      //     <div className="stepper">
-      //       <Stepper activeStep={activeStep} alternativeLabel>
-      //         {campSteps.map((label) => (
-      //           <Step key={label}>
-      //             <StepLabel>{label}</StepLabel>
-      //           </Step>
-      //         ))}
-      //       </Stepper>
-      //     </div>
-      //     <div>
-      //       <Typography component={"span"} className={classes.instructions}>
-      //         {this.getStepContent(activeStep)}
-      //       </Typography>
-      //     </div>
-      //     <div className="mobile-stepper">
-      //       <MobileStepper
-      //         steps={6}
-      //         position="static"
-      //         activeStep={activeStep}
-      //         className={classes.mobileStepper}
-      //         style={
-      //           this.state.activeStep === campSteps.length - 1
-      //             ? { display: "none" }
-      //             : {}
-      //         }
-      //         nextButton={
-      //           <Button
-      //             size="small"
-      //             onClick={this.handleNext}
-      //             disabled={
-      //               activeStep === campSteps.length - 1 ||
-      //               (this.state.disciplineFilter.length === 0 &&
-      //                 this.state.locationFilter.length === 0 &&
-      //                 this.state.levelFilter.length === 0)
-      //             }
-      //           >
-      //             Next
-      //             {theme.direction === "rtl" ? (
-      //               <KeyboardArrowLeft />
-      //             ) : (
-      //               <KeyboardArrowRight />
-      //             )}
-      //           </Button>
-      //         }
-      //         backButton={
-      //           <Button
-      //             size="small"
-      //             onClick={this.handleBack}
-      //             disabled={activeStep === 0}
-      //           >
-      //             {theme.direction === "rtl" ? (
-      //               <KeyboardArrowRight />
-      //             ) : (
-      //               <KeyboardArrowLeft />
-      //             )}
-      //             Back
-      //           </Button>
-      //         }
-      //       />
-      //     </div>
-      //     <div className="stepper navigator">
-      //       {this.state.activeStep === campSteps.length ? (
-      //         <div>
-      //           <Typography component={"span"} className={classes.instructions}>
-      //             All steps completed
-      //           </Typography>
-      //           <Button onClick={this.handleReset}>Reset</Button>
-      //         </div>
-      //       ) : (
-      //         <div>
-      //           <Button
-      //             disabled={activeStep === 0}
-      //             onClick={this.handleBack}
-      //             className={classes.backButton}
-      //             style={
-      //               this.state.activeStep === campSteps.length - 1
-      //                 ? { display: "none" }
-      //                 : {}
-      //             }
-      //           >
-      //             Back
-      //           </Button>
-      //           <Button
-      //             disabled={
-      //               this.state.locationFilter.length === 0 &&
-      //               this.state.ageFilter.length === 0 &&
-      //               this.state.disciplineFilter.length === 0
-      //             }
-      //             style={
-      //               this.state.activeStep === campSteps.length - 1
-      //                 ? { display: "none" }
-      //                 : {}
-      //             }
-      //             variant="contained"
-      //             color="primary"
-      //             onClick={this.handleNext}
-      //           >
-      //             {activeStep === campSteps.length - 2 ? "Finish" : "Next"}
-      //           </Button>
-      //         </div>
-      //       )}
-      //     </div>
-      //   </div>
-      // </>
+      <>
+        <div
+          className={
+            this.state.isLoaded
+              ? "registration__spinner hide"
+              : "registration__spinner"
+          }
+        >
+          <Spinner />
+        </div>
+        <div
+          className={
+            this.state.isLoaded ? classes.root : classes.root + ` hide`
+          }
+        >
+          <div className="stepper">
+            <Stepper activeStep={activeStep} alternativeLabel>
+              {campSteps.map((label) => (
+                <Step key={label}>
+                  <StepLabel>{label}</StepLabel>
+                </Step>
+              ))}
+            </Stepper>
+          </div>
+          <div>
+            <Typography component={"span"} className={classes.instructions}>
+              {this.getStepContent(activeStep)}
+            </Typography>
+          </div>
+          <div className="mobile-stepper">
+            <MobileStepper
+              steps={6}
+              position="static"
+              activeStep={activeStep}
+              className={classes.mobileStepper}
+              style={
+                this.state.activeStep === campSteps.length - 1
+                  ? { display: "none" }
+                  : {}
+              }
+              nextButton={
+                <Button
+                  size="small"
+                  onClick={this.handleNext}
+                  disabled={
+                    activeStep === campSteps.length - 1 ||
+                    (this.state.disciplineFilter.length === 0 &&
+                      this.state.locationFilter.length === 0 &&
+                      this.state.levelFilter.length === 0)
+                  }
+                >
+                  Next
+                  {theme.direction === "rtl" ? (
+                    <KeyboardArrowLeft />
+                  ) : (
+                    <KeyboardArrowRight />
+                  )}
+                </Button>
+              }
+              backButton={
+                <Button
+                  size="small"
+                  onClick={this.handleBack}
+                  disabled={activeStep === 0}
+                >
+                  {theme.direction === "rtl" ? (
+                    <KeyboardArrowRight />
+                  ) : (
+                    <KeyboardArrowLeft />
+                  )}
+                  Back
+                </Button>
+              }
+            />
+          </div>
+          <div className="stepper navigator">
+            {this.state.activeStep === campSteps.length ? (
+              <div>
+                <Typography component={"span"} className={classes.instructions}>
+                  All steps completed
+                </Typography>
+                <Button onClick={this.handleReset}>Reset</Button>
+              </div>
+            ) : (
+              <div>
+                <Button
+                  disabled={activeStep === 0}
+                  onClick={this.handleBack}
+                  className={classes.backButton}
+                  style={
+                    this.state.activeStep === campSteps.length - 1
+                      ? { display: "none" }
+                      : {}
+                  }
+                >
+                  Back
+                </Button>
+                <Button
+                  disabled={
+                    this.state.locationFilter.length === 0 &&
+                    this.state.ageFilter.length === 0 &&
+                    this.state.disciplineFilter.length === 0
+                  }
+                  style={
+                    this.state.activeStep === campSteps.length - 1
+                      ? { display: "none" }
+                      : {}
+                  }
+                  variant="contained"
+                  color="primary"
+                  onClick={this.handleNext}
+                >
+                  {activeStep === campSteps.length - 2 ? "Finish" : "Next"}
+                </Button>
+              </div>
+            )}
+          </div>
+        </div>
+      </>
     );
   }
 }
