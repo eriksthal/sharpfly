@@ -5,16 +5,16 @@ export const steps = [
   "Dress up",
   "Agree to our terms",
   "Review and Payment",
-  "All done"
+  "All done",
 ];
 
 export const costumePrices = {
-  "Senior (15+ years)": 145.0,
-  "Intermediate (12-14 years)": 145.0,
-  "Junior (9-11 years)": 135.0,
-  "Primary (7-8 years)": 105.0,
-  "Pre-Primary (5-6 years)": 100.0,
-  "Pre-school (3-4 years)": 95.0
+  "Senior (15+ years)": 150.0,
+  "Intermediate (12-14 years)": 150.0,
+  "Junior (9-11 years)": 140.0,
+  "Primary (7-8 years)": 125.0,
+  "Pre-Primary (5-6 years)": 120.0,
+  "Pre-school (3-4 years)": 115.0,
 };
 
 export const campSteps = [
@@ -23,5 +23,5 @@ export const campSteps = [
   "About your dancer",
   "Agree to our terms",
   "Review and Payment",
-  "All done"
+  "All done",
 ];
