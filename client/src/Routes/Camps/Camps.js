@@ -843,7 +843,7 @@ class Camps extends React.Component {
             <h1>All done!</h1>
             <p>
               Thank you for registering via our online registration. We are
-              excited to have you dancing with us for the 2022/23 Season!
+              excited to have you dancing with us for the 2023/24 Season!
             </p>
             <p>
               We will charge one third of your total fees to the supplied credit
@@ -857,18 +857,6 @@ class Camps extends React.Component {
               year courses, 1/3 of tuition fees and the full registration fee is
               non-refundable. After October 31st, no other refunds will be
               given.
-            </p>
-            <p>
-              Please{" "}
-              <a
-                href="https://dancecofiles.s3.us-east-2.amazonaws.com/2019-20+Calendar.xls"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                click here
-              </a>{" "}
-              for the 2019/2020 Season Calendar which outlines important dates
-              in our year.
             </p>
             <p>
               <ul>
