@@ -62,8 +62,9 @@ function FinancialInformation(props) {
         />
         <span>
           One third of tuition and the registration fee are non-refundable upon
-          registration and there are no refunds on any tution, costume or
-          performance fees after October 31st.
+          registration. There are no refunds on tuition , costume or performance
+          fees for non-medical withdrawals after October 31st, and all
+          outstanding fees remain payable.
         </span>
       </div>
       <div className="financial-information__acceptable-term">
@@ -77,13 +78,13 @@ function FinancialInformation(props) {
           Payment arrangements are required at the time of registration. Payment
           can be made in full or monthly payments. For monthly payments, the
           registration fee and 1/3 of the tuition is required at registration
-          and the reamining is split into 6 monthly payments starting September
-          15th. Dance Co is authorized to process payments by credit card in
-          accordance with the payment schedule. Monthly statements and invoices
-          are not provided. As a courtesy, please inform us if your credit card
-          expiration date changes. Transactions that are not able to process
-          within two weeks of the scheduled payment date will be subject to a 2%
-          late payment fee, accrued monthly until paid.
+          and the remaining is split into 6 monthly payments starting September
+          15th. The undersigned authorises Dance Co to process payments by
+          credit card in accordance with the payment schedule. Monthly
+          statements and invoices are not provided. Please inform us when your
+          credit card information changes. Transactions that are not able to
+          process within two weeks of the scheduled payment date will be subject
+          to a 2% late payment fee, accrued monthly until paid.
         </span>
       </div>
       <div className="financial-information__acceptable-term">
@@ -149,10 +150,12 @@ function FinancialInformation(props) {
           id="agreement7"
         />
         <span>
-          Cancellation: Dance Co reserves the right to cancel class at any time
-          due to insufficient enrolment and/or change instructors when
+          Dance Co reserves the right to cancel classes at any time due to
+          insufficient enrolment, to combine age groups, to shift class
+          schedules by up to 30 minutes, and/or to change instructors when
           necessary. Dance Co reserves the right to have students photographed
-          and used for publicity purposes, unless otherwise notified in writing.
+          and videotaped for educational and publicity purposes, unless
+          otherwise notified in writing.
         </span>
       </div>
       <div className="financial-information__acceptable-term">
@@ -163,11 +166,9 @@ function FinancialInformation(props) {
           id="agreement8"
         />
         <span>
-          Due to restrictions surrounding Covid -19, classes that are not able
-          to happen in studio will take place online through zoom. Class
-          schedules may need to shift by up to 30 minutes to accommodate ever
-          evolving social distancing requirements. Refunds will not be given for
-          classes that take place online due to social distancing restrictions.
+          Due to unforeseen events and/or restrictions, classes that are not
+          able to happen in the studio will take place online and no refunds
+          will be given.
         </span>
       </div>
       <div className="financial-information__acceptable-term">

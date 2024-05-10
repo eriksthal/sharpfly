@@ -44,15 +44,15 @@ class LiabilityWaiver extends React.Component {
         <hr />
         <h3>Liability Waiver Form</h3>
         <p>
-          In consideration of me and my child being permitted to participate in
-          the Dance Co programs and activities, the undersigned, appreciating
+          In consideration of myself and my child being permitted to participate
+          in the Dance Co programs and activities, the undersigned, appreciating
           any possible dangers, hazards, or injuries inherent in the Dance Co
           programs, activities and transportation between the Studios and
-          to/from different events which are part of the Dance Co programs,
-          hereby assumes the risks and responsibilities surrounding my or my
+          to/from different events which are part of the Dance Co programs, I
+          hereby assume the risks and responsibilities surrounding myself or my
           child’s participation in the foregoing programs, activities,
-          transportation or other activities, including but not limited to the
-          online training and events, as an adjunct hereto; and further, I, for
+          transportation or other activities, including but not limited to
+          training shows and events, as an adjunct hereto; and further, I, for
           myself, my heirs, and personal representative(s) hereby defend, hold
           harmless, indemnify, release and forever discharge Dance Co and all
           its owners, agents, employees and any other staff members from and
@@ -72,7 +72,7 @@ class LiabilityWaiver extends React.Component {
           facilities in use during participating to the Dance programs. In the
           event that I/we should observe any unsafe personal conduct or unsafe
           physical condition during the Classes, I/we agree to report the unsafe
-          conduct or condition to a staff member as soon as possible.{" "}
+          conduct or condition to a staff member as soon as possible.
         </p>
         <p>
           I/we further understand and agree that I/we give this release freely,
@@ -80,7 +80,7 @@ class LiabilityWaiver extends React.Component {
           permission to participate in the Dance Co programs and activities,
           including but not limited to the online classes and training. I/we
           also agree that this Release and Liability Waiver shall be effective
-          whether or nor I/we have in force any policy of insurance to cover me
+          whether or not I/we have in force any policy of insurance to cover me
           or my child for injuries which may arise from participation in the
           Dance Co programs, activities and transportation, including but not
           limited to the online classes and training. If I/we do not have any
