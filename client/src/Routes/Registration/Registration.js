@@ -976,7 +976,7 @@ class Registration extends React.Component {
             <h1>All done!</h1>
             <p>
               Thank you for registering via our online registration. We are
-              excited to have you dancing with us for the 22/23 season!
+              excited to have you dancing with us for the 24/25 season!
             </p>
             <p>
               We will charge one third of your total fees to the supplied credit
@@ -985,11 +985,10 @@ class Registration extends React.Component {
               starting September 15th.
             </p>
             <p>
-              Please note if you have registered for a Sept-December Preschool
-              Beginner Classes all fees are non-refundable. For all other full
-              year courses, 1/3 of tuition fees and the full registration fee is
-              non-refundable. After October 31st, no other refunds will be
-              given.
+              Please note if you have registered for a class all fees are
+              non-refundable. For all other full year courses, 1/3 of tuition
+              fees and the full registration fee is non-refundable. After
+              October 31st, no other refunds will be given.
             </p>
             {/* <p>
               Please{" "}
@@ -1031,18 +1030,14 @@ class Registration extends React.Component {
               </strong>
             </p>
             <p>
-              Vancouver Dance Supply, our store is located right next to our
-              Arbutus location in the Arbutus Mall. They stock everything you
-              need, and will be happy to assist you. DANCE ETC | 604-731-1362 |
-              <a href="mailto:vancouverdancesupply@gmail.com">
-                {" "}
-                vancouverdancesupply@gmail.com
-              </a>
+              Vancouver Dance Supply, our store is located inside of our Arbutus
+              studio. They stock everything you need, and will be happy to
+              assist you.
             </p>
             <p>
               If you have any questions, please reach out to us at{" "}
-              <a href="mailto:vancouverdancesupply@gmail.com">
-                vancouverdancesupply@gmail.com
+              <a href="mailto:vancouverdancesupply@danceco.com">
+                vancouverdancesupply@danceco.com
               </a>
             </p>
             <p>

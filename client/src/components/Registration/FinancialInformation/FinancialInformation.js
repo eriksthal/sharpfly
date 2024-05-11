@@ -49,7 +49,7 @@ function FinancialInformation(props) {
               non refundable.
             </b>{" "}
             Applications to transfer a student to a different class/time, for
-            personal reasons, will incur a $50.00 administration fee per change
+            personal reasons, will incur a $55.00 administration fee per change
           </span>
         </div>
       </div>
