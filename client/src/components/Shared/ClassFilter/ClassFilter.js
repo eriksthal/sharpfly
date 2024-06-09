@@ -209,12 +209,12 @@ class ClassFilter extends React.Component {
                   </MenuItem>
                 ))}
               </Select>
-              <FormHelperText id="select-levels">
+              {/* <FormHelperText id="select-levels">
                 {`Beginner: 0-2 years of experience,
                 Accelerated: 1-3 years of
                 experience,
                 Advanced: 3+ years of experience`}
-              </FormHelperText>
+              </FormHelperText> */}
             </FormControl>
           </div>
           <div className="class-filter__filter-container">
