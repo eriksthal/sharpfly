@@ -843,52 +843,18 @@ class Camps extends React.Component {
             <h1>All done!</h1>
             <p>
               Thank you for registering via our online registration. We are
-              excited to have you dancing with us for the 2023/24 Season!
+              excited to have you dancing with us this season!
             </p>
             <p>
-              We will charge one third of your total fees to the supplied credit
-              card number and a receipt will be emailed to you upon completion.
-              The remainder of the fees are divided into 6 monthly payments
-              starting September 23rd.
-            </p>
-            <p>
-              Please note if you have registered for a Sept-December Preschool
-              Beginner Classes all fees are non-refundable. For all other full
-              year courses, 1/3 of tuition fees and the full registration fee is
-              non-refundable. After October 31st, no other refunds will be
-              given.
-            </p>
-            <p>
-              <ul>
-                <li>
-                  Classes begin the week of Monday September 9th – Sunday
-                  September 15th
-                </li>
-                <li>
-                  Please take a look at the above Calendar for a full list of
-                  studio events and closures.{" "}
-                </li>
-              </ul>
-            </p>
-            <p>
-              Dance Co students are required to wear the appropriate Dance Co
-              Uniform and shoes for dance class. For more information on
-              uniforms{" "}
-              <a
-                href="https://dancecofiles.s3.us-east-2.amazonaws.com/2019+Dance+Co+Uniform+Requirements+.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {" "}
-                click here
-              </a>
-              .
+              <strong>ATTIRE:</strong> Students are not required to wear the
+              standard Dance Co uniform during camp. However, students must wear
+              appropriate dance clothing and shoes for varying disciplines. Tap
+              shoes are available for rental at Vancouver Dance Supply.
             </p>
             <p>
               Vancouver Dance Supply, our store is located right next to our
               Arbutus location in the Arbutus Mall. They stock everything you
-              need, and will be happy assist you. DANCE ETC | 604-731-1362 |
-              <a href="mailto:info@danceetc.ca">info@danceetc.ca</a>
+              need, and will be happy assist you.
             </p>
             <p>
               If you have any questions, please reach out to us at 604.736.3394
