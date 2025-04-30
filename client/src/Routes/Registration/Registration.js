@@ -105,7 +105,7 @@ class Registration extends React.Component {
       agreement10: false,
       agreement11: false,
       registrationFee: this.today < this.earlyBird ? 35 : 55,
-      videoPrice: 55,
+      videoPrice: 75,
       tickets: 0,
       costumesTotal: 0,
       costumesSummary: { fees: [], pst: 0 },
@@ -976,7 +976,7 @@ class Registration extends React.Component {
             <h1>All done!</h1>
             <p>
               Thank you for registering via our online registration. We are
-              excited to have you dancing with us for the 24/25 season!
+              excited to have you dancing with us for the 25/26 season!
             </p>
             <p>
               We will charge one third of your total fees to the supplied credit
