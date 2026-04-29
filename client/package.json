@@ -8,7 +8,6 @@
     "@material-ui/icons": "^3.0.1",
     "@reach/router": "^1.2.1",
     "date-fns": "2.0.0-alpha.27",
-    "firebase": "5.9.3",
     "material-ui-pickers": "^2.2.4",
     "mson": "^1.2.0",
     "mson-react": "^1.2.0",
@@ -19,8 +18,8 @@
     "typeface-roboto": "^0.0.54"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "NODE_OPTIONS=--openssl-legacy-provider react-scripts start",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

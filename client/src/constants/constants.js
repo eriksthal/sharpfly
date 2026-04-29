@@ -9,12 +9,12 @@ export const steps = [
 ];
 
 export const costumePrices = {
-  "Senior (15+ years)": 180.0,
-  "Intermediate (12-14 years)": 180.0,
-  "Junior (9-11 years)": 175.0,
-  "Primary (7-8 years)": 160.0,
-  "Pre-Primary (5-6 years)": 155.0,
-  "Pre-school (3-4 years)": 150.0,
+  "Senior (15+ years)": 185.0,
+  "Intermediate (12-14 years)": 185.0,
+  "Junior (9-11 years)": 180.0,
+  "Primary (7-8 years)": 165.0,
+  "Pre-Primary (5-6 years)": 160.0,
+  "Pre-school (3-4 years)": 155.0,
 };
 
 export const campSteps = [
