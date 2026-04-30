@@ -37,6 +37,13 @@ const uniformsTemplate = {
     ],
     shoes: `Shoes: Bare feet.`,
   },
+  aerialHoop: {
+    title: `AERIAL HOOP Uniform:`,
+    levels: [
+      `All levels: DANCE CO fitted leggings or shorts & a DANCE CO well-fitted bodysuit.`,
+    ],
+    shoes: `Shoes: Bare feet.`,
+  },
   aerialSilks: {
     title: `AERIAL SILKS Uniform:`,
     levels: [
@@ -80,6 +87,7 @@ export const uniforms = {
   Contemporary: uniformsTemplate.acro,
   Acro: uniformsTemplate.tumbling,
   Tumbling: uniformsTemplate.tumbling,
+  "Aerial Hoop": uniformsTemplate.aerialHoop,
   "Aerial Silks": uniformsTemplate.aerialSilks,
   "Musical Theatre": uniformsTemplate.jazz,
   Breakdance: uniformsTemplate.hiphop,

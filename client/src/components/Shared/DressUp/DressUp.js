@@ -18,6 +18,13 @@ const styles = theme => ({
 });
 
 function DressUp(props) {
+  const selectedUniforms = filterClassesForUniforms(props.selectedClasses)
+    .map(singleClass => ({
+      discipline: singleClass,
+      uniform: uniforms[singleClass]
+    }))
+    .filter(selectedUniform => selectedUniform.uniform);
+
   // return (
   //   <div>
   //     No uniform required All students are required to wear the appropriate
@@ -48,17 +55,18 @@ function DressUp(props) {
         Competition dancers may be required to purchase a second pair of shoes
         for performances.
       </strong>
-      {filterClassesForUniforms(props.selectedClasses).map(singleClass => {
+      {selectedUniforms.map(selectedUniform => {
+        const { discipline, uniform } = selectedUniform;
         return (
-          <div key={singleClass}>
+          <div key={discipline}>
             <hr />
-            <p>{uniforms[singleClass].title}</p>
+            <p>{uniform.title}</p>
             <ul>
-              {uniforms[singleClass].levels.map((level, i) => {
+              {uniform.levels.map((level, i) => {
                 return <li key={i}>{level}</li>;
               })}
             </ul>
-            <p>{uniforms[singleClass].shoes}</p>
+            <p>{uniform.shoes}</p>
           </div>
         );
       })}
@@ -73,7 +81,16 @@ function DressUp(props) {
 }
 
 DressUp.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  selectedClasses: PropTypes.arrayOf(
+    PropTypes.shape({
+      classDiscipline: PropTypes.string
+    })
+  )
+};
+
+DressUp.defaultProps = {
+  selectedClasses: []
 };
 
 export default withStyles(styles)(DressUp);
