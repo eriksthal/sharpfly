@@ -45,11 +45,11 @@ function FinancialInformation(props) {
             Valid Doctor’s note. Medical withdrawals after October 31st will be
             credited the remaining tuition for future classes.{" "}
             <b>
-              September to December term, Adult, Spring and Summer classes are
-              non refundable.
+              January to June term, Adult classes, Spring Break Camp and Summer
+              classes are non refundable upon registration.
             </b>{" "}
             Applications to transfer a student to a different class/time, for
-            personal reasons, will incur a $55.00 administration fee per change
+            personal reasons, will incur a $60.00 administration fee per change
           </span>
         </div>
       </div>
@@ -61,10 +61,9 @@ function FinancialInformation(props) {
           id="agreement11"
         />
         <span>
-          One third of tuition and the registration fee are non-refundable upon
-          registration. There are no refunds on tuition , costume or performance
-          fees for non-medical withdrawals after October 31st, and all
-          outstanding fees remain payable.
+          There are no refunds on tuition , costume or performance fees for
+          non-medical withdrawals after registration, and all outstanding fees
+          remain payable.
         </span>
       </div>
       <div className="financial-information__acceptable-term">
@@ -76,11 +75,10 @@ function FinancialInformation(props) {
         />
         <span>
           Payment arrangements are required at the time of registration. Payment
-          can be made in full or monthly payments. For monthly payments, the
-          registration fee and 1/3 of the tuition is required at registration
-          and the remaining is split into 6 monthly payments starting September
-          15th. The undersigned authorises Dance Co to process payments by
-          credit card in accordance with the payment schedule. Monthly
+          can be made in full or monthly payments. For monthly payments, 50% of
+          the total fees are required at registration and the remaining 50% is
+          charged on March 15th. The undersigned authorises Dance Co to process
+          payments by credit card in accordance with the payment schedule. Monthly
           statements and invoices are not provided. Please inform us when your
           credit card information changes. Transactions that are not able to
           process within two weeks of the scheduled payment date will be subject
@@ -121,7 +119,7 @@ function FinancialInformation(props) {
         />
         <span>
           <strong>
-            Three of more unexplained absences within each term may result in
+            Three or more unexplained absences within each term may result in
             dismissal from class(es). NO REFUNDS WILL BE GIVEN.
           </strong>
         </span>
