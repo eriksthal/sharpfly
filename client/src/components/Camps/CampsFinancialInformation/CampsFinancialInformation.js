@@ -20,8 +20,8 @@ function CampsFinancialInformation(props) {
     <div>
       <h3>Please read and accept the following information:</h3>
       <p>
-        To Official withdraw from a class the parent/legal guardian must
-        complete & submit a Discontinuation Form (available at the office).
+        To officially withdraw from a class the parent / legal guardian must
+        complete and submit a Discontinuation form (available at our office).
         Verbal notification and non-attendance are not considered automatic
         withdrawal.
       </p>
@@ -33,11 +33,14 @@ function CampsFinancialInformation(props) {
           id="agreement1"
         />
         <span>
-          Spring Break Camp & Summer Program and classes are non-refundable.
+          Spring Break Camp and Summer programs and classes are non-refundable
+          upon registration.
           Withdrawals for medical reasons must be accompanied by a valid
           doctor’s note. Medical withdrawals will be credited remaining tuition
-          for future classes. Applications to transfer a student to a different
-          class/program for personal reason, will incur a $25.00 administration
+          for future classes. There are no refunds on tuition for non-medical
+          withdrawals after registration, and all outstanding fees remain
+          payable. Applications to transfer a student to a different
+          class/program for personal reasons will incur a $60.00 administration
           fee per change.
         </span>
       </div>
