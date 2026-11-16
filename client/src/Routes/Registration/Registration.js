@@ -979,16 +979,15 @@ class Registration extends React.Component {
               excited to have you dancing with us for the 26/27 season!
             </p>
             <p>
-              We will charge one third of your total fees to the supplied credit
-              card number and a receipt will be emailed to you upon completion.
-              The remainder of the fees are divided into 6 monthly payments
-              starting September 15th.
+              {this.state.paymentTerm === "Monthly Payments"
+                ? "We will charge 50% of your total fees to the supplied credit card at registration. The remaining 50% will be charged on March 15th."
+                : "We will charge your total fees to the supplied credit card at registration."}{" "}
+              A receipt will be emailed to you upon completion.
             </p>
             <p>
-              Please note if you have registered for a class all fees are
-              non-refundable. For all other full year courses, 1/3 of tuition
-              fees and the full registration fee is non-refundable. After
-              October 31st, no other refunds will be given.
+              There are no refunds on tuition, costume or performance fees for
+              non-medical withdrawals after registration, and all outstanding
+              fees remain payable.
             </p>
             {/* <p>
               Please{" "}
