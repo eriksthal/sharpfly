@@ -36,7 +36,7 @@ function DressUp(props) {
   return (
     <div>
       All students are required to wear the appropriate uniform as set by Dance
-      Co. Dance Etc carries all required uniforms for purchase. There are
+      Co. Vancouver Dance Supply carries all required uniforms for purchase. There are
       specific styles required for different levels and disciplines. This
       uniform must be worn to classes and no other attire will be accepted.
       Students in the Competitive, Intensive, Company and Professional Half-Day

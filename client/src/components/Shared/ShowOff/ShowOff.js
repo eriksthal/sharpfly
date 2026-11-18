@@ -17,10 +17,10 @@ const styles = (theme) => ({
 function ShowOff(props) {
   return (
     <div>
-      <h2>Year-end Recital at the Gateway Theatre (dates TBA)</h2>​{" "}
+      <h2>Year-end Recital at Kay Meek Arts Centre on June 4th, 5th and 6th</h2>
       <p>
-        Dance Co’s Year-End Recital performances occur at the end of May/early
-        June. All Dancers in full year programs will perform with the exception
+        Detailed schedules will be sent out in the Spring.
+        All Dancers in full year programs will perform with the exception
         of beginner acro classes and beginner aerial hoop & silks classes.
         PLEASE SAVE THE DATE!
       </p>
